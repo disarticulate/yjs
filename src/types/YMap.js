@@ -85,6 +85,17 @@ export class YMap extends AbstractType {
   }
 
   /**
+   * @return {YMap<T>}
+   */
+  clone () {
+    const map = new YMap()
+    this.forEach((value, key) => {
+      map.set(key, value instanceof AbstractType ? value.clone() : value)
+    })
+    return map
+  }
+
+  /**
    * Creates YMapEvent and calls observers.
    *
    * @param {Transaction} transaction
@@ -132,9 +143,9 @@ export class YMap extends AbstractType {
   }
 
   /**
-   * Returns the keys for each element in the YMap Type.
+   * Returns the values for each element in the YMap Type.
    *
-   * @return {IterableIterator<string>}
+   * @return {IterableIterator<any>}
    */
   values () {
     return iterator.iteratorMap(createMapIterator(this._map), /** @param {any} v */ v => v[1].content.getContent()[v[1].length - 1])

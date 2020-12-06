@@ -102,6 +102,18 @@ export class Transaction {
      * @type {boolean}
      */
     this.local = local
+    /**
+     * @type {Set<Doc>}
+     */
+    this.subdocsAdded = new Set()
+    /**
+     * @type {Set<Doc>}
+     */
+    this.subdocsRemoved = new Set()
+    /**
+     * @type {Set<Doc>}
+     */
+    this.subdocsLoaded = new Set()
   }
 }
 
@@ -272,6 +284,9 @@ const cleanupTransactions = (transactionCleanups, i) => {
                 .forEach(event => {
                   event.currentTarget = type
                 })
+              // sort events by path length so that top-level events are fired first.
+              events
+                .sort((event1, event2) => event1.path.length - event2.path.length)
               // We don't need to check for events.length
               // because we know it has at least one element
               callEventHandlerListeners(type._dEH, events, transaction)
@@ -335,6 +350,12 @@ const cleanupTransactions = (transactionCleanups, i) => {
           doc.emit('updateV2', [encoder.toUint8Array(), transaction.origin, doc])
         }
       }
+      transaction.subdocsAdded.forEach(subdoc => doc.subdocs.add(subdoc))
+      transaction.subdocsRemoved.forEach(subdoc => doc.subdocs.delete(subdoc))
+
+      doc.emit('subdocs', [{ loaded: transaction.subdocsLoaded, added: transaction.subdocsAdded, removed: transaction.subdocsRemoved }])
+      transaction.subdocsRemoved.forEach(subdoc => subdoc.destroy())
+
       if (transactionCleanups.length <= i + 1) {
         doc._transactionCleanups = []
         doc.emit('afterAllTransactions', [doc, transactionCleanups])
