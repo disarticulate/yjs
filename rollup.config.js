@@ -42,7 +42,7 @@ export default [{
   output: {
     name: 'Y',
     file: 'dist/yjs.min.js',
-    format: 'cjs',
+    format: 'umd',
     sourcemap: false
   },
   plugins: [
