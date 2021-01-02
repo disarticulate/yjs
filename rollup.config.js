@@ -1,5 +1,6 @@
 import nodeResolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
+import { terser } from "rollup-plugin-terser";
 
 const localImports = process.env.LOCALIMPORTS
 
@@ -37,6 +38,21 @@ const debugResolve = {
 }
 
 export default [{
+  input: './src/index.js',
+  output: {
+    name: 'Y',
+    file: 'dist/yjs.min.js',
+    format: 'cjs',
+    sourcemap: false
+  },
+  plugins: [
+    nodeResolve({
+      mainFields: ['module', 'main']
+    }),
+    commonjs(),
+    terser()
+  ]
+}, {
   input: './src/index.js',
   output: {
     name: 'Y',
