@@ -1,80 +1,3 @@
-export class AbstractDSDecoder {
-    /**
-     * @param {decoding.Decoder} decoder
-     */
-    constructor(decoder: decoding.Decoder);
-    restDecoder: decoding.Decoder;
-    resetDsCurVal(): void;
-    /**
-     * @return {number}
-     */
-    readDsClock(): number;
-    /**
-     * @return {number}
-     */
-    readDsLen(): number;
-}
-export class AbstractUpdateDecoder extends AbstractDSDecoder {
-    /**
-     * @param {decoding.Decoder} decoder
-     */
-    constructor(decoder: decoding.Decoder);
-    /**
-     * @return {ID}
-     */
-    readLeftID(): ID;
-    /**
-     * @return {ID}
-     */
-    readRightID(): ID;
-    /**
-     * Read the next client id.
-     * Use this in favor of readID whenever possible to reduce the number of objects created.
-     *
-     * @return {number}
-     */
-    readClient(): number;
-    /**
-     * @return {number} info An unsigned 8-bit integer
-     */
-    readInfo(): number;
-    /**
-     * @return {string}
-     */
-    readString(): string;
-    /**
-     * @return {boolean} isKey
-     */
-    readParentInfo(): boolean;
-    /**
-     * @return {number} info An unsigned 8-bit integer
-     */
-    readTypeRef(): number;
-    /**
-     * Write len of a struct - well suited for Opt RLE encoder.
-     *
-     * @return {number} len
-     */
-    readLen(): number;
-    /**
-     * @return {any}
-     */
-    readAny(): any;
-    /**
-     * @return {Uint8Array}
-     */
-    readBuf(): Uint8Array;
-    /**
-     * Legacy implementation uses JSON parse. We use any-decoding in v2.
-     *
-     * @return {any}
-     */
-    readJSON(): any;
-    /**
-     * @return {string}
-     */
-    readKey(): string;
-}
 export class DSDecoderV1 {
     /**
      * @param {decoding.Decoder} decoder
@@ -92,10 +15,6 @@ export class DSDecoderV1 {
     readDsLen(): number;
 }
 export class UpdateDecoderV1 extends DSDecoderV1 {
-    /**
-     * @param {decoding.Decoder} decoder
-     */
-    constructor(decoder: decoding.Decoder);
     /**
      * @return {ID}
      */
@@ -155,17 +74,22 @@ export class DSDecoderV2 {
      * @param {decoding.Decoder} decoder
      */
     constructor(decoder: decoding.Decoder);
-    dsCurrVal: number;
+    /**
+     * @private
+     */
+    private dsCurrVal;
     restDecoder: decoding.Decoder;
     resetDsCurVal(): void;
+    /**
+     * @return {number}
+     */
     readDsClock(): number;
+    /**
+     * @return {number}
+     */
     readDsLen(): number;
 }
 export class UpdateDecoderV2 extends DSDecoderV2 {
-    /**
-     * @param {decoding.Decoder} decoder
-     */
-    constructor(decoder: decoding.Decoder);
     /**
      * List of cached keys. If the keys[id] does not exist, we read a new key
      * from stringEncoder and push it to keys.
@@ -238,5 +162,5 @@ export class UpdateDecoderV2 extends DSDecoderV2 {
      */
     readKey(): string;
 }
-import * as decoding from "lib0/decoding";
+import * as decoding from "lib0/decoding.js";
 import { ID } from "./ID.js";

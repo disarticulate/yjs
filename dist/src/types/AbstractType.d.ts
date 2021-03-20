@@ -72,9 +72,9 @@ export class AbstractType<EventType> {
      */
     clone(): AbstractType<EventType>;
     /**
-     * @param {AbstractUpdateEncoder} encoder
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
      */
-    _write(encoder: AbstractUpdateEncoder): void;
+    _write(encoder: UpdateEncoderV1 | UpdateEncoderV2): void;
     /**
      * The first non-deleted item
      */
@@ -152,5 +152,6 @@ import { Transaction } from "../utils/Transaction.js";
 import { Doc } from "../utils/Doc.js";
 import { EventHandler } from "../utils/EventHandler.js";
 import { YEvent } from "../utils/YEvent.js";
-import { AbstractUpdateEncoder } from "../utils/UpdateEncoder.js";
+import { UpdateEncoderV1 } from "../utils/UpdateEncoder.js";
+import { UpdateEncoderV2 } from "../utils/UpdateEncoder.js";
 import { Snapshot } from "../utils/Snapshot.js";

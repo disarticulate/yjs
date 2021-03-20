@@ -93,8 +93,9 @@ export class YMap<T> extends AbstractType<YMapEvent<T>> implements Iterable<T> {
      */
     has(key: string): boolean;
 }
-export function readYMap(decoder: AbstractUpdateDecoder): YMap<any>;
+export function readYMap(decoder: UpdateDecoderV1 | UpdateDecoderV2): YMap<any>;
 import { YEvent } from "../utils/YEvent.js";
 import { Transaction } from "../utils/Transaction.js";
 import { AbstractType } from "./AbstractType.js";
-import { AbstractUpdateDecoder } from "../utils/UpdateDecoder.js";
+import { UpdateDecoderV1 } from "../utils/UpdateDecoder.js";
+import { UpdateDecoderV2 } from "../utils/UpdateDecoder.js";

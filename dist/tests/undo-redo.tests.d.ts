@@ -7,4 +7,4 @@ export function testUndoEvents(tc: t.TestCase): void;
 export function testTrackClass(tc: t.TestCase): void;
 export function testTypeScope(tc: t.TestCase): void;
 export function testUndoDeleteFilter(tc: t.TestCase): void;
-import * as t from "lib0/testing";
+import * as t from "lib0/testing.js";

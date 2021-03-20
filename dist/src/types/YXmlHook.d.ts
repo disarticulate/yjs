@@ -31,6 +31,7 @@ export class YXmlHook extends YMap<any> {
         [x: string]: any;
     } | undefined, binding?: any): Element;
 }
-export function readYXmlHook(decoder: AbstractUpdateDecoder): YXmlHook;
+export function readYXmlHook(decoder: UpdateDecoderV1 | UpdateDecoderV2): YXmlHook;
 import { YMap } from "./YMap.js";
-import { AbstractUpdateDecoder } from "../utils/UpdateDecoder.js";
+import { UpdateDecoderV1 } from "../utils/UpdateDecoder.js";
+import { UpdateDecoderV2 } from "../utils/UpdateDecoder.js";

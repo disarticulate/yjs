@@ -119,7 +119,7 @@ export class YText extends AbstractType<YTextEvent> {
      * @public
      */
     public applyDelta(delta: any, { sanitize }?: {
-        sanitize?: boolean;
+        sanitize?: boolean | undefined;
     } | undefined): void;
     /**
      * Returns the Delta representation of this YText type.
@@ -221,7 +221,7 @@ export class YText extends AbstractType<YTextEvent> {
         [x: string]: any;
     };
 }
-export function readYText(decoder: AbstractUpdateDecoder): YText;
+export function readYText(decoder: UpdateDecoderV1 | UpdateDecoderV2): YText;
 /**
  * Attributes that can be assigned to a selection of text.
  */
@@ -240,4 +240,5 @@ import { Transaction } from "../utils/Transaction.js";
 import { AbstractType } from "./AbstractType.js";
 import { Snapshot } from "../utils/Snapshot.js";
 import { ID } from "../utils/ID.js";
-import { AbstractUpdateDecoder } from "../utils/UpdateDecoder.js";
+import { UpdateDecoderV1 } from "../utils/UpdateDecoder.js";
+import { UpdateDecoderV2 } from "../utils/UpdateDecoder.js";

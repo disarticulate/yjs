@@ -139,15 +139,15 @@ export type DocOpts = {
     /**
      * Disable garbage collection (default: gc=true)
      */
-    gc?: boolean;
+    gc?: boolean | undefined;
     /**
      * Will be called before an Item is garbage collected. Return false to keep the Item.
      */
-    gcFilter?: (arg0: Item) => boolean;
+    gcFilter?: ((arg0: Item) => boolean) | undefined;
     /**
      * Define a globally unique identifier for this document
      */
-    guid?: string;
+    guid?: string | undefined;
     /**
      * Any kind of meta information you want to associate with this document. If this is a subdocument, remote peers will store the meta information as well.
      */
@@ -155,10 +155,10 @@ export type DocOpts = {
     /**
      * If a subdocument, automatically load document. If this is a subdocument, remote peers will load the document as well automatically.
      */
-    autoLoad?: boolean;
+    autoLoad?: boolean | undefined;
 };
-import * as random from "lib0/random";
-import { Observable } from "lib0/observable";
+import * as random from "lib0/random.js";
+import { Observable } from "lib0/observable.js";
 import { Item } from "../structs/Item.js";
 import { AbstractType } from "../types/AbstractType.js";
 import { YEvent } from "./YEvent.js";

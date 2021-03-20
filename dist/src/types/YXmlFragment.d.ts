@@ -26,7 +26,7 @@
  * @public
  * @implements {Iterable<YXmlElement|YXmlText|YXmlElement|YXmlHook>}
  */
-export class YXmlTreeWalker implements Iterable<YXmlElement | YXmlText | YXmlHook> {
+export class YXmlTreeWalker implements Iterable<YXmlElement | YXmlText | YXmlElement | YXmlHook> {
     /**
      * @param {YXmlFragment | YXmlElement} root
      * @param {function(AbstractType<any>):boolean} [f]
@@ -59,6 +59,7 @@ export class YXmlTreeWalker implements Iterable<YXmlElement | YXmlText | YXmlHoo
  * @extends AbstractType<YXmlEvent>
  */
 export class YXmlFragment extends AbstractType<YXmlEvent> {
+    constructor();
     /**
      * @type {Array<any>|null}
      */
@@ -195,7 +196,7 @@ export class YXmlFragment extends AbstractType<YXmlEvent> {
      */
     slice(start?: number | undefined, end?: number | undefined): Array<YXmlElement | YXmlText>;
 }
-export function readYXmlFragment(decoder: AbstractUpdateDecoder): YXmlFragment;
+export function readYXmlFragment(decoder: UpdateDecoderV1 | UpdateDecoderV2): YXmlFragment;
 /**
  * Define the elements to which a set of CSS queries apply.
  * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors|CSS_Selectors}
@@ -211,4 +212,5 @@ import { YXmlHook } from "./YXmlHook.js";
 import { AbstractType } from "./AbstractType.js";
 import { Item } from "../structs/Item.js";
 import { YXmlEvent } from "./YXmlEvent.js";
-import { AbstractUpdateDecoder } from "../utils/UpdateDecoder.js";
+import { UpdateDecoderV1 } from "../utils/UpdateDecoder.js";
+import { UpdateDecoderV2 } from "../utils/UpdateDecoder.js";

@@ -44,18 +44,20 @@ export class ContentBinary {
      */
     gc(store: StructStore): void;
     /**
-     * @param {AbstractUpdateEncoder} encoder
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
      * @param {number} offset
      */
-    write(encoder: AbstractUpdateEncoder, offset: number): void;
+    write(encoder: UpdateEncoderV1 | UpdateEncoderV2, offset: number): void;
     /**
      * @return {number}
      */
     getRef(): number;
 }
-export function readContentBinary(decoder: AbstractUpdateDecoder): ContentBinary;
+export function readContentBinary(decoder: UpdateDecoderV1 | UpdateDecoderV2): ContentBinary;
 import { Transaction } from "../utils/Transaction.js";
 import { Item } from "./Item.js";
 import { StructStore } from "../utils/StructStore.js";
-import { AbstractUpdateEncoder } from "../utils/UpdateEncoder.js";
-import { AbstractUpdateDecoder } from "../utils/UpdateDecoder.js";
+import { UpdateEncoderV1 } from "../utils/UpdateEncoder.js";
+import { UpdateEncoderV2 } from "../utils/UpdateEncoder.js";
+import { UpdateDecoderV1 } from "../utils/UpdateDecoder.js";
+import { UpdateDecoderV2 } from "../utils/UpdateDecoder.js";

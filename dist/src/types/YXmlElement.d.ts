@@ -59,8 +59,9 @@ export class YXmlElement extends YXmlFragment {
         [x: string]: any;
     };
 }
-export function readYXmlElement(decoder: AbstractUpdateDecoder): YXmlElement;
+export function readYXmlElement(decoder: UpdateDecoderV1 | UpdateDecoderV2): YXmlElement;
 import { YXmlFragment } from "./YXmlFragment.js";
 import { YXmlText } from "./YXmlText.js";
 import { Snapshot } from "../utils/Snapshot.js";
-import { AbstractUpdateDecoder } from "../utils/UpdateDecoder.js";
+import { UpdateDecoderV1 } from "../utils/UpdateDecoder.js";
+import { UpdateDecoderV2 } from "../utils/UpdateDecoder.js";

@@ -93,7 +93,7 @@ export class Transaction {
      */
     subdocsLoaded: Set<Doc>;
 }
-export function writeUpdateMessageFromTransaction(encoder: AbstractUpdateEncoder, transaction: Transaction): boolean;
+export function writeUpdateMessageFromTransaction(encoder: UpdateEncoderV1 | UpdateEncoderV2, transaction: Transaction): boolean;
 export function nextID(transaction: Transaction): import("./ID.js").ID;
 export function addChangedTypeToTransaction(transaction: Transaction, type: AbstractType<YEvent>, parentSub: string | null): void;
 export function tryGc(ds: DeleteSet, store: StructStore, gcFilter: (arg0: Item) => boolean): void;
@@ -103,6 +103,7 @@ import { DeleteSet } from "./DeleteSet.js";
 import { AbstractType } from "../types/AbstractType.js";
 import { YEvent } from "./YEvent.js";
 import { AbstractStruct } from "../structs/AbstractStruct.js";
-import { AbstractUpdateEncoder } from "./UpdateEncoder.js";
+import { UpdateEncoderV1 } from "./UpdateEncoder.js";
+import { UpdateEncoderV2 } from "./UpdateEncoder.js";
 import { StructStore } from "./StructStore.js";
 import { Item } from "../structs/Item.js";

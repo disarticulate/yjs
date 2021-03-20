@@ -20,6 +20,6 @@ export function createID(client: number, clock: number): ID;
 export function writeID(encoder: encoding.Encoder, id: ID): void;
 export function readID(decoder: decoding.Decoder): ID;
 export function findRootTypeKey(type: AbstractType<any>): string;
-import * as encoding from "lib0/encoding";
-import * as decoding from "lib0/decoding";
+import * as encoding from "lib0/encoding.js";
+import * as decoding from "lib0/decoding.js";
 import { AbstractType } from "../types/AbstractType.js";

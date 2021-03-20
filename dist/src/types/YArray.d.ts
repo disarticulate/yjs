@@ -46,19 +46,19 @@ export class YArray<T> extends AbstractType<YArrayEvent<T>> implements Iterable<
      * @param {number} index The index to insert content at.
      * @param {Array<T>} content The array of content
      */
-    insert(index: number, content: T[]): void;
+    insert(index: number, content: Array<T>): void;
     /**
      * Appends content to this YArray.
      *
      * @param {Array<T>} content Array of content to append.
      */
-    push(content: T[]): void;
+    push(content: Array<T>): void;
     /**
      * Preppends content to this YArray.
      *
      * @param {Array<T>} content Array of content to preppend.
      */
-    unshift(content: T[]): void;
+    unshift(content: Array<T>): void;
     /**
      * Deletes elements starting from an index.
      *
@@ -78,7 +78,7 @@ export class YArray<T> extends AbstractType<YArrayEvent<T>> implements Iterable<
      *
      * @return {Array<T>}
      */
-    toArray(): T[];
+    toArray(): Array<T>;
     /**
      * Transforms this YArray to a JavaScript Array.
      *
@@ -86,7 +86,7 @@ export class YArray<T> extends AbstractType<YArrayEvent<T>> implements Iterable<
      * @param {number} [end]
      * @return {Array<T>}
      */
-    slice(start?: number | undefined, end?: number | undefined): T[];
+    slice(start?: number | undefined, end?: number | undefined): Array<T>;
     /**
      * Returns an Array with the result of calling a provided function on every
      * element of this YArray.
@@ -108,8 +108,9 @@ export class YArray<T> extends AbstractType<YArrayEvent<T>> implements Iterable<
      */
     [Symbol.iterator](): IterableIterator<T>;
 }
-export function readYArray(decoder: AbstractUpdateDecoder): YArray<any>;
+export function readYArray(decoder: UpdateDecoderV1 | UpdateDecoderV2): YArray<any>;
 import { YEvent } from "../utils/YEvent.js";
 import { Transaction } from "../utils/Transaction.js";
 import { AbstractType } from "./AbstractType.js";
-import { AbstractUpdateDecoder } from "../utils/UpdateDecoder.js";
+import { UpdateDecoderV1 } from "../utils/UpdateDecoder.js";
+import { UpdateDecoderV2 } from "../utils/UpdateDecoder.js";

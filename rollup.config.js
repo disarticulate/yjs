@@ -50,7 +50,7 @@ export default [{
       mainFields: ['module', 'main']
     }),
     commonjs(),
-    terser()
+    terser({mangle: false})
   ]
 }, {
   input: './src/index.js',

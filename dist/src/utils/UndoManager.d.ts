@@ -78,29 +78,27 @@ export class UndoManager extends Observable<"stack-item-added" | "stack-item-pop
     redo(): StackItem | null;
 }
 export type UndoManagerOptions = {
-    captureTimeout?: number;
+    captureTimeout?: number | undefined;
     /**
      * Sometimes
      * it is necessary to filter whan an Undo/Redo operation can delete. If this
      * filter returns false, the type/item won't be deleted even it is in the
      * undo/redo scope.
      */
-    deleteFilter?: (arg0: Item) => boolean;
-    trackedOrigins?: Set<any>;
+    deleteFilter?: ((arg0: Item) => boolean) | undefined;
+    trackedOrigins?: Set<any> | undefined;
 };
-import { Observable } from "lib0/observable";
+import { Observable } from "lib0/observable.js";
 import { AbstractType } from "../types/AbstractType.js";
 import { Item } from "../structs/Item.js";
 declare class StackItem {
     /**
-     * @param {DeleteSet} ds
-     * @param {Map<number,number>} beforeState
-     * @param {Map<number,number>} afterState
+     * @param {DeleteSet} deletions
+     * @param {DeleteSet} insertions
      */
-    constructor(ds: DeleteSet, beforeState: Map<number, number>, afterState: Map<number, number>);
-    ds: DeleteSet;
-    beforeState: Map<number, number>;
-    afterState: Map<number, number>;
+    constructor(deletions: DeleteSet, insertions: DeleteSet);
+    insertions: DeleteSet;
+    deletions: DeleteSet;
     /**
      * Use this to save and restore metadata like selection range
      */

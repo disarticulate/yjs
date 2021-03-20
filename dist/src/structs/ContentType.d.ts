@@ -1,8 +1,8 @@
 /**
- * @type {Array<function(AbstractUpdateDecoder):AbstractType<any>>}
+ * @type {Array<function(UpdateDecoderV1 | UpdateDecoderV2):AbstractType<any>>}
  * @private
  */
-export const typeRefs: Array<(arg0: AbstractUpdateDecoder) => AbstractType<any>>;
+export const typeRefs: Array<(arg0: UpdateDecoderV1 | UpdateDecoderV2) => AbstractType<any>>;
 export const YArrayRefID: 0;
 export const YMapRefID: 1;
 export const YTextRefID: 2;
@@ -62,20 +62,22 @@ export class ContentType {
      */
     gc(store: StructStore): void;
     /**
-     * @param {AbstractUpdateEncoder} encoder
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
      * @param {number} offset
      */
-    write(encoder: AbstractUpdateEncoder, offset: number): void;
+    write(encoder: UpdateEncoderV1 | UpdateEncoderV2, offset: number): void;
     /**
      * @return {number}
      */
     getRef(): number;
 }
-export function readContentType(decoder: AbstractUpdateDecoder): ContentType;
-import { AbstractUpdateDecoder } from "../utils/UpdateDecoder.js";
+export function readContentType(decoder: UpdateDecoderV1 | UpdateDecoderV2): ContentType;
+import { UpdateDecoderV1 } from "../utils/UpdateDecoder.js";
+import { UpdateDecoderV2 } from "../utils/UpdateDecoder.js";
 import { AbstractType } from "../types/AbstractType.js";
 import { Transaction } from "../utils/Transaction.js";
 import { Item } from "./Item.js";
 import { StructStore } from "../utils/StructStore.js";
-import { AbstractUpdateEncoder } from "../utils/UpdateEncoder.js";
+import { UpdateEncoderV1 } from "../utils/UpdateEncoder.js";
+import { UpdateEncoderV2 } from "../utils/UpdateEncoder.js";
 import { YEvent } from "../utils/YEvent.js";

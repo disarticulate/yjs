@@ -6,4 +6,4 @@ export function testRestoreLeftItem(tc: t.TestCase): void;
 export function testDeletedItemsBase(tc: t.TestCase): void;
 export function testDeletedItems2(tc: t.TestCase): void;
 export function testDependentChanges(tc: t.TestCase): void;
-import * as t from "lib0/testing";
+import * as t from "lib0/testing.js";

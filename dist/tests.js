@@ -15,7 +15,7 @@
    *
    * @function
    */
-  const create = () => new Map();
+  const create$6 = () => new Map();
 
   /**
    * Copy a Map object into a fresh Map object.
@@ -26,7 +26,7 @@
    * @return {Map<X,Y>}
    */
   const copy = m => {
-    const r = create();
+    const r = create$6();
     m.forEach((v, k) => { r.set(k, v); });
     return r
   };
@@ -65,7 +65,7 @@
    * @param {function(V,K):R} f
    * @return {Array<R>}
    */
-  const map = (m, f) => {
+  const map$2 = (m, f) => {
     const res = [];
     for (const [key, value] of m) {
       res.push(f(value, key));
@@ -127,7 +127,7 @@
   const fromCamelCase = (s, separator) => trimLeft(s.replace(fromCamelCaseRegex, match => `${separator}${toLowerCase(match)}`));
 
   /* istanbul ignore next */
-  const utf8TextEncoder = /** @type {TextEncoder} */ (typeof TextEncoder !== 'undefined' ? new TextEncoder() : null);
+  /** @type {TextEncoder} */ (typeof TextEncoder !== 'undefined' ? new TextEncoder() : null);
 
   /* istanbul ignore next */
   let utf8TextDecoder = typeof TextDecoder === 'undefined' ? null : new TextDecoder('utf-8', { fatal: true, ignoreBOM: true });
@@ -221,7 +221,7 @@
   /* istanbul ignore next */
   const isBrowser = typeof window !== 'undefined' && !isNode;
   /* istanbul ignore next */
-  const isMac = typeof navigator !== 'undefined' ? /Mac/.test(navigator.platform) : false;
+  typeof navigator !== 'undefined' ? /Mac/.test(navigator.platform) : false;
 
   /**
    * @type {Map<string,string>}
@@ -232,7 +232,7 @@
   const computeParams = () => {
     if (params === undefined) {
       if (isNode) {
-        params = create();
+        params = create$6();
         const pargs = process.argv;
         let currParamName = null;
         /* istanbul ignore next */
@@ -255,7 +255,7 @@
         }
       // in ReactNative for example this would not be true (unless connected to the Remote Debugger)
       } else if (typeof location === 'object') {
-        params = create()
+        params = create$6()
         // eslint-disable-next-line no-undef
         ;(location.search || '?').slice(1).split('&').forEach(kv => {
           if (kv.length !== 0) {
@@ -265,7 +265,7 @@
           }
         });
       } else {
-        params = create();
+        params = create$6();
       }
     }
     return params
@@ -315,7 +315,7 @@
    *
    * @return {Symbol}
    */
-  const create$1 = Symbol;
+  const create$5 = Symbol;
 
   /**
    * Working with value pairs.
@@ -343,14 +343,14 @@
    * @param {R} right
    * @return {Pair<L,R>}
    */
-  const create$2 = (left, right) => new Pair(left, right);
+  const create$4 = (left, right) => new Pair(left, right);
 
   /**
    * @template L,R
    * @param {Array<Pair<L,R>>} arr
    * @param {function(L, R):any} f
    */
-  const forEach = (arr, f) => arr.forEach(p => f(p.left, p.right));
+  const forEach$1 = (arr, f) => arr.forEach(p => f(p.left, p.right));
 
   /* eslint-env browser */
 
@@ -358,30 +358,30 @@
   /**
    * @type {Document}
    */
-  const doc = /** @type {Document} */ (typeof document !== 'undefined' ? document : {});
+  const doc$1 = /** @type {Document} */ (typeof document !== 'undefined' ? document : {});
 
   /**
    * @param {string} name
    * @return {HTMLElement}
    */
   /* istanbul ignore next */
-  const createElement = name => doc.createElement(name);
+  const createElement = name => doc$1.createElement(name);
 
   /**
    * @return {DocumentFragment}
    */
   /* istanbul ignore next */
-  const createDocumentFragment = () => doc.createDocumentFragment();
+  const createDocumentFragment = () => doc$1.createDocumentFragment();
 
   /**
    * @param {string} text
    * @return {Text}
    */
   /* istanbul ignore next */
-  const createTextNode = text => doc.createTextNode(text);
+  const createTextNode = text => doc$1.createTextNode(text);
 
   /* istanbul ignore next */
-  const domParser = /** @type {DOMParser} */ (typeof DOMParser !== 'undefined' ? new DOMParser() : null);
+  /** @type {DOMParser} */ (typeof DOMParser !== 'undefined' ? new DOMParser() : null);
 
   /**
    * @param {Element} el
@@ -390,7 +390,7 @@
    */
   /* istanbul ignore next */
   const setAttributes = (el, attrs) => {
-    forEach(attrs, (key, value) => {
+    forEach$1(attrs, (key, value) => {
       if (value === false) {
         el.removeAttribute(key);
       } else if (value === true) {
@@ -450,14 +450,14 @@
    * @return {Text}
    */
   /* istanbul ignore next */
-  const text = createTextNode;
+  const text$1 = createTextNode;
 
   /**
    * @param {Map<string,string>} m
    * @return {string}
    */
   /* istanbul ignore next */
-  const mapToStyleString = m => map(m, (value, key) => `${key}:${value};`).join('');
+  const mapToStyleString = m => map$2(m, (value, key) => `${key}:${value};`).join('');
 
   /**
    * @param {Node} parent
@@ -686,7 +686,7 @@
    * @param {Object<string,any>} obj
    * @param {function(any,string):any} f
    */
-  const forEach$1 = (obj, f) => {
+  const forEach = (obj, f) => {
     for (const key in obj) {
       f(obj[key], key);
     }
@@ -710,7 +710,7 @@
    * @param {Object<string,any>} obj
    * @return {number}
    */
-  const length = obj => keys(obj).length;
+  const length$1 = obj => keys(obj).length;
 
   /**
    * @param {Object<string,any>} obj
@@ -740,7 +740,7 @@
    * @param {Object<string,any>} b
    * @return {boolean}
    */
-  const equalFlat = (a, b) => a === b || (length(a) === length(b) && every(a, (val, key) => (val !== undefined || hasProperty(b, key)) && b[key] === val));
+  const equalFlat = (a, b) => a === b || (length$1(a) === length$1(b) && every(a, (val, key) => (val !== undefined || hasProperty(b, key)) && b[key] === val));
 
   /**
    * Common functions and function call helpers.
@@ -772,29 +772,29 @@
    * @module logging
    */
 
-  const BOLD = create$1();
-  const UNBOLD = create$1();
-  const BLUE = create$1();
-  const GREY = create$1();
-  const GREEN = create$1();
-  const RED = create$1();
-  const PURPLE = create$1();
-  const ORANGE = create$1();
-  const UNCOLOR = create$1();
+  const BOLD = create$5();
+  const UNBOLD = create$5();
+  const BLUE = create$5();
+  const GREY = create$5();
+  const GREEN = create$5();
+  const RED = create$5();
+  const PURPLE = create$5();
+  const ORANGE = create$5();
+  const UNCOLOR = create$5();
 
   /**
    * @type {Object<Symbol,pair.Pair<string,string>>}
    */
   const _browserStyleMap = {
-    [BOLD]: create$2('font-weight', 'bold'),
-    [UNBOLD]: create$2('font-weight', 'normal'),
-    [BLUE]: create$2('color', 'blue'),
-    [GREEN]: create$2('color', 'green'),
-    [GREY]: create$2('color', 'grey'),
-    [RED]: create$2('color', 'red'),
-    [PURPLE]: create$2('color', 'purple'),
-    [ORANGE]: create$2('color', 'orange'), // not well supported in chrome when debugging node with inspector - TODO: deprecate
-    [UNCOLOR]: create$2('color', 'black')
+    [BOLD]: create$4('font-weight', 'bold'),
+    [UNBOLD]: create$4('font-weight', 'normal'),
+    [BLUE]: create$4('color', 'blue'),
+    [GREEN]: create$4('color', 'green'),
+    [GREY]: create$4('color', 'grey'),
+    [RED]: create$4('color', 'red'),
+    [PURPLE]: create$4('color', 'purple'),
+    [ORANGE]: create$4('color', 'orange'), // not well supported in chrome when debugging node with inspector - TODO: deprecate
+    [UNCOLOR]: create$4('color', 'black')
   };
 
   const _nodeStyleMap = {
@@ -817,7 +817,7 @@
   const computeBrowserLoggingArgs = args => {
     const strBuilder = [];
     const styles = [];
-    const currentStyle = create();
+    const currentStyle = create$6();
     /**
      * @type {Array<string|Object|number>}
      */
@@ -988,7 +988,7 @@
       } else {
         if (arg.constructor === String || arg.constructor === Number) {
           // @ts-ignore
-          const span = element('span', [create$2('style', mapToStyleString(currentStyle))], [text(arg)]);
+          const span = element('span', [create$4('style', mapToStyleString(currentStyle))], [text$1(arg)]);
           if (span.innerHTML === '') {
             span.innerHTML = '&nbsp;';
           }
@@ -1005,7 +1005,7 @@
         if (content.constructor !== String && content.constructor !== Number) {
           content = ' ' + stringify(content) + ' ';
         }
-        spans.push(element('span', [], [text(/** @type {string} */ (content))]));
+        spans.push(element('span', [], [text$1(/** @type {string} */ (content))]));
       }
     }
     return spans
@@ -1034,10 +1034,10 @@
      */
     group (args, collapsed = false) {
       enqueue(() => {
-        const triangleDown = element('span', [create$2('hidden', collapsed), create$2('style', 'color:grey;font-size:120%;')], [text('▼')]);
-        const triangleRight = element('span', [create$2('hidden', !collapsed), create$2('style', 'color:grey;font-size:125%;')], [text('▶')]);
-        const content = element('div', [create$2('style', `${lineStyle};padding-left:${this.depth * 10}px`)], [triangleDown, triangleRight, text(' ')].concat(_computeLineSpans(args)));
-        const nextContainer = element('div', [create$2('hidden', collapsed)]);
+        const triangleDown = element('span', [create$4('hidden', collapsed), create$4('style', 'color:grey;font-size:120%;')], [text$1('▼')]);
+        const triangleRight = element('span', [create$4('hidden', !collapsed), create$4('style', 'color:grey;font-size:125%;')], [text$1('▶')]);
+        const content = element('div', [create$4('style', `${lineStyle};padding-left:${this.depth * 10}px`)], [triangleDown, triangleRight, text$1(' ')].concat(_computeLineSpans(args)));
+        const nextContainer = element('div', [create$4('hidden', collapsed)]);
         const nextLine = element('div', [], [content, nextContainer]);
         append(this.ccontainer, [nextLine]);
         this.ccontainer = nextContainer;
@@ -1073,7 +1073,7 @@
      */
     print (args) {
       enqueue(() => {
-        append(this.ccontainer, [element('div', [create$2('style', `${lineStyle};padding-left:${this.depth * 10}px`)], _computeLineSpans(args))]);
+        append(this.ccontainer, [element('div', [create$4('style', `${lineStyle};padding-left:${this.depth * 10}px`)], _computeLineSpans(args))]);
       });
     }
 
@@ -1090,7 +1090,7 @@
      */
     printImg (url, height) {
       enqueue(() => {
-        append(this.ccontainer, [element('img', [create$2('src', url), create$2('height', `${round(height * 1.5)}px`)])]);
+        append(this.ccontainer, [element('img', [create$4('src', url), create$4('height', `${round(height * 1.5)}px`)])]);
       });
     }
 
@@ -1180,7 +1180,7 @@
   const simpleDiff = simpleDiffString;
 
   /* eslint-env browser */
-  const perf = typeof performance === 'undefined' ? null : performance;
+  const performance = typeof window === 'undefined' ? null : (typeof window.performance !== 'undefined' && window.performance) || null;
 
   const isoCrypto = typeof crypto === 'undefined' ? null : crypto;
 
@@ -1205,30 +1205,13 @@
       return buf
     };
 
-  var performance_1 = perf;
-  var cryptoRandomBuffer_1 = cryptoRandomBuffer;
-
-  var isoBrowser = {
-  	performance: performance_1,
-  	cryptoRandomBuffer: cryptoRandomBuffer_1
-  };
-
-  /**
-   * Isomorphic library exports from isomorphic.js.
-   *
-   * @module isomorphic
-   */
-
-  const performance$1 = /** @type {any} */ (isoBrowser.performance);
-  const cryptoRandomBuffer$1 = /** @type {any} */ (isoBrowser.cryptoRandomBuffer);
-
   /* istanbul ignore next */
-  const uint32 = () => new Uint32Array(cryptoRandomBuffer$1(4))[0];
+  const uint32$1 = () => new Uint32Array(cryptoRandomBuffer(4))[0];
 
   // @ts-ignore
   const uuidv4Template = [1e7] + -1e3 + -4e3 + -8e3 + -1e11;
   const uuidv4 = () => uuidv4Template.replace(/[018]/g, /** @param {number} c */ c =>
-    (c ^ uint32() & 15 >> c / 4).toString(16)
+    (c ^ uint32$1() & 15 >> c / 4).toString(16)
   );
 
   /* eslint-env browser */
@@ -1474,7 +1457,7 @@
    * @param {Encoder} encoder
    * @return {number}
    */
-  const length$1 = encoder => {
+  const length = encoder => {
     let len = encoder.cpos;
     for (let i = 0; i < encoder.bufs.length; i++) {
       len += encoder.bufs[i].length;
@@ -1490,7 +1473,7 @@
    * @return {Uint8Array} The created ArrayBuffer.
    */
   const toUint8Array = encoder => {
-    const uint8arr = new Uint8Array(length$1(encoder));
+    const uint8arr = new Uint8Array(length(encoder));
     let curPos = 0;
     for (let i = 0; i < encoder.bufs.length; i++) {
       const d = encoder.bufs[i];
@@ -1605,6 +1588,19 @@
       write(encoder, /** @type {number} */ (encodedString.codePointAt(i)));
     }
   };
+
+  /**
+   * Write the content of another Encoder.
+   *
+   * @TODO: can be improved!
+   *        - Note: Should consider that when appending a lot of small Encoders, we should rather clone than referencing the old structure.
+   *                Encoders start with a rather big initial buffer.
+   *
+   * @function
+   * @param {Encoder} encoder The enUint8Arr
+   * @param {Encoder} append The BinaryEncoder to be written.
+   */
+  const writeBinaryEncoder = (encoder, append) => writeUint8Array(encoder, toUint8Array(append));
 
   /**
    * Append fixed-length Uint8Array to the encoder.
@@ -2522,7 +2518,7 @@
    * @param {Number} max The upper bound of the allowed return values (inclusive).
    * @return {Number} A random integer on [min, max]
    */
-  const uint32$1 = (gen, min, max) => int32(gen, min, max) >>> 0;
+  const uint32 = (gen, min, max) => int32(gen, min, max) >>> 0;
 
   /**
    * @deprecated
@@ -2626,13 +2622,13 @@
    * @param {function(PromiseResolve<T>,function(Error):void):any} f
    * @return {Promise<T>}
    */
-  const create$4 = f => new Promise(f);
+  const create$2 = f => /** @type {Promise<T>} */ (new Promise(f));
 
   /**
    * @param {number} timeout
    * @return {Promise<undefined>}
    */
-  const wait = timeout => create$4((resolve, reject) => setTimeout(resolve, timeout));
+  const wait = timeout => create$2((resolve, reject) => setTimeout(resolve, timeout));
 
   /**
    * Checks if an object is a promise using ducktyping.
@@ -2690,7 +2686,7 @@
    * @module testing
    */
 
-  const extensive = hasConf('extensive');
+  hasConf('extensive');
 
   /* istanbul ignore next */
   const envSeed = hasParam('--seed') ? Number.parseInt(getParam('--seed', '0')) : null;
@@ -2726,7 +2722,7 @@
       /* istanbul ignore else */
       if (this._seed === null) {
         /* istanbul ignore next */
-        this._seed = envSeed === null ? uint32() : envSeed;
+        this._seed = envSeed === null ? uint32$1() : envSeed;
       }
       return this._seed
     }
@@ -2778,10 +2774,10 @@
       group(...groupArgs);
     }
     const times = [];
-    const start = performance$1.now();
+    const start = performance.now();
     let lastTime = start;
     let err = null;
-    performance$1.mark(`${name}-start`);
+    performance.mark(`${name}-start`);
     do {
       try {
         const p = f(tc);
@@ -2791,7 +2787,7 @@
       } catch (_err) {
         err = _err;
       }
-      const currTime = performance$1.now();
+      const currTime = performance.now();
       times.push(currTime - lastTime);
       lastTime = currTime;
       if (repeat && err === null && (lastTime - start) < repititionTime) {
@@ -2800,12 +2796,12 @@
         break
       }
     } while (err === null && (lastTime - start) < repititionTime)
-    performance$1.mark(`${name}-end`);
+    performance.mark(`${name}-end`);
     /* istanbul ignore if */
     if (err !== null && err.constructor !== SkipError) {
       printError(err);
     }
-    performance$1.measure(name, `${name}-start`, `${name}-end`);
+    performance.measure(name, `${name}-start`, `${name}-end`);
     groupEnd();
     const duration = lastTime - start;
     let success = true;
@@ -2846,6 +2842,18 @@
   const describe = (description, info = '') => print(BLUE, description, ' ', GREY, info);
 
   /**
+   * Describe the state of the current computation.
+   * ```js
+   * export const testMyFirstTest = tc => {
+   *   t.info(already crunched 4 numbers!') // the optional second argument can describe the state.
+   * }
+   * ```
+   *
+   * @param {string} info
+   */
+  const info = info => describe('', info);
+
+  /**
    * Measure the time that it takes to calculate something.
    *
    * ```js
@@ -2865,11 +2873,11 @@
    */
   const measureTime = (message, f) => {
     let duration;
-    const start = performance$1.now();
+    const start = performance.now();
     try {
       f();
     } finally {
-      duration = performance$1.now() - start;
+      duration = performance.now() - start;
       print(PURPLE, message, GREY, ` ${humanizeDuration(duration)}`);
     }
     return duration
@@ -2990,10 +2998,10 @@
         break
       }
       case Object:
-        if (length(a) !== length(b)) {
+        if (length$1(a) !== length$1(b)) {
           _failMessage(message, 'Objects have a different number of attributes', path);
         }
-        forEach$1(a, (value, key) => {
+        forEach(a, (value, key) => {
           if (!hasProperty(b, key)) {
             _failMessage(message, `Property ${path} does not exist on second argument`, path);
           }
@@ -3024,7 +3032,7 @@
    * @param {string?} [message]
    * @param {function(any,T,T,string,any):boolean} [customCompare]
    */
-  const compare = (a, b, message = null, customCompare = compareValues) => _compare(a, b, 'obj', message, customCompare);
+  const compare$2 = (a, b, message = null, customCompare = compareValues) => _compare(a, b, 'obj', message, customCompare);
 
   /* istanbul ignore next */
   /**
@@ -3059,7 +3067,7 @@
     const numberOfTests = map$1(tests, mod => map$1(mod, f => /* istanbul ignore next */ f ? 1 : 0).reduce(add, 0)).reduce(add, 0);
     let successfulTests = 0;
     let testnumber = 0;
-    const start = performance$1.now();
+    const start = performance.now();
     for (const modName in tests) {
       const mod = tests[modName];
       for (const fname in mod) {
@@ -3079,7 +3087,7 @@
         }
       }
     }
-    const end = performance$1.now();
+    const end = performance.now();
     print('');
     const success = successfulTests === numberOfTests;
     /* istanbul ignore next */
@@ -3127,7 +3135,7 @@
    * @module set
    */
 
-  const create$5 = () => new Set();
+  const create$1 = () => new Set();
 
   /**
    * Observable class prototype.
@@ -3146,7 +3154,7 @@
        * Some desc.
        * @type {Map<N, any>}
        */
-      this._observers = create();
+      this._observers = create$6();
     }
 
     /**
@@ -3154,7 +3162,7 @@
      * @param {function} f
      */
     on (name, f) {
-      setIfUndefined(this._observers, name, create$5).add(f);
+      setIfUndefined(this._observers, name, create$1).add(f);
     }
 
     /**
@@ -3197,11 +3205,11 @@
      */
     emit (name, args) {
       // copy all listeners to an array first to make sure that no event is emitted to listeners that are subscribed while the event handler is called.
-      return from((this._observers.get(name) || create()).values()).forEach(f => f(...args))
+      return from((this._observers.get(name) || create$6()).values()).forEach(f => f(...args))
     }
 
     destroy () {
-      this._observers = create();
+      this._observers = create$6();
     }
   }
 
@@ -3333,8 +3341,8 @@
       for (i = 1, j = 1; i < dels.length; i++) {
         const left = dels[j - 1];
         const right = dels[i];
-        if (left.clock + left.len === right.clock) {
-          left.len += right.len;
+        if (left.clock + left.len >= right.clock) {
+          left.len = max(left.len, right.clock + right.len - left.clock);
         } else {
           if (j < i) {
             dels[j] = right;
@@ -3422,7 +3430,7 @@
   };
 
   /**
-   * @param {AbstractDSEncoder} encoder
+   * @param {DSEncoderV1 | DSEncoderV2} encoder
    * @param {DeleteSet} ds
    *
    * @private
@@ -3444,7 +3452,7 @@
   };
 
   /**
-   * @param {AbstractDSDecoder} decoder
+   * @param {DSDecoderV1 | DSDecoderV2} decoder
    * @return {DeleteSet}
    *
    * @private
@@ -3472,9 +3480,10 @@
    */
 
   /**
-   * @param {AbstractDSDecoder} decoder
+   * @param {DSDecoderV1 | DSDecoderV2} decoder
    * @param {Transaction} transaction
    * @param {StructStore} store
+   * @return {Uint8Array|null} Returns a v2 update containing all deletes that couldn't be applied yet; or null if all deletes were applied successfully.
    *
    * @private
    * @function
@@ -3527,18 +3536,19 @@
       }
     }
     if (unappliedDS.clients.size > 0) {
-      // TODO: no need for encoding+decoding ds anymore
-      const unappliedDSEncoder = new DSEncoderV2();
-      writeDeleteSet(unappliedDSEncoder, unappliedDS);
-      store.pendingDeleteReaders.push(new DSDecoderV2(createDecoder((unappliedDSEncoder.toUint8Array()))));
+      const ds = new UpdateEncoderV2();
+      writeVarUint(ds.restEncoder, 0); // encode 0 structs
+      writeDeleteSet(ds, unappliedDS);
+      return ds.toUint8Array()
     }
+    return null
   };
 
   /**
    * @module Y
    */
 
-  const generateNewClientId = uint32;
+  const generateNewClientId = uint32$1;
 
   /**
    * @typedef {Object} DocOpts
@@ -3801,156 +3811,6 @@
     }
   }
 
-  /**
-   * Error helpers.
-   *
-   * @module error
-   */
-
-  /**
-   * @param {string} s
-   * @return {Error}
-   */
-  /* istanbul ignore next */
-  const create$6 = s => new Error(s);
-
-  /**
-   * @throws {Error}
-   * @return {never}
-   */
-  /* istanbul ignore next */
-  const methodUnimplemented = () => {
-    throw create$6('Method unimplemented')
-  };
-
-  /**
-   * @throws {Error}
-   * @return {never}
-   */
-  /* istanbul ignore next */
-  const unexpectedCase = () => {
-    throw create$6('Unexpected case')
-  };
-
-  class AbstractDSDecoder {
-    /**
-     * @param {decoding.Decoder} decoder
-     */
-    constructor (decoder) {
-      this.restDecoder = decoder;
-      methodUnimplemented();
-    }
-
-    resetDsCurVal () { }
-
-    /**
-     * @return {number}
-     */
-    readDsClock () {
-      methodUnimplemented();
-    }
-
-    /**
-     * @return {number}
-     */
-    readDsLen () {
-      methodUnimplemented();
-    }
-  }
-
-  class AbstractUpdateDecoder extends AbstractDSDecoder {
-    /**
-     * @return {ID}
-     */
-    readLeftID () {
-      methodUnimplemented();
-    }
-
-    /**
-     * @return {ID}
-     */
-    readRightID () {
-      methodUnimplemented();
-    }
-
-    /**
-     * Read the next client id.
-     * Use this in favor of readID whenever possible to reduce the number of objects created.
-     *
-     * @return {number}
-     */
-    readClient () {
-      methodUnimplemented();
-    }
-
-    /**
-     * @return {number} info An unsigned 8-bit integer
-     */
-    readInfo () {
-      methodUnimplemented();
-    }
-
-    /**
-     * @return {string}
-     */
-    readString () {
-      methodUnimplemented();
-    }
-
-    /**
-     * @return {boolean} isKey
-     */
-    readParentInfo () {
-      methodUnimplemented();
-    }
-
-    /**
-     * @return {number} info An unsigned 8-bit integer
-     */
-    readTypeRef () {
-      methodUnimplemented();
-    }
-
-    /**
-     * Write len of a struct - well suited for Opt RLE encoder.
-     *
-     * @return {number} len
-     */
-    readLen () {
-      methodUnimplemented();
-    }
-
-    /**
-     * @return {any}
-     */
-    readAny () {
-      methodUnimplemented();
-    }
-
-    /**
-     * @return {Uint8Array}
-     */
-    readBuf () {
-      methodUnimplemented();
-    }
-
-    /**
-     * Legacy implementation uses JSON parse. We use any-decoding in v2.
-     *
-     * @return {any}
-     */
-    readJSON () {
-      methodUnimplemented();
-    }
-
-    /**
-     * @return {string}
-     */
-    readKey () {
-      methodUnimplemented();
-    }
-  }
-
   class DSDecoderV1 {
     /**
      * @param {decoding.Decoder} decoder
@@ -4074,6 +3934,9 @@
      * @param {decoding.Decoder} decoder
      */
     constructor (decoder) {
+      /**
+       * @private
+       */
       this.dsCurrVal = 0;
       this.restDecoder = decoder;
     }
@@ -4082,11 +3945,17 @@
       this.dsCurrVal = 0;
     }
 
+    /**
+     * @return {number}
+     */
     readDsClock () {
       this.dsCurrVal += readVarUint(this.restDecoder);
       return this.dsCurrVal
     }
 
+    /**
+     * @return {number}
+     */
     readDsLen () {
       const diff = readVarUint(this.restDecoder) + 1;
       this.dsCurrVal += diff;
@@ -4107,7 +3976,7 @@
        * @type {Array<string>}
        */
       this.keys = [];
-      readUint8(decoder); // read feature flag - currently unused
+      readVarUint(decoder); // read feature flag - currently unused
       this.keyClockDecoder = new IntDiffOptRleDecoder(readVarUint8Array(decoder));
       this.clientDecoder = new UintOptRleDecoder(readVarUint8Array(decoder));
       this.leftClockDecoder = new IntDiffOptRleDecoder(readVarUint8Array(decoder));
@@ -4218,110 +4087,40 @@
     }
   }
 
-  class AbstractDSEncoder {
-    constructor () {
-      this.restEncoder = createEncoder();
-    }
+  /**
+   * Error helpers.
+   *
+   * @module error
+   */
 
-    /**
-     * @return {Uint8Array}
-     */
-    toUint8Array () {
-      methodUnimplemented();
-    }
+  /**
+   * @param {string} s
+   * @return {Error}
+   */
+  /* istanbul ignore next */
+  const create = s => new Error(s);
 
-    /**
-     * Resets the ds value to 0.
-     * The v2 encoder uses this information to reset the initial diff value.
-     */
-    resetDsCurVal () { }
+  /**
+   * @throws {Error}
+   * @return {never}
+   */
+  /* istanbul ignore next */
+  const methodUnimplemented = () => {
+    throw create('Method unimplemented')
+  };
 
-    /**
-     * @param {number} clock
-     */
-    writeDsClock (clock) { }
-
-    /**
-     * @param {number} len
-     */
-    writeDsLen (len) { }
-  }
-
-  class AbstractUpdateEncoder extends AbstractDSEncoder {
-    /**
-     * @return {Uint8Array}
-     */
-    toUint8Array () {
-      methodUnimplemented();
-    }
-
-    /**
-     * @param {ID} id
-     */
-    writeLeftID (id) { }
-
-    /**
-     * @param {ID} id
-     */
-    writeRightID (id) { }
-
-    /**
-     * Use writeClient and writeClock instead of writeID if possible.
-     * @param {number} client
-     */
-    writeClient (client) { }
-
-    /**
-     * @param {number} info An unsigned 8-bit integer
-     */
-    writeInfo (info) { }
-
-    /**
-     * @param {string} s
-     */
-    writeString (s) { }
-
-    /**
-     * @param {boolean} isYKey
-     */
-    writeParentInfo (isYKey) { }
-
-    /**
-     * @param {number} info An unsigned 8-bit integer
-     */
-    writeTypeRef (info) { }
-
-    /**
-     * Write len of a struct - well suited for Opt RLE encoder.
-     *
-     * @param {number} len
-     */
-    writeLen (len) { }
-
-    /**
-     * @param {any} any
-     */
-    writeAny (any) { }
-
-    /**
-     * @param {Uint8Array} buf
-     */
-    writeBuf (buf) { }
-
-    /**
-     * @param {any} embed
-     */
-    writeJSON (embed) { }
-
-    /**
-     * @param {string} key
-     */
-    writeKey (key) { }
-  }
+  /**
+   * @throws {Error}
+   * @return {never}
+   */
+  /* istanbul ignore next */
+  const unexpectedCase = () => {
+    throw create('Unexpected case')
+  };
 
   class DSEncoderV1 {
     constructor () {
-      this.restEncoder = new Encoder();
+      this.restEncoder = createEncoder();
     }
 
     toUint8Array () {
@@ -4440,7 +4239,7 @@
 
   class DSEncoderV2 {
     constructor () {
-      this.restEncoder = new Encoder(); // encodes all the rest / non-optimized
+      this.restEncoder = createEncoder(); // encodes all the rest / non-optimized
       this.dsCurrVal = 0;
     }
 
@@ -4500,7 +4299,7 @@
 
     toUint8Array () {
       const encoder = createEncoder();
-      writeUint8(encoder, 0); // this is a feature flag that we might use in the future
+      writeVarUint(encoder, 0); // this is a feature flag that we might use in the future
       writeVarUint8Array(encoder, this.keyClockEncoder.toUint8Array());
       writeVarUint8Array(encoder, this.clientEncoder.toUint8Array());
       writeVarUint8Array(encoder, this.leftClockEncoder.toUint8Array());
@@ -4619,27 +4418,8 @@
     }
   }
 
-  let DefaultDSEncoder = DSEncoderV1;
-  let DefaultDSDecoder = DSDecoderV1;
-  let DefaultUpdateEncoder = UpdateEncoderV1;
-  let DefaultUpdateDecoder = UpdateDecoderV1;
-
-  const useV1Encoding = () => {
-    DefaultDSEncoder = DSEncoderV1;
-    DefaultDSDecoder = DSDecoderV1;
-    DefaultUpdateEncoder = UpdateEncoderV1;
-    DefaultUpdateDecoder = UpdateDecoderV1;
-  };
-
-  const useV2Encoding = () => {
-    DefaultDSEncoder = DSEncoderV2;
-    DefaultDSDecoder = DSDecoderV2;
-    DefaultUpdateEncoder = UpdateEncoderV2;
-    DefaultUpdateDecoder = UpdateDecoderV2;
-  };
-
   /**
-   * @param {AbstractUpdateEncoder} encoder
+   * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
    * @param {Array<GC|Item>} structs All structs by `client`
    * @param {number} client
    * @param {number} clock write structs starting with `ID(client,clock)`
@@ -4648,6 +4428,7 @@
    */
   const writeStructs = (encoder, structs, client, clock) => {
     // write first id
+    clock = max(clock, structs[0].id.clock); // make sure the first id exists
     const startNewStructs = findIndexSS(structs, clock);
     // write # encoded structs
     writeVarUint(encoder.restEncoder, structs.length - startNewStructs);
@@ -4662,7 +4443,7 @@
   };
 
   /**
-   * @param {AbstractUpdateEncoder} encoder
+   * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
    * @param {StructStore} store
    * @param {Map<number,number>} _sm
    *
@@ -4694,15 +4475,18 @@
   };
 
   /**
-   * @param {AbstractUpdateDecoder} decoder The decoder object to read data from.
-   * @param {Map<number,Array<GC|Item>>} clientRefs
+   * @param {UpdateDecoderV1 | UpdateDecoderV2} decoder The decoder object to read data from.
    * @param {Doc} doc
-   * @return {Map<number,Array<GC|Item>>}
+   * @return {Map<number, { i: number, refs: Array<Item | GC> }>}
    *
    * @private
    * @function
    */
-  const readClientsStructRefs = (decoder, clientRefs, doc) => {
+  const readClientsStructRefs = (decoder, doc) => {
+    /**
+     * @type {Map<number, { i: number, refs: Array<Item | GC> }>}
+     */
+    const clientRefs = create$6();
     const numOfStateUpdates = readVarUint(decoder.restDecoder);
     for (let i = 0; i < numOfStateUpdates; i++) {
       const numberOfStructs = readVarUint(decoder.restDecoder);
@@ -4713,61 +4497,72 @@
       const client = decoder.readClient();
       let clock = readVarUint(decoder.restDecoder);
       // const start = performance.now()
-      clientRefs.set(client, refs);
+      clientRefs.set(client, { i: 0, refs });
       for (let i = 0; i < numberOfStructs; i++) {
         const info = decoder.readInfo();
-        if ((BITS5 & info) !== 0) {
-          /**
-           * The optimized implementation doesn't use any variables because inlining variables is faster.
-           * Below a non-optimized version is shown that implements the basic algorithm with
-           * a few comments
-           */
-          const cantCopyParentInfo = (info & (BIT7 | BIT8)) === 0;
-          // If parent = null and neither left nor right are defined, then we know that `parent` is child of `y`
-          // and we read the next string as parentYKey.
-          // It indicates how we store/retrieve parent from `y.share`
-          // @type {string|null}
-          const struct = new Item(
-            createID(client, clock),
-            null, // leftd
-            (info & BIT8) === BIT8 ? decoder.readLeftID() : null, // origin
-            null, // right
-            (info & BIT7) === BIT7 ? decoder.readRightID() : null, // right origin
-            cantCopyParentInfo ? (decoder.readParentInfo() ? doc.get(decoder.readString()) : decoder.readLeftID()) : null, // parent
-            cantCopyParentInfo && (info & BIT6) === BIT6 ? decoder.readString() : null, // parentSub
-            readItemContent(decoder, info) // item content
-          );
-          /* A non-optimized implementation of the above algorithm:
+        switch (BITS5 & info) {
+          case 0: { // GC
+            const len = decoder.readLen();
+            refs[i] = new GC(createID(client, clock), len);
+            clock += len;
+            break
+          }
+          case 10: { // Skip Struct (nothing to apply)
+            // @todo we could reduce the amount of checks by adding Skip struct to clientRefs so we know that something is missing.
+            const len = readVarUint(decoder.restDecoder);
+            refs[i] = new Skip(createID(client, clock), len);
+            clock += len;
+            break
+          }
+          default: { // Item with content
+            /**
+             * The optimized implementation doesn't use any variables because inlining variables is faster.
+             * Below a non-optimized version is shown that implements the basic algorithm with
+             * a few comments
+             */
+            const cantCopyParentInfo = (info & (BIT7 | BIT8)) === 0;
+            // If parent = null and neither left nor right are defined, then we know that `parent` is child of `y`
+            // and we read the next string as parentYKey.
+            // It indicates how we store/retrieve parent from `y.share`
+            // @type {string|null}
+            const struct = new Item(
+              createID(client, clock),
+              null, // leftd
+              (info & BIT8) === BIT8 ? decoder.readLeftID() : null, // origin
+              null, // right
+              (info & BIT7) === BIT7 ? decoder.readRightID() : null, // right origin
+              cantCopyParentInfo ? (decoder.readParentInfo() ? doc.get(decoder.readString()) : decoder.readLeftID()) : null, // parent
+              cantCopyParentInfo && (info & BIT6) === BIT6 ? decoder.readString() : null, // parentSub
+              readItemContent(decoder, info) // item content
+            );
+            /* A non-optimized implementation of the above algorithm:
 
-          // The item that was originally to the left of this item.
-          const origin = (info & binary.BIT8) === binary.BIT8 ? decoder.readLeftID() : null
-          // The item that was originally to the right of this item.
-          const rightOrigin = (info & binary.BIT7) === binary.BIT7 ? decoder.readRightID() : null
-          const cantCopyParentInfo = (info & (binary.BIT7 | binary.BIT8)) === 0
-          const hasParentYKey = cantCopyParentInfo ? decoder.readParentInfo() : false
-          // If parent = null and neither left nor right are defined, then we know that `parent` is child of `y`
-          // and we read the next string as parentYKey.
-          // It indicates how we store/retrieve parent from `y.share`
-          // @type {string|null}
-          const parentYKey = cantCopyParentInfo && hasParentYKey ? decoder.readString() : null
+            // The item that was originally to the left of this item.
+            const origin = (info & binary.BIT8) === binary.BIT8 ? decoder.readLeftID() : null
+            // The item that was originally to the right of this item.
+            const rightOrigin = (info & binary.BIT7) === binary.BIT7 ? decoder.readRightID() : null
+            const cantCopyParentInfo = (info & (binary.BIT7 | binary.BIT8)) === 0
+            const hasParentYKey = cantCopyParentInfo ? decoder.readParentInfo() : false
+            // If parent = null and neither left nor right are defined, then we know that `parent` is child of `y`
+            // and we read the next string as parentYKey.
+            // It indicates how we store/retrieve parent from `y.share`
+            // @type {string|null}
+            const parentYKey = cantCopyParentInfo && hasParentYKey ? decoder.readString() : null
 
-          const struct = new Item(
-            createID(client, clock),
-            null, // leftd
-            origin, // origin
-            null, // right
-            rightOrigin, // right origin
-            cantCopyParentInfo && !hasParentYKey ? decoder.readLeftID() : (parentYKey !== null ? doc.get(parentYKey) : null), // parent
-            cantCopyParentInfo && (info & binary.BIT6) === binary.BIT6 ? decoder.readString() : null, // parentSub
-            readItemContent(decoder, info) // item content
-          )
-          */
-          refs[i] = struct;
-          clock += struct.length;
-        } else {
-          const len = decoder.readLen();
-          refs[i] = new GC(createID(client, clock), len);
-          clock += len;
+            const struct = new Item(
+              createID(client, clock),
+              null, // leftd
+              origin, // origin
+              null, // right
+              rightOrigin, // right origin
+              cantCopyParentInfo && !hasParentYKey ? decoder.readLeftID() : (parentYKey !== null ? doc.get(parentYKey) : null), // parent
+              cantCopyParentInfo && (info & binary.BIT6) === binary.BIT6 ? decoder.readString() : null, // parentSub
+              readItemContent(decoder, info) // item content
+            )
+            */
+            refs[i] = struct;
+            clock += struct.length;
+          }
         }
       }
       // console.log('time to read: ', performance.now() - start) // @todo remove
@@ -4796,26 +4591,32 @@
    *
    * @param {Transaction} transaction
    * @param {StructStore} store
+   * @param {Map<number, { i: number, refs: (GC | Item)[] }>} clientsStructRefs
+   * @return { null | { update: Uint8Array, missing: Map<number,number> } }
    *
    * @private
    * @function
    */
-  const resumeStructIntegration = (transaction, store) => {
-    const stack = store.pendingStack; // @todo don't forget to append stackhead at the end
-    const clientsStructRefs = store.pendingClientsStructRefs;
+  const integrateStructs = (transaction, store, clientsStructRefs) => {
+    /**
+     * @type {Array<Item | GC>}
+     */
+    const stack = [];
     // sort them so that we take the higher id first, in case of conflicts the lower id will probably not conflict with the id from the higher user.
-    const clientsStructRefsIds = Array.from(clientsStructRefs.keys()).sort((a, b) => a - b);
+    let clientsStructRefsIds = Array.from(clientsStructRefs.keys()).sort((a, b) => a - b);
     if (clientsStructRefsIds.length === 0) {
-      return
+      return null
     }
     const getNextStructTarget = () => {
+      if (clientsStructRefsIds.length === 0) {
+        return null
+      }
       let nextStructsTarget = /** @type {{i:number,refs:Array<GC|Item>}} */ (clientsStructRefs.get(clientsStructRefsIds[clientsStructRefsIds.length - 1]));
       while (nextStructsTarget.refs.length === nextStructsTarget.i) {
         clientsStructRefsIds.pop();
         if (clientsStructRefsIds.length > 0) {
           nextStructsTarget = /** @type {{i:number,refs:Array<GC|Item>}} */ (clientsStructRefs.get(clientsStructRefsIds[clientsStructRefsIds.length - 1]));
         } else {
-          store.pendingClientsStructRefs.clear();
           return null
         }
       }
@@ -4823,176 +4624,121 @@
     };
     let curStructsTarget = getNextStructTarget();
     if (curStructsTarget === null && stack.length === 0) {
-      return
+      return null
     }
+
+    /**
+     * @type {StructStore}
+     */
+    const restStructs = new StructStore();
+    const missingSV = new Map();
+    /**
+     * @param {number} client
+     * @param {number} clock
+     */
+    const updateMissingSv = (client, clock) => {
+      const mclock = missingSV.get(client);
+      if (mclock == null || mclock > clock) {
+        missingSV.set(client, clock);
+      }
+    };
     /**
      * @type {GC|Item}
      */
-    let stackHead = stack.length > 0
-      ? /** @type {GC|Item} */ (stack.pop())
-      : /** @type {any} */ (curStructsTarget).refs[/** @type {any} */ (curStructsTarget).i++];
+    let stackHead = /** @type {any} */ (curStructsTarget).refs[/** @type {any} */ (curStructsTarget).i++];
     // caching the state because it is used very often
     const state = new Map();
+
+    const addStackToRestSS = () => {
+      for (const item of stack) {
+        const client = item.id.client;
+        const unapplicableItems = clientsStructRefs.get(client);
+        if (unapplicableItems) {
+          // decrement because we weren't able to apply previous operation
+          unapplicableItems.i--;
+          restStructs.clients.set(client, unapplicableItems.refs.slice(unapplicableItems.i));
+          clientsStructRefs.delete(client);
+          unapplicableItems.i = 0;
+          unapplicableItems.refs = [];
+        } else {
+          // item was the last item on clientsStructRefs and the field was already cleared. Add item to restStructs and continue
+          restStructs.clients.set(client, [item]);
+        }
+        // remove client from clientsStructRefsIds to prevent users from applying the same update again
+        clientsStructRefsIds = clientsStructRefsIds.filter(c => c !== client);
+      }
+      stack.length = 0;
+    };
+
     // iterate over all struct readers until we are done
     while (true) {
-      const localClock = setIfUndefined(state, stackHead.id.client, () => getState(store, stackHead.id.client));
-      const offset = stackHead.id.clock < localClock ? localClock - stackHead.id.clock : 0;
-      if (stackHead.id.clock + offset !== localClock) {
-        // A previous message from this client is missing
-        // check if there is a pending structRef with a smaller clock and switch them
-        /**
-         * @type {{ refs: Array<GC|Item>, i: number }}
-         */
-        const structRefs = clientsStructRefs.get(stackHead.id.client) || { refs: [], i: 0 };
-        if (structRefs.refs.length !== structRefs.i) {
-          const r = structRefs.refs[structRefs.i];
-          if (r.id.clock < stackHead.id.clock) {
-            // put ref with smaller clock on stack instead and continue
-            structRefs.refs[structRefs.i] = stackHead;
-            stackHead = r;
-            // sort the set because this approach might bring the list out of order
-            structRefs.refs = structRefs.refs.slice(structRefs.i).sort((r1, r2) => r1.id.clock - r2.id.clock);
-            structRefs.i = 0;
-            continue
-          }
-        }
-        // wait until missing struct is available
-        stack.push(stackHead);
-        return
-      }
-      const missing = stackHead.getMissing(transaction, store);
-      if (missing === null) {
-        if (offset === 0 || offset < stackHead.length) {
-          stackHead.integrate(transaction, offset);
-          state.set(stackHead.id.client, stackHead.id.clock + stackHead.length);
-        }
-        // iterate to next stackHead
-        if (stack.length > 0) {
-          stackHead = /** @type {GC|Item} */ (stack.pop());
-        } else if (curStructsTarget !== null && curStructsTarget.i < curStructsTarget.refs.length) {
-          stackHead = /** @type {GC|Item} */ (curStructsTarget.refs[curStructsTarget.i++]);
-        } else {
-          curStructsTarget = getNextStructTarget();
-          if (curStructsTarget === null) {
-            // we are done!
-            break
-          } else {
-            stackHead = /** @type {GC|Item} */ (curStructsTarget.refs[curStructsTarget.i++]);
-          }
-        }
-      } else {
-        // get the struct reader that has the missing struct
-        /**
-         * @type {{ refs: Array<GC|Item>, i: number }}
-         */
-        const structRefs = clientsStructRefs.get(missing) || { refs: [], i: 0 };
-        if (structRefs.refs.length === structRefs.i) {
-          // This update message causally depends on another update message.
+      if (stackHead.constructor !== Skip) {
+        const localClock = setIfUndefined(state, stackHead.id.client, () => getState(store, stackHead.id.client));
+        const offset = localClock - stackHead.id.clock;
+        if (offset < 0) {
+          // update from the same client is missing
           stack.push(stackHead);
-          return
+          updateMissingSv(stackHead.id.client, stackHead.id.clock - 1);
+          // hid a dead wall, add all items from stack to restSS
+          addStackToRestSS();
+        } else {
+          const missing = stackHead.getMissing(transaction, store);
+          if (missing !== null) {
+            stack.push(stackHead);
+            // get the struct reader that has the missing struct
+            /**
+             * @type {{ refs: Array<GC|Item>, i: number }}
+             */
+            const structRefs = clientsStructRefs.get(/** @type {number} */ (missing)) || { refs: [], i: 0 };
+            if (structRefs.refs.length === structRefs.i) {
+              // This update message causally depends on another update message that doesn't exist yet
+              updateMissingSv(/** @type {number} */ (missing), getState(store, missing));
+              addStackToRestSS();
+            } else {
+              stackHead = structRefs.refs[structRefs.i++];
+              continue
+            }
+          } else if (offset === 0 || offset < stackHead.length) {
+            // all fine, apply the stackhead
+            stackHead.integrate(transaction, offset);
+            state.set(stackHead.id.client, stackHead.id.clock + stackHead.length);
+          }
         }
-        stack.push(stackHead);
-        stackHead = structRefs.refs[structRefs.i++];
+      }
+      // iterate to next stackHead
+      if (stack.length > 0) {
+        stackHead = /** @type {GC|Item} */ (stack.pop());
+      } else if (curStructsTarget !== null && curStructsTarget.i < curStructsTarget.refs.length) {
+        stackHead = /** @type {GC|Item} */ (curStructsTarget.refs[curStructsTarget.i++]);
+      } else {
+        curStructsTarget = getNextStructTarget();
+        if (curStructsTarget === null) {
+          // we are done!
+          break
+        } else {
+          stackHead = /** @type {GC|Item} */ (curStructsTarget.refs[curStructsTarget.i++]);
+        }
       }
     }
-    store.pendingClientsStructRefs.clear();
-  };
-
-  /**
-   * @param {Transaction} transaction
-   * @param {StructStore} store
-   *
-   * @private
-   * @function
-   */
-  const tryResumePendingDeleteReaders = (transaction, store) => {
-    const pendingReaders = store.pendingDeleteReaders;
-    store.pendingDeleteReaders = [];
-    for (let i = 0; i < pendingReaders.length; i++) {
-      readAndApplyDeleteSet(pendingReaders[i], transaction, store);
+    if (restStructs.clients.size > 0) {
+      const encoder = new UpdateEncoderV2();
+      writeClientsStructs(encoder, restStructs, new Map());
+      // write empty deleteset
+      // writeDeleteSet(encoder, new DeleteSet())
+      writeVarUint(encoder.restEncoder, 0); // => no need for an extra function call, just write 0 deletes
+      return { missing: missingSV, update: encoder.toUint8Array() }
     }
+    return null
   };
 
   /**
-   * @param {AbstractUpdateEncoder} encoder
+   * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
    * @param {Transaction} transaction
    *
    * @private
    * @function
    */
   const writeStructsFromTransaction = (encoder, transaction) => writeClientsStructs(encoder, transaction.doc.store, transaction.beforeState);
-
-  /**
-   * @param {StructStore} store
-   * @param {Map<number, Array<GC|Item>>} clientsStructsRefs
-   *
-   * @private
-   * @function
-   */
-  const mergeReadStructsIntoPendingReads = (store, clientsStructsRefs) => {
-    const pendingClientsStructRefs = store.pendingClientsStructRefs;
-    clientsStructsRefs.forEach((structRefs, client) => {
-      const pendingStructRefs = pendingClientsStructRefs.get(client);
-      if (pendingStructRefs === undefined) {
-        pendingClientsStructRefs.set(client, { refs: structRefs, i: 0 });
-      } else {
-        // merge into existing structRefs
-        const merged = pendingStructRefs.i > 0 ? pendingStructRefs.refs.slice(pendingStructRefs.i) : pendingStructRefs.refs;
-        for (let i = 0; i < structRefs.length; i++) {
-          merged.push(structRefs[i]);
-        }
-        pendingStructRefs.i = 0;
-        pendingStructRefs.refs = merged.sort((r1, r2) => r1.id.clock - r2.id.clock);
-      }
-    });
-  };
-
-  /**
-   * @param {Map<number,{refs:Array<GC|Item>,i:number}>} pendingClientsStructRefs
-   */
-  const cleanupPendingStructs = pendingClientsStructRefs => {
-    // cleanup pendingClientsStructs if not fully finished
-    pendingClientsStructRefs.forEach((refs, client) => {
-      if (refs.i === refs.refs.length) {
-        pendingClientsStructRefs.delete(client);
-      } else {
-        refs.refs.splice(0, refs.i);
-        refs.i = 0;
-      }
-    });
-  };
-
-  /**
-   * Read the next Item in a Decoder and fill this Item with the read data.
-   *
-   * This is called when data is received from a remote peer.
-   *
-   * @param {AbstractUpdateDecoder} decoder The decoder object to read data from.
-   * @param {Transaction} transaction
-   * @param {StructStore} store
-   *
-   * @private
-   * @function
-   */
-  const readStructs = (decoder, transaction, store) => {
-    const clientsStructRefs = new Map();
-    // let start = performance.now()
-    readClientsStructRefs(decoder, clientsStructRefs, transaction.doc);
-    // console.log('time to read structs: ', performance.now() - start) // @todo remove
-    // start = performance.now()
-    mergeReadStructsIntoPendingReads(store, clientsStructRefs);
-    // console.log('time to merge: ', performance.now() - start) // @todo remove
-    // start = performance.now()
-    resumeStructIntegration(transaction, store);
-    // console.log('time to integrate: ', performance.now() - start) // @todo remove
-    // start = performance.now()
-    cleanupPendingStructs(store.pendingClientsStructRefs);
-    // console.log('time to cleanup: ', performance.now() - start) // @todo remove
-    // start = performance.now()
-    tryResumePendingDeleteReaders(transaction, store);
-    // console.log('time to resume delete readers: ', performance.now() - start) // @todo remove
-    // start = performance.now()
-  };
 
   /**
    * Read and apply a document update.
@@ -5002,14 +4748,75 @@
    * @param {decoding.Decoder} decoder
    * @param {Doc} ydoc
    * @param {any} [transactionOrigin] This will be stored on `transaction.origin` and `.on('update', (update, origin))`
-   * @param {AbstractUpdateDecoder} [structDecoder]
+   * @param {UpdateDecoderV1 | UpdateDecoderV2} [structDecoder]
    *
    * @function
    */
   const readUpdateV2 = (decoder, ydoc, transactionOrigin, structDecoder = new UpdateDecoderV2(decoder)) =>
     transact(ydoc, transaction => {
-      readStructs(structDecoder, transaction, ydoc.store);
-      readAndApplyDeleteSet(structDecoder, transaction, ydoc.store);
+      let retry = false;
+      const doc = transaction.doc;
+      const store = doc.store;
+      // let start = performance.now()
+      const ss = readClientsStructRefs(structDecoder, doc);
+      // console.log('time to read structs: ', performance.now() - start) // @todo remove
+      // start = performance.now()
+      // console.log('time to merge: ', performance.now() - start) // @todo remove
+      // start = performance.now()
+      const restStructs = integrateStructs(transaction, store, ss);
+      const pending = store.pendingStructs;
+      if (pending) {
+        // check if we can apply something
+        for (const [client, clock] of pending.missing) {
+          if (clock < getState(store, client)) {
+            retry = true;
+            break
+          }
+        }
+        if (restStructs) {
+          // merge restStructs into store.pending
+          for (const [client, clock] of restStructs.missing) {
+            const mclock = pending.missing.get(client);
+            if (mclock == null || mclock > clock) {
+              pending.missing.set(client, clock);
+            }
+          }
+          pending.update = mergeUpdatesV2([pending.update, restStructs.update]);
+        }
+      } else {
+        store.pendingStructs = restStructs;
+      }
+      // console.log('time to integrate: ', performance.now() - start) // @todo remove
+      // start = performance.now()
+      const dsRest = readAndApplyDeleteSet(structDecoder, transaction, store);
+      if (store.pendingDs) {
+        // @todo we could make a lower-bound state-vector check as we do above
+        const pendingDSUpdate = new UpdateDecoderV2(createDecoder(store.pendingDs));
+        readVarUint(pendingDSUpdate.restDecoder); // read 0 structs, because we only encode deletes in pendingdsupdate
+        const dsRest2 = readAndApplyDeleteSet(pendingDSUpdate, transaction, store);
+        if (dsRest && dsRest2) {
+          // case 1: ds1 != null && ds2 != null
+          store.pendingDs = mergeUpdatesV2([dsRest, dsRest2]);
+        } else {
+          // case 2: ds1 != null
+          // case 3: ds2 != null
+          // case 4: ds1 == null && ds2 == null
+          store.pendingDs = dsRest || dsRest2;
+        }
+      } else {
+        // Either dsRest == null && pendingDs == null OR dsRest != null
+        store.pendingDs = dsRest;
+      }
+      // console.log('time to cleanup: ', performance.now() - start) // @todo remove
+      // start = performance.now()
+
+      // console.log('time to resume delete readers: ', performance.now() - start) // @todo remove
+      // start = performance.now()
+      if (retry) {
+        const update = /** @type {{update: Uint8Array}} */ (store.pendingStructs).update;
+        store.pendingStructs = null;
+        applyUpdateV2(transaction.doc, update);
+      }
     }, transactionOrigin, false);
 
   /**
@@ -5023,7 +4830,7 @@
    *
    * @function
    */
-  const readUpdate = (decoder, ydoc, transactionOrigin) => readUpdateV2(decoder, ydoc, transactionOrigin, new DefaultUpdateDecoder(decoder));
+  const readUpdate$1 = (decoder, ydoc, transactionOrigin) => readUpdateV2(decoder, ydoc, transactionOrigin, new UpdateDecoderV1(decoder));
 
   /**
    * Apply a document update created by, for example, `y.on('update', update => ..)` or `update = encodeStateAsUpdate()`.
@@ -5053,13 +4860,13 @@
    *
    * @function
    */
-  const applyUpdate = (ydoc, update, transactionOrigin) => applyUpdateV2(ydoc, update, transactionOrigin, DefaultUpdateDecoder);
+  const applyUpdate = (ydoc, update, transactionOrigin) => applyUpdateV2(ydoc, update, transactionOrigin, UpdateDecoderV1);
 
   /**
    * Write all the document as a single update message. If you specify the state of the remote client (`targetStateVector`) it will
    * only write the operations that are missing.
    *
-   * @param {AbstractUpdateEncoder} encoder
+   * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
    * @param {Doc} doc
    * @param {Map<number,number>} [targetStateVector] The state of the target that receives the update. Leave empty to write all known structs
    *
@@ -5078,15 +4885,29 @@
    *
    * @param {Doc} doc
    * @param {Uint8Array} [encodedTargetStateVector] The state of the target that receives the update. Leave empty to write all known structs
-   * @param {AbstractUpdateEncoder} [encoder]
+   * @param {UpdateEncoderV1 | UpdateEncoderV2} [encoder]
    * @return {Uint8Array}
    *
    * @function
    */
-  const encodeStateAsUpdateV2 = (doc, encodedTargetStateVector, encoder = new UpdateEncoderV2()) => {
-    const targetStateVector = encodedTargetStateVector == null ? new Map() : decodeStateVector(encodedTargetStateVector);
+  const encodeStateAsUpdateV2 = (doc, encodedTargetStateVector = new Uint8Array([0]), encoder = new UpdateEncoderV2()) => {
+    const targetStateVector = decodeStateVector(encodedTargetStateVector);
     writeStateAsUpdate(encoder, doc, targetStateVector);
-    return encoder.toUint8Array()
+    const updates = [encoder.toUint8Array()];
+    // also add the pending updates (if there are any)
+    // @todo support diffirent encoders
+    if (encoder.constructor === UpdateEncoderV2) {
+      if (doc.store.pendingDs) {
+        updates.push(doc.store.pendingDs);
+      }
+      if (doc.store.pendingStructs) {
+        updates.push(diffUpdateV2(doc.store.pendingStructs.update, encodedTargetStateVector));
+      }
+      if (updates.length > 1) {
+        return mergeUpdatesV2(updates)
+      }
+    }
+    return updates[0]
   };
 
   /**
@@ -5101,12 +4922,12 @@
    *
    * @function
    */
-  const encodeStateAsUpdate = (doc, encodedTargetStateVector) => encodeStateAsUpdateV2(doc, encodedTargetStateVector, new DefaultUpdateEncoder());
+  const encodeStateAsUpdate = (doc, encodedTargetStateVector) => encodeStateAsUpdateV2(doc, encodedTargetStateVector, new UpdateEncoderV1());
 
   /**
    * Read state vector from Decoder and return as Map
    *
-   * @param {AbstractDSDecoder} decoder
+   * @param {DSDecoderV1 | DSDecoderV2} decoder
    * @return {Map<number,number>} Maps `client` to the number next expected `clock` from that client.
    *
    * @function
@@ -5130,7 +4951,7 @@
    *
    * @function
    */
-  const decodeStateVectorV2 = decodedState => readStateVector(new DSDecoderV2(createDecoder(decodedState)));
+  // export const decodeStateVectorV2 = decodedState => readStateVector(new DSDecoderV2(decoding.createDecoder(decodedState)))
 
   /**
    * Read decodedState and return State as Map.
@@ -5140,10 +4961,10 @@
    *
    * @function
    */
-  const decodeStateVector = decodedState => readStateVector(new DefaultDSDecoder(createDecoder(decodedState)));
+  const decodeStateVector = decodedState => readStateVector(new DSDecoderV1(createDecoder(decodedState)));
 
   /**
-   * @param {AbstractDSEncoder} encoder
+   * @param {DSEncoderV1 | DSEncoderV2} encoder
    * @param {Map<number,number>} sv
    * @function
    */
@@ -5157,7 +4978,7 @@
   };
 
   /**
-   * @param {AbstractDSEncoder} encoder
+   * @param {DSEncoderV1 | DSEncoderV2} encoder
    * @param {Doc} doc
    *
    * @function
@@ -5167,26 +4988,30 @@
   /**
    * Encode State as Uint8Array.
    *
-   * @param {Doc} doc
-   * @param {AbstractDSEncoder} [encoder]
+   * @param {Doc|Map<number,number>} doc
+   * @param {DSEncoderV1 | DSEncoderV2} [encoder]
    * @return {Uint8Array}
    *
    * @function
    */
   const encodeStateVectorV2 = (doc, encoder = new DSEncoderV2()) => {
-    writeDocumentStateVector(encoder, doc);
+    if (doc instanceof Map) {
+      writeStateVector(encoder, doc);
+    } else {
+      writeDocumentStateVector(encoder, doc);
+    }
     return encoder.toUint8Array()
   };
 
   /**
    * Encode State as Uint8Array.
    *
-   * @param {Doc} doc
+   * @param {Doc|Map<number,number>} doc
    * @return {Uint8Array}
    *
    * @function
    */
-  const encodeStateVector = doc => encodeStateVectorV2(doc, new DefaultDSEncoder());
+  const encodeStateVector = doc => encodeStateVectorV2(doc, new DSEncoderV1());
 
   /**
    * General event handler implementation.
@@ -5554,8 +5379,9 @@
      * @param {ID|null} type
      * @param {string|null} tname
      * @param {ID|null} item
+     * @param {number} assoc
      */
-    constructor (type, tname, item) {
+    constructor (type, tname, item, assoc = 0) {
       /**
        * @type {ID|null}
        */
@@ -5568,8 +5394,41 @@
        * @type {ID | null}
        */
       this.item = item;
+      /**
+       * A relative position is associated to a specific character. By default
+       * assoc >= 0, the relative position is associated to the character
+       * after the meant position.
+       * I.e. position 1 in 'ab' is associated to character 'b'.
+       *
+       * If assoc < 0, then the relative position is associated to the caharacter
+       * before the meant position.
+       *
+       * @type {number}
+       */
+      this.assoc = assoc;
     }
   }
+
+  /**
+   * @param {RelativePosition} rpos
+   * @return {any}
+   */
+  const relativePositionToJSON = rpos => {
+    const json = {};
+    if (rpos.type) {
+      json.type = rpos.type;
+    }
+    if (rpos.tname) {
+      json.tname = rpos.tname;
+    }
+    if (rpos.item) {
+      json.item = rpos.item;
+    }
+    if (rpos.assoc != null) {
+      json.assoc = rpos.assoc;
+    }
+    return json
+  };
 
   /**
    * @param {any} json
@@ -5577,14 +5436,15 @@
    *
    * @function
    */
-  const createRelativePositionFromJSON = json => new RelativePosition(json.type == null ? null : createID(json.type.client, json.type.clock), json.tname || null, json.item == null ? null : createID(json.item.client, json.item.clock));
+  const createRelativePositionFromJSON = json => new RelativePosition(json.type == null ? null : createID(json.type.client, json.type.clock), json.tname || null, json.item == null ? null : createID(json.item.client, json.item.clock), json.assoc == null ? 0 : json.assoc);
 
   class AbsolutePosition {
     /**
      * @param {AbstractType<any>} type
      * @param {number} index
+     * @param {number} [assoc]
      */
-    constructor (type, index) {
+    constructor (type, index, assoc = 0) {
       /**
        * @type {AbstractType<any>}
        */
@@ -5593,24 +5453,27 @@
        * @type {number}
        */
       this.index = index;
+      this.assoc = assoc;
     }
   }
 
   /**
    * @param {AbstractType<any>} type
    * @param {number} index
+   * @param {number} [assoc]
    *
    * @function
    */
-  const createAbsolutePosition = (type, index) => new AbsolutePosition(type, index);
+  const createAbsolutePosition = (type, index, assoc = 0) => new AbsolutePosition(type, index, assoc);
 
   /**
    * @param {AbstractType<any>} type
    * @param {ID|null} item
+   * @param {number} [assoc]
    *
    * @function
    */
-  const createRelativePosition = (type, item) => {
+  const createRelativePosition = (type, item, assoc) => {
     let typeid = null;
     let tname = null;
     if (type._item === null) {
@@ -5618,7 +5481,7 @@
     } else {
       typeid = createID(type._item.id.client, type._item.id.clock);
     }
-    return new RelativePosition(typeid, tname, item)
+    return new RelativePosition(typeid, tname, item, assoc)
   };
 
   /**
@@ -5626,23 +5489,35 @@
    *
    * @param {AbstractType<any>} type The base type (e.g. YText or YArray).
    * @param {number} index The absolute position.
+   * @param {number} [assoc]
    * @return {RelativePosition}
    *
    * @function
    */
-  const createRelativePositionFromTypeIndex = (type, index) => {
+  const createRelativePositionFromTypeIndex = (type, index, assoc = 0) => {
     let t = type._start;
+    if (assoc < 0) {
+      // associated to the left character or the beginning of a type, increment index if possible.
+      if (index === 0) {
+        return createRelativePosition(type, null, assoc)
+      }
+      index--;
+    }
     while (t !== null) {
       if (!t.deleted && t.countable) {
         if (t.length > index) {
           // case 1: found position somewhere in the linked list
-          return createRelativePosition(type, createID(t.id.client, t.id.clock + index))
+          return createRelativePosition(type, createID(t.id.client, t.id.clock + index), assoc)
         }
         index -= t.length;
       }
+      if (t.right === null && assoc < 0) {
+        // left-associated position, return last available id
+        return createRelativePosition(type, t.lastId, assoc)
+      }
       t = t.right;
     }
-    return createRelativePosition(type, null)
+    return createRelativePosition(type, null, assoc)
   };
 
   /**
@@ -5652,7 +5527,7 @@
    * @function
    */
   const writeRelativePosition = (encoder, rpos) => {
-    const { type, tname, item } = rpos;
+    const { type, tname, item, assoc } = rpos;
     if (item !== null) {
       writeVarUint(encoder, 0);
       writeID(encoder, item);
@@ -5667,6 +5542,7 @@
     } else {
       throw unexpectedCase()
     }
+    writeVarInt(encoder, assoc);
     return encoder
   };
 
@@ -5682,7 +5558,7 @@
 
   /**
    * @param {decoding.Decoder} decoder
-   * @return {RelativePosition|null}
+   * @return {RelativePosition}
    *
    * @function
    */
@@ -5704,12 +5580,13 @@
         type = readID(decoder);
       }
     }
-    return new RelativePosition(type, tname, itemID)
+    const assoc = hasContent(decoder) ? readVarInt(decoder) : 0;
+    return new RelativePosition(type, tname, itemID, assoc)
   };
 
   /**
    * @param {Uint8Array} uint8Array
-   * @return {RelativePosition|null}
+   * @return {RelativePosition}
    */
   const decodeRelativePosition = uint8Array => readRelativePosition(createDecoder(uint8Array));
 
@@ -5725,6 +5602,7 @@
     const rightID = rpos.item;
     const typeID = rpos.type;
     const tname = rpos.tname;
+    const assoc = rpos.assoc;
     let type = null;
     let index = 0;
     if (rightID !== null) {
@@ -5738,7 +5616,7 @@
       }
       type = /** @type {AbstractType<any>} */ (right.parent);
       if (type._item === null || !type._item.deleted) {
-        index = right.deleted || !right.countable ? 0 : res.diff;
+        index = (right.deleted || !right.countable) ? 0 : (res.diff + (assoc >= 0 ? 0 : 1)); // adjust position based on left association if necessary
         let n = right.left;
         while (n !== null) {
           if (!n.deleted && n.countable) {
@@ -5765,9 +5643,13 @@
       } else {
         throw unexpectedCase()
       }
-      index = type._length;
+      if (assoc >= 0) {
+        index = type._length;
+      } else {
+        index = 0;
+      }
     }
-    return createAbsolutePosition(type, index)
+    return createAbsolutePosition(type, index, rpos.assoc)
   };
 
   /**
@@ -5778,7 +5660,7 @@
    * @function
    */
   const compareRelativePositions = (a, b) => a === b || (
-    a !== null && b !== null && a.tname === b.tname && compareIDs(a.item, b.item) && compareIDs(a.type, b.type)
+    a !== null && b !== null && a.tname === b.tname && compareIDs(a.item, b.item) && compareIDs(a.type, b.type) && a.assoc === b.assoc
   );
 
   class Snapshot {
@@ -5835,7 +5717,7 @@
 
   /**
    * @param {Snapshot} snapshot
-   * @param {AbstractDSEncoder} [encoder]
+   * @param {DSEncoderV1 | DSEncoderV2} [encoder]
    * @return {Uint8Array}
    */
   const encodeSnapshotV2 = (snapshot, encoder = new DSEncoderV2()) => {
@@ -5848,11 +5730,11 @@
    * @param {Snapshot} snapshot
    * @return {Uint8Array}
    */
-  const encodeSnapshot = snapshot => encodeSnapshotV2(snapshot, new DefaultDSEncoder());
+  const encodeSnapshot = snapshot => encodeSnapshotV2(snapshot, new DSEncoderV1());
 
   /**
    * @param {Uint8Array} buf
-   * @param {AbstractDSDecoder} [decoder]
+   * @param {DSDecoderV1 | DSDecoderV2} [decoder]
    * @return {Snapshot}
    */
   const decodeSnapshotV2 = (buf, decoder = new DSDecoderV2(createDecoder(buf))) => {
@@ -5878,7 +5760,7 @@
    * @param {Doc} doc
    * @return {Snapshot}
    */
-  const snapshot = doc => createSnapshot(createDeleteSetFromStructStore(doc.store), getStateVector(doc.store));
+  const snapshot$1 = doc => createSnapshot(createDeleteSetFromStructStore(doc.store), getStateVector(doc.store));
 
   /**
    * @param {Item} item
@@ -5896,7 +5778,7 @@
    * @param {Snapshot} snapshot
    */
   const splitSnapshotAffectedStructs = (transaction, snapshot) => {
-    const meta = setIfUndefined(transaction.meta, splitSnapshotAffectedStructs, create$5);
+    const meta = setIfUndefined(transaction.meta, splitSnapshotAffectedStructs, create$1);
     const store = transaction.doc.store;
     // check if we already split for this snapshot
     if (!meta.has(snapshot)) {
@@ -5965,24 +5847,13 @@
        */
       this.clients = new Map();
       /**
-       * Store incompleted struct reads here
-       * `i` denotes to the next read operation
-       * We could shift the array of refs instead, but shift is incredible
-       * slow in Chrome for arrays with more than 100k elements
-       * @see tryResumePendingStructRefs
-       * @type {Map<number,{i:number,refs:Array<GC|Item>}>}
+       * @type {null | { missing: Map<number, number>, update: Uint8Array }}
        */
-      this.pendingClientsStructRefs = new Map();
+      this.pendingStructs = null;
       /**
-       * Stack of pending structs waiting for struct dependencies
-       * Maximum length of stack is structReaders.size
-       * @type {Array<GC|Item>}
+       * @type {null | Uint8Array}
        */
-      this.pendingStack = [];
-      /**
-       * @type {Array<DSDecoderV2>}
-       */
-      this.pendingDeleteReaders = [];
+      this.pendingDs = null;
     }
   }
 
@@ -6320,7 +6191,7 @@
   }
 
   /**
-   * @param {AbstractUpdateEncoder} encoder
+   * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
    * @param {Transaction} transaction
    * @return {boolean} Whether data was written.
    */
@@ -6356,7 +6227,7 @@
   const addChangedTypeToTransaction = (transaction, type, parentSub) => {
     const item = type._item;
     if (item === null || (item.id.clock < (transaction.beforeState.get(item.id.client) || 0) && !item.deleted)) {
-      setIfUndefined(transaction.changed, type, create$5).add(parentSub);
+      setIfUndefined(transaction.changed, type, create$1).add(parentSub);
     }
   };
 
@@ -6434,7 +6305,7 @@
    * @param {StructStore} store
    * @param {function(Item):boolean} gcFilter
    */
-  const tryGc = (ds, store, gcFilter) => {
+  const tryGc$1 = (ds, store, gcFilter) => {
     tryGcDeleteSet(ds, store, gcFilter);
     tryMergeDeleteSet(ds, store);
   };
@@ -6539,17 +6410,17 @@
         // @todo Merge all the transactions into one and provide send the data as a single update message
         doc.emit('afterTransactionCleanup', [transaction, doc]);
         if (doc._observers.has('update')) {
-          const encoder = new DefaultUpdateEncoder();
+          const encoder = new UpdateEncoderV1();
           const hasContent = writeUpdateMessageFromTransaction(encoder, transaction);
           if (hasContent) {
-            doc.emit('update', [encoder.toUint8Array(), transaction.origin, doc]);
+            doc.emit('update', [encoder.toUint8Array(), transaction.origin, doc, transaction]);
           }
         }
         if (doc._observers.has('updateV2')) {
           const encoder = new UpdateEncoderV2();
           const hasContent = writeUpdateMessageFromTransaction(encoder, transaction);
           if (hasContent) {
-            doc.emit('updateV2', [encoder.toUint8Array(), transaction.origin, doc]);
+            doc.emit('updateV2', [encoder.toUint8Array(), transaction.origin, doc, transaction]);
           }
         }
         transaction.subdocsAdded.forEach(subdoc => doc.subdocs.add(subdoc));
@@ -6608,14 +6479,12 @@
 
   class StackItem {
     /**
-     * @param {DeleteSet} ds
-     * @param {Map<number,number>} beforeState
-     * @param {Map<number,number>} afterState
+     * @param {DeleteSet} deletions
+     * @param {DeleteSet} insertions
      */
-    constructor (ds, beforeState, afterState) {
-      this.ds = ds;
-      this.beforeState = beforeState;
-      this.afterState = afterState;
+    constructor (deletions, insertions) {
+      this.insertions = insertions;
+      this.deletions = deletions;
       /**
        * Use this to save and restore metadata like selection range
        */
@@ -6635,6 +6504,11 @@
      * @type {StackItem?}
      */
     let result = null;
+    /**
+     * Keep a reference to the transaction so we can fire the event with the changedParentTypes
+     * @type {any}
+     */
+    let _tr = null;
     const doc = undoManager.doc;
     const scope = undoManager.scope;
     transact(doc, transaction => {
@@ -6650,48 +6524,26 @@
          */
         const itemsToDelete = [];
         let performedChange = false;
-        stackItem.afterState.forEach((endClock, client) => {
-          const startClock = stackItem.beforeState.get(client) || 0;
-          const len = endClock - startClock;
-          // @todo iterateStructs should not need the structs parameter
-          const structs = /** @type {Array<GC|Item>} */ (store.clients.get(client));
-          if (startClock !== endClock) {
-            // make sure structs don't overlap with the range of created operations [stackItem.start, stackItem.start + stackItem.end)
-            // this must be executed before deleted structs are iterated.
-            getItemCleanStart(transaction, createID(client, startClock));
-            if (endClock < getState(doc.store, client)) {
-              getItemCleanStart(transaction, createID(client, endClock));
-            }
-            iterateStructs(transaction, structs, startClock, len, struct => {
-              if (struct instanceof Item) {
-                if (struct.redone !== null) {
-                  let { item, diff } = followRedone(store, struct.id);
-                  if (diff > 0) {
-                    item = getItemCleanStart(transaction, createID(item.id.client, item.id.clock + diff));
-                  }
-                  if (item.length > len) {
-                    getItemCleanStart(transaction, createID(item.id.client, endClock));
-                  }
-                  struct = item;
-                }
-                if (!struct.deleted && scope.some(type => isParentOf(type, /** @type {Item} */ (struct)))) {
-                  itemsToDelete.push(struct);
-                }
+        iterateDeletedStructs(transaction, stackItem.insertions, struct => {
+          if (struct instanceof Item) {
+            if (struct.redone !== null) {
+              let { item, diff } = followRedone(store, struct.id);
+              if (diff > 0) {
+                item = getItemCleanStart(transaction, createID(item.id.client, item.id.clock + diff));
               }
-            });
+              struct = item;
+            }
+            if (!struct.deleted && scope.some(type => isParentOf(type, /** @type {Item} */ (struct)))) {
+              itemsToDelete.push(struct);
+            }
           }
         });
-        iterateDeletedStructs(transaction, stackItem.ds, struct => {
-          const id = struct.id;
-          const clock = id.clock;
-          const client = id.client;
-          const startClock = stackItem.beforeState.get(client) || 0;
-          const endClock = stackItem.afterState.get(client) || 0;
+        iterateDeletedStructs(transaction, stackItem.deletions, struct => {
           if (
             struct instanceof Item &&
             scope.some(type => isParentOf(type, struct)) &&
-            // Never redo structs in [stackItem.start, stackItem.start + stackItem.end) because they were created and deleted in the same capture interval.
-            !(clock >= startClock && clock < endClock)
+            // Never redo structs in stackItem.insertions because they were created and deleted in the same capture interval.
+            !isDeleted(stackItem.insertions, struct.id)
           ) {
             itemsToRedo.add(struct);
           }
@@ -6716,9 +6568,11 @@
           type._searchMarker.length = 0;
         }
       });
+      _tr = transaction;
     }, undoManager);
     if (result != null) {
-      undoManager.emit('stack-item-popped', [{ stackItem: result, type: eventType }, undoManager]);
+      const changedParentTypes = _tr.changedParentTypes;
+      undoManager.emit('stack-item-popped', [{ stackItem: result, type: eventType, changedParentTypes }, undoManager]);
     }
     return result
   };
@@ -6784,17 +6638,23 @@
           // neither undoing nor redoing: delete redoStack
           this.redoStack = [];
         }
-        const beforeState = transaction.beforeState;
-        const afterState = transaction.afterState;
+        const insertions = new DeleteSet();
+        transaction.afterState.forEach((endClock, client) => {
+          const startClock = transaction.beforeState.get(client) || 0;
+          const len = endClock - startClock;
+          if (len > 0) {
+            addToDeleteSet(insertions, client, startClock, len);
+          }
+        });
         const now = getUnixTime();
         if (now - this.lastChange < captureTimeout && stack.length > 0 && !undoing && !redoing) {
           // append change to last stack op
           const lastOp = stack[stack.length - 1];
-          lastOp.ds = mergeDeleteSets([lastOp.ds, transaction.deleteSet]);
-          lastOp.afterState = afterState;
+          lastOp.deletions = mergeDeleteSets([lastOp.deletions, transaction.deleteSet]);
+          lastOp.insertions = mergeDeleteSets([lastOp.insertions, insertions]);
         } else {
           // create a new stack op
-          stack.push(new StackItem(transaction.deleteSet, beforeState, afterState));
+          stack.push(new StackItem(transaction.deleteSet, insertions));
         }
         if (!undoing && !redoing) {
           this.lastChange = now;
@@ -6805,7 +6665,7 @@
             keepItem(item, true);
           }
         });
-        this.emit('stack-item-added', [{ stackItem: stack[stack.length - 1], origin: transaction.origin, type: undoing ? 'redo' : 'undo' }, this]);
+        this.emit('stack-item-added', [{ stackItem: stack[stack.length - 1], origin: transaction.origin, type: undoing ? 'redo' : 'undo', changedParentTypes: transaction.changedParentTypes }, this]);
       });
     }
 
@@ -6815,7 +6675,7 @@
          * @param {StackItem} stackItem
          */
         const clearItem = stackItem => {
-          iterateDeletedStructs(transaction, stackItem.ds, item => {
+          iterateDeletedStructs(transaction, stackItem.deletions, item => {
             if (item instanceof Item && this.scope.some(type => isParentOf(type, item))) {
               keepItem(item, false);
             }
@@ -6884,6 +6744,498 @@
       return res
     }
   }
+
+  /**
+   * @param {UpdateDecoderV1 | UpdateDecoderV2} decoder
+   */
+  function * lazyStructReaderGenerator (decoder) {
+    const numOfStateUpdates = readVarUint(decoder.restDecoder);
+    for (let i = 0; i < numOfStateUpdates; i++) {
+      const numberOfStructs = readVarUint(decoder.restDecoder);
+      const client = decoder.readClient();
+      let clock = readVarUint(decoder.restDecoder);
+      for (let i = 0; i < numberOfStructs; i++) {
+        const info = decoder.readInfo();
+        // @todo use switch instead of ifs
+        if (info === 10) {
+          const len = readVarUint(decoder.restDecoder);
+          yield new Skip(createID(client, clock), len);
+          clock += len;
+        } else if ((BITS5 & info) !== 0) {
+          const cantCopyParentInfo = (info & (BIT7 | BIT8)) === 0;
+          // If parent = null and neither left nor right are defined, then we know that `parent` is child of `y`
+          // and we read the next string as parentYKey.
+          // It indicates how we store/retrieve parent from `y.share`
+          // @type {string|null}
+          const struct = new Item(
+            createID(client, clock),
+            null, // left
+            (info & BIT8) === BIT8 ? decoder.readLeftID() : null, // origin
+            null, // right
+            (info & BIT7) === BIT7 ? decoder.readRightID() : null, // right origin
+            // @ts-ignore Force writing a string here.
+            cantCopyParentInfo ? (decoder.readParentInfo() ? decoder.readString() : decoder.readLeftID()) : null, // parent
+            cantCopyParentInfo && (info & BIT6) === BIT6 ? decoder.readString() : null, // parentSub
+            readItemContent(decoder, info) // item content
+          );
+          yield struct;
+          clock += struct.length;
+        } else {
+          const len = decoder.readLen();
+          yield new GC(createID(client, clock), len);
+          clock += len;
+        }
+      }
+    }
+  }
+
+  class LazyStructReader {
+    /**
+     * @param {UpdateDecoderV1 | UpdateDecoderV2} decoder
+     * @param {boolean} filterSkips
+     */
+    constructor (decoder, filterSkips) {
+      this.gen = lazyStructReaderGenerator(decoder);
+      /**
+       * @type {null | Item | Skip | GC}
+       */
+      this.curr = null;
+      this.done = false;
+      this.filterSkips = filterSkips;
+      this.next();
+    }
+
+    /**
+     * @return {Item | GC | Skip |null}
+     */
+    next () {
+      // ignore "Skip" structs
+      do {
+        this.curr = this.gen.next().value || null;
+      } while (this.filterSkips && this.curr !== null && this.curr.constructor === Skip)
+      return this.curr
+    }
+  }
+
+  /**
+   * @param {Uint8Array} update
+   *
+   */
+  const logUpdate = update => logUpdateV2(update, UpdateDecoderV1);
+
+  /**
+   * @param {Uint8Array} update
+   * @param {typeof UpdateDecoderV2 | typeof UpdateDecoderV1} [YDecoder]
+   *
+   */
+  const logUpdateV2 = (update, YDecoder = UpdateDecoderV2) => {
+    const structs = [];
+    const updateDecoder = new YDecoder(createDecoder(update));
+    const lazyDecoder = new LazyStructReader(updateDecoder, false);
+    for (let curr = lazyDecoder.curr; curr !== null; curr = lazyDecoder.next()) {
+      structs.push(curr);
+    }
+    print('Structs: ', structs);
+    const ds = readDeleteSet(updateDecoder);
+    print('DeleteSet: ', ds);
+  };
+
+  class LazyStructWriter {
+    /**
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
+     */
+    constructor (encoder) {
+      this.currClient = 0;
+      this.startClock = 0;
+      this.written = 0;
+      this.encoder = encoder;
+      /**
+       * We want to write operations lazily, but also we need to know beforehand how many operations we want to write for each client.
+       *
+       * This kind of meta-information (#clients, #structs-per-client-written) is written to the restEncoder.
+       *
+       * We fragment the restEncoder and store a slice of it per-client until we know how many clients there are.
+       * When we flush (toUint8Array) we write the restEncoder using the fragments and the meta-information.
+       *
+       * @type {Array<{ written: number, restEncoder: Uint8Array }>}
+       */
+      this.clientStructs = [];
+    }
+  }
+
+  /**
+   * @param {Array<Uint8Array>} updates
+   * @return {Uint8Array}
+   */
+  const mergeUpdates = updates => mergeUpdatesV2(updates, UpdateDecoderV1, UpdateEncoderV1);
+
+  /**
+   * @param {Uint8Array} update
+   * @param {typeof DSEncoderV1 | typeof DSEncoderV2} YEncoder
+   * @param {typeof UpdateDecoderV1 | typeof UpdateDecoderV2} YDecoder
+   * @return {Uint8Array}
+   */
+  const encodeStateVectorFromUpdateV2 = (update, YEncoder = DSEncoderV2, YDecoder = UpdateDecoderV2) => {
+    const encoder = new YEncoder();
+    const updateDecoder = new LazyStructReader(new YDecoder(createDecoder(update)), true);
+    let curr = updateDecoder.curr;
+    if (curr !== null) {
+      let size = 1;
+      let currClient = curr.id.client;
+      let currClock = curr.id.clock;
+      let stopCounting = false;
+      for (; curr !== null; curr = updateDecoder.next()) {
+        if (currClient !== curr.id.client) {
+          size++;
+          // We found a new client
+          // write what we have to the encoder
+          writeVarUint(encoder.restEncoder, currClient);
+          writeVarUint(encoder.restEncoder, currClock);
+          currClient = curr.id.client;
+          stopCounting = false;
+        }
+        if (curr.constructor === Skip) {
+          stopCounting = true;
+        }
+        if (!stopCounting) {
+          currClock = curr.id.clock + curr.length;
+        }
+      }
+      // write what we have
+      writeVarUint(encoder.restEncoder, currClient);
+      writeVarUint(encoder.restEncoder, currClock);
+      // prepend the size of the state vector
+      const enc = createEncoder();
+      writeVarUint(enc, size);
+      writeBinaryEncoder(enc, encoder.restEncoder);
+      encoder.restEncoder = enc;
+      return encoder.toUint8Array()
+    } else {
+      writeVarUint(encoder.restEncoder, 0);
+      return encoder.toUint8Array()
+    }
+  };
+
+  /**
+   * @param {Uint8Array} update
+   * @return {Uint8Array}
+   */
+  const encodeStateVectorFromUpdate = update => encodeStateVectorFromUpdateV2(update, DSEncoderV1, UpdateDecoderV1);
+
+  /**
+   * @param {Uint8Array} update
+   * @param {typeof UpdateDecoderV1 | typeof UpdateDecoderV2} YDecoder
+   * @return {{ from: Map<number,number>, to: Map<number,number> }}
+   */
+  const parseUpdateMetaV2 = (update, YDecoder = UpdateDecoderV2) => {
+    /**
+     * @type {Map<number, number>}
+     */
+    const from = new Map();
+    /**
+     * @type {Map<number, number>}
+     */
+    const to = new Map();
+    const updateDecoder = new LazyStructReader(new YDecoder(createDecoder(update)), false);
+    let curr = updateDecoder.curr;
+    if (curr !== null) {
+      let currClient = curr.id.client;
+      let currClock = curr.id.clock;
+      // write the beginning to `from`
+      from.set(currClient, currClock);
+      for (; curr !== null; curr = updateDecoder.next()) {
+        if (currClient !== curr.id.client) {
+          // We found a new client
+          // write the end to `to`
+          to.set(currClient, currClock);
+          // write the beginning to `from`
+          from.set(curr.id.client, curr.id.clock);
+          // update currClient
+          currClient = curr.id.client;
+        }
+        currClock = curr.id.clock + curr.length;
+      }
+      // write the end to `to`
+      to.set(currClient, currClock);
+    }
+    return { from, to }
+  };
+
+  /**
+   * @param {Uint8Array} update
+   * @return {{ from: Map<number,number>, to: Map<number,number> }}
+   */
+  const parseUpdateMeta = update => parseUpdateMetaV2(update, UpdateDecoderV1);
+
+  /**
+   * This method is intended to slice any kind of struct and retrieve the right part.
+   * It does not handle side-effects, so it should only be used by the lazy-encoder.
+   *
+   * @param {Item | GC | Skip} left
+   * @param {number} diff
+   * @return {Item | GC}
+   */
+  const sliceStruct = (left, diff) => {
+    if (left.constructor === GC) {
+      const { client, clock } = left.id;
+      return new GC(createID(client, clock + diff), left.length - diff)
+    } else if (left.constructor === Skip) {
+      const { client, clock } = left.id;
+      return new Skip(createID(client, clock + diff), left.length - diff)
+    } else {
+      const leftItem = /** @type {Item} */ (left);
+      const { client, clock } = leftItem.id;
+      return new Item(
+        createID(client, clock + diff),
+        null,
+        createID(client, clock + diff - 1),
+        null,
+        leftItem.rightOrigin,
+        leftItem.parent,
+        leftItem.parentSub,
+        leftItem.content.splice(diff)
+      )
+    }
+  };
+
+  /**
+   *
+   * This function works similarly to `readUpdateV2`.
+   *
+   * @param {Array<Uint8Array>} updates
+   * @param {typeof UpdateDecoderV1 | typeof UpdateDecoderV2} [YDecoder]
+   * @param {typeof UpdateEncoderV1 | typeof UpdateEncoderV2} [YEncoder]
+   * @return {Uint8Array}
+   */
+  const mergeUpdatesV2 = (updates, YDecoder = UpdateDecoderV2, YEncoder = UpdateEncoderV2) => {
+    const updateDecoders = updates.map(update => new YDecoder(createDecoder(update)));
+    let lazyStructDecoders = updateDecoders.map(decoder => new LazyStructReader(decoder, true));
+
+    /**
+     * @todo we don't need offset because we always slice before
+     * @type {null | { struct: Item | GC | Skip, offset: number }}
+     */
+    let currWrite = null;
+
+    const updateEncoder = new YEncoder();
+    // write structs lazily
+    const lazyStructEncoder = new LazyStructWriter(updateEncoder);
+
+    // Note: We need to ensure that all lazyStructDecoders are fully consumed
+    // Note: Should merge document updates whenever possible - even from different updates
+    // Note: Should handle that some operations cannot be applied yet ()
+
+    while (true) {
+      // Write higher clients first ⇒ sort by clientID & clock and remove decoders without content
+      lazyStructDecoders = lazyStructDecoders.filter(dec => dec.curr !== null);
+      lazyStructDecoders.sort(
+        /** @type {function(any,any):number} */ (dec1, dec2) => {
+          if (dec1.curr.id.client === dec2.curr.id.client) {
+            const clockDiff = dec1.curr.id.clock - dec2.curr.id.clock;
+            if (clockDiff === 0) {
+              return dec1.curr.constructor === dec2.curr.constructor ? 0 : (
+                dec1.curr.constructor === Skip ? 1 : -1
+              )
+            } else {
+              return clockDiff
+            }
+          } else {
+            return dec2.curr.id.client - dec1.curr.id.client
+          }
+        }
+      );
+      if (lazyStructDecoders.length === 0) {
+        break
+      }
+      const currDecoder = lazyStructDecoders[0];
+      // write from currDecoder until the next operation is from another client or if filler-struct
+      // then we need to reorder the decoders and find the next operation to write
+      const firstClient = /** @type {Item | GC} */ (currDecoder.curr).id.client;
+
+      if (currWrite !== null) {
+        let curr = /** @type {Item | GC | null} */ (currDecoder.curr);
+
+        // iterate until we find something that we haven't written already
+        // remember: first the high client-ids are written
+        while (curr !== null && curr.id.clock + curr.length <= currWrite.struct.id.clock + currWrite.struct.length && curr.id.client >= currWrite.struct.id.client) {
+          curr = currDecoder.next();
+        }
+        if (curr === null || curr.id.client !== firstClient) {
+          continue
+        }
+
+        if (firstClient !== currWrite.struct.id.client) {
+          writeStructToLazyStructWriter(lazyStructEncoder, currWrite.struct, currWrite.offset);
+          currWrite = { struct: curr, offset: 0 };
+          currDecoder.next();
+        } else {
+          if (currWrite.struct.id.clock + currWrite.struct.length < curr.id.clock) {
+            // @todo write currStruct & set currStruct = Skip(clock = currStruct.id.clock + currStruct.length, length = curr.id.clock - self.clock)
+            if (currWrite.struct.constructor === Skip) {
+              // extend existing skip
+              currWrite.struct.length = curr.id.clock + curr.length - currWrite.struct.id.clock;
+            } else {
+              writeStructToLazyStructWriter(lazyStructEncoder, currWrite.struct, currWrite.offset);
+              const diff = curr.id.clock - currWrite.struct.id.clock - currWrite.struct.length;
+              /**
+               * @type {Skip}
+               */
+              const struct = new Skip(createID(firstClient, currWrite.struct.id.clock + currWrite.struct.length), diff);
+              currWrite = { struct, offset: 0 };
+            }
+          } else { // if (currWrite.struct.id.clock + currWrite.struct.length >= curr.id.clock) {
+            const diff = currWrite.struct.id.clock + currWrite.struct.length - curr.id.clock;
+            if (diff > 0) {
+              if (currWrite.struct.constructor === Skip) {
+                // prefer to slice Skip because the other struct might contain more information
+                currWrite.struct.length -= diff;
+              } else {
+                curr = sliceStruct(curr, diff);
+              }
+            }
+            if (!currWrite.struct.mergeWith(/** @type {any} */ (curr))) {
+              writeStructToLazyStructWriter(lazyStructEncoder, currWrite.struct, currWrite.offset);
+              currWrite = { struct: curr, offset: 0 };
+              currDecoder.next();
+            }
+          }
+        }
+      } else {
+        currWrite = { struct: /** @type {Item | GC} */ (currDecoder.curr), offset: 0 };
+        currDecoder.next();
+      }
+      for (
+        let next = currDecoder.curr;
+        next !== null && next.id.client === firstClient && next.id.clock === currWrite.struct.id.clock + currWrite.struct.length && next.constructor !== Skip;
+        next = currDecoder.next()
+      ) {
+        writeStructToLazyStructWriter(lazyStructEncoder, currWrite.struct, currWrite.offset);
+        currWrite = { struct: next, offset: 0 };
+      }
+    }
+    if (currWrite !== null) {
+      writeStructToLazyStructWriter(lazyStructEncoder, currWrite.struct, currWrite.offset);
+      currWrite = null;
+    }
+    finishLazyStructWriting(lazyStructEncoder);
+
+    const dss = updateDecoders.map(decoder => readDeleteSet(decoder));
+    const ds = mergeDeleteSets(dss);
+    writeDeleteSet(updateEncoder, ds);
+    return updateEncoder.toUint8Array()
+  };
+
+  /**
+   * @param {Uint8Array} update
+   * @param {Uint8Array} sv
+   * @param {typeof UpdateDecoderV1 | typeof UpdateDecoderV2} [YDecoder]
+   * @param {typeof UpdateEncoderV1 | typeof UpdateEncoderV2} [YEncoder]
+   */
+  const diffUpdateV2 = (update, sv, YDecoder = UpdateDecoderV2, YEncoder = UpdateEncoderV2) => {
+    const state = decodeStateVector(sv);
+    const encoder = new YEncoder();
+    const lazyStructWriter = new LazyStructWriter(encoder);
+    const decoder = new YDecoder(createDecoder(update));
+    const reader = new LazyStructReader(decoder, false);
+    while (reader.curr) {
+      const curr = reader.curr;
+      const currClient = curr.id.client;
+      const svClock = state.get(currClient) || 0;
+      if (reader.curr.constructor === Skip) {
+        // the first written struct shouldn't be a skip
+        reader.next();
+        continue
+      }
+      if (curr.id.clock + curr.length > svClock) {
+        writeStructToLazyStructWriter(lazyStructWriter, curr, max(svClock - curr.id.clock, 0));
+        reader.next();
+        while (reader.curr && reader.curr.id.client === currClient) {
+          writeStructToLazyStructWriter(lazyStructWriter, reader.curr, 0);
+          reader.next();
+        }
+      } else {
+        // read until something new comes up
+        while (reader.curr && reader.curr.id.client === currClient && reader.curr.id.clock + reader.curr.length <= svClock) {
+          reader.next();
+        }
+      }
+    }
+    finishLazyStructWriting(lazyStructWriter);
+    // write ds
+    const ds = readDeleteSet(decoder);
+    writeDeleteSet(encoder, ds);
+    return encoder.toUint8Array()
+  };
+
+  /**
+   * @param {Uint8Array} update
+   * @param {Uint8Array} sv
+   */
+  const diffUpdate = (update, sv) => diffUpdateV2(update, sv, UpdateDecoderV1, UpdateEncoderV1);
+
+  /**
+   * @param {LazyStructWriter} lazyWriter
+   */
+  const flushLazyStructWriter = lazyWriter => {
+    if (lazyWriter.written > 0) {
+      lazyWriter.clientStructs.push({ written: lazyWriter.written, restEncoder: toUint8Array(lazyWriter.encoder.restEncoder) });
+      lazyWriter.encoder.restEncoder = createEncoder();
+      lazyWriter.written = 0;
+    }
+  };
+
+  /**
+   * @param {LazyStructWriter} lazyWriter
+   * @param {Item | GC} struct
+   * @param {number} offset
+   */
+  const writeStructToLazyStructWriter = (lazyWriter, struct, offset) => {
+    // flush curr if we start another client
+    if (lazyWriter.written > 0 && lazyWriter.currClient !== struct.id.client) {
+      flushLazyStructWriter(lazyWriter);
+    }
+    if (lazyWriter.written === 0) {
+      lazyWriter.currClient = struct.id.client;
+      // write next client
+      lazyWriter.encoder.writeClient(struct.id.client);
+      // write startClock
+      writeVarUint(lazyWriter.encoder.restEncoder, struct.id.clock + offset);
+    }
+    struct.write(lazyWriter.encoder, offset);
+    lazyWriter.written++;
+  };
+  /**
+   * Call this function when we collected all parts and want to
+   * put all the parts together. After calling this method,
+   * you can continue using the UpdateEncoder.
+   *
+   * @param {LazyStructWriter} lazyWriter
+   */
+  const finishLazyStructWriting = (lazyWriter) => {
+    flushLazyStructWriter(lazyWriter);
+
+    // this is a fresh encoder because we called flushCurr
+    const restEncoder = lazyWriter.encoder.restEncoder;
+
+    /**
+     * Now we put all the fragments together.
+     * This works similarly to `writeClientsStructs`
+     */
+
+    // write # states that were updated - i.e. the clients
+    writeVarUint(restEncoder, lazyWriter.clientStructs.length);
+
+    for (let i = 0; i < lazyWriter.clientStructs.length; i++) {
+      const partStructs = lazyWriter.clientStructs[i];
+      /**
+       * Works similarly to `writeStructs`
+       */
+      // write # encoded structs
+      writeVarUint(restEncoder, partStructs.written);
+      // write the rest of the fragment
+      writeUint8Array(restEncoder, partStructs.restEncoder);
+    }
+  };
 
   /**
    * YEvent describes the changes on a YType.
@@ -6964,8 +7316,8 @@
       let changes = this._changes;
       if (changes === null) {
         const target = this.target;
-        const added = create$5();
-        const deleted = create$5();
+        const added = create$1();
+        const deleted = create$1();
         /**
          * @type {Array<{insert:Array<any>}|{delete:number}|{retain:number}>}
          */
@@ -7455,7 +7807,7 @@
     }
 
     /**
-     * @param {AbstractUpdateEncoder} encoder
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
      */
     _write (encoder) { }
 
@@ -7897,7 +8249,7 @@
       n = n.right;
     }
     if (length > 0) {
-      throw create$6('array length exceeded')
+      throw create('array length exceeded')
     }
     if (parent._searchMarker) {
       updateMarkerChanges(parent._searchMarker, startIndex, -startLength + length /* in case we remove the above exception */);
@@ -8259,7 +8611,7 @@
     }
 
     /**
-     * @param {AbstractUpdateEncoder} encoder
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
      */
     _write (encoder) {
       encoder.writeTypeRef(YArrayRefID);
@@ -8267,7 +8619,7 @@
   }
 
   /**
-   * @param {AbstractUpdateDecoder} decoder
+   * @param {UpdateDecoderV1 | UpdateDecoderV2} decoder
    *
    * @private
    * @function
@@ -8493,7 +8845,7 @@
     }
 
     /**
-     * @param {AbstractUpdateEncoder} encoder
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
      */
     _write (encoder) {
       encoder.writeTypeRef(YMapRefID);
@@ -8501,7 +8853,7 @@
   }
 
   /**
-   * @param {AbstractUpdateDecoder} decoder
+   * @param {UpdateDecoderV1 | UpdateDecoderV2} decoder
    *
    * @private
    * @function
@@ -8639,11 +8991,12 @@
     }
     const doc = transaction.doc;
     const ownClientId = doc.clientID;
-    let left = currPos.left;
+    let nextFormat = currPos.left;
     const right = currPos.right;
     negatedAttributes.forEach((val, key) => {
-      left = new Item(createID(ownClientId, getState(doc.store, ownClientId)), left, left && left.lastId, right, right && right.id, parent, null, new ContentFormat(key, val));
-      left.integrate(transaction, 0);
+      nextFormat = new Item(createID(ownClientId, getState(doc.store, ownClientId)), nextFormat, nextFormat && nextFormat.lastId, right, right && right.id, parent, null, new ContentFormat(key, val));
+      nextFormat.integrate(transaction, 0);
+      currPos.right = nextFormat;
     });
   };
 
@@ -8887,7 +9240,7 @@
     transact(/** @type {Doc} */ (type.doc), transaction => {
       let start = /** @type {Item} */ (type._start);
       let end = type._start;
-      let startAttributes = create();
+      let startAttributes = create$6();
       const currentAttributes = copy(startAttributes);
       while (end) {
         if (end.deleted === false) {
@@ -9676,7 +10029,7 @@
     }
 
     /**
-     * @param {AbstractUpdateEncoder} encoder
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
      */
     _write (encoder) {
       encoder.writeTypeRef(YTextRefID);
@@ -9684,7 +10037,7 @@
   }
 
   /**
-   * @param {AbstractUpdateDecoder} decoder
+   * @param {UpdateDecoderV1 | UpdateDecoderV2} decoder
    * @return {YText}
    *
    * @private
@@ -10007,7 +10360,7 @@
         const pc = /** @type {Array<any>} */ (this._prelimContent);
         const index = ref === null ? 0 : pc.findIndex(el => el === ref) + 1;
         if (index === 0 && ref !== null) {
-          throw create$6('Reference item not found')
+          throw create('Reference item not found')
         }
         pc.splice(index, 0, ...content);
       }
@@ -10084,7 +10437,7 @@
      *
      * This is called when this Item is sent to a remote peer.
      *
-     * @param {AbstractUpdateEncoder} encoder The encoder to write data to.
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder The encoder to write data to.
      */
     _write (encoder) {
       encoder.writeTypeRef(YXmlFragmentRefID);
@@ -10092,7 +10445,7 @@
   }
 
   /**
-   * @param {AbstractUpdateDecoder} decoder
+   * @param {UpdateDecoderV1 | UpdateDecoderV2} decoder
    * @return {YXmlFragment}
    *
    * @private
@@ -10297,7 +10650,7 @@
      *
      * This is called when this Item is sent to a remote peer.
      *
-     * @param {AbstractUpdateEncoder} encoder The encoder to write data to.
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder The encoder to write data to.
      */
     _write (encoder) {
       encoder.writeTypeRef(YXmlElementRefID);
@@ -10306,7 +10659,7 @@
   }
 
   /**
-   * @param {AbstractUpdateDecoder} decoder
+   * @param {UpdateDecoderV1 | UpdateDecoderV2} decoder
    * @return {YXmlElement}
    *
    * @function
@@ -10418,7 +10771,7 @@
      *
      * This is called when this Item is sent to a remote peer.
      *
-     * @param {AbstractUpdateEncoder} encoder The encoder to write data to.
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder The encoder to write data to.
      */
     _write (encoder) {
       encoder.writeTypeRef(YXmlHookRefID);
@@ -10427,7 +10780,7 @@
   }
 
   /**
-   * @param {AbstractUpdateDecoder} decoder
+   * @param {UpdateDecoderV1 | UpdateDecoderV2} decoder
    * @return {YXmlHook}
    *
    * @private
@@ -10535,7 +10888,7 @@
     }
 
     /**
-     * @param {AbstractUpdateEncoder} encoder
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
      */
     _write (encoder) {
       encoder.writeTypeRef(YXmlTextRefID);
@@ -10543,7 +10896,7 @@
   }
 
   /**
-   * @param {AbstractUpdateDecoder} decoder
+   * @param {UpdateDecoderV1 | UpdateDecoderV2} decoder
    * @return {YXmlText}
    *
    * @private
@@ -10580,7 +10933,7 @@
     }
 
     /**
-     * @param {AbstractUpdateEncoder} encoder The encoder to write data to.
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder The encoder to write data to.
      * @param {number} offset
      * @param {number} encodingRef
      */
@@ -10614,6 +10967,9 @@
      * @return {boolean}
      */
     mergeWith (right) {
+      if (this.constructor !== right.constructor) {
+        return false
+      }
       this.length += right.length;
       return true
     }
@@ -10631,7 +10987,7 @@
     }
 
     /**
-     * @param {AbstractUpdateEncoder} encoder
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
      * @param {number} offset
      */
     write (encoder, offset) {
@@ -10715,7 +11071,7 @@
      */
     gc (store) {}
     /**
-     * @param {AbstractUpdateEncoder} encoder
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
      * @param {number} offset
      */
     write (encoder, offset) {
@@ -10731,7 +11087,7 @@
   }
 
   /**
-   * @param {AbstractUpdateDecoder} decoder
+   * @param {UpdateDecoderV1 | UpdateDecoderV2 } decoder
    * @return {ContentBinary}
    */
   const readContentBinary = decoder => new ContentBinary(decoder.readBuf());
@@ -10809,7 +11165,7 @@
      */
     gc (store) {}
     /**
-     * @param {AbstractUpdateEncoder} encoder
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
      * @param {number} offset
      */
     write (encoder, offset) {
@@ -10827,7 +11183,7 @@
   /**
    * @private
    *
-   * @param {AbstractUpdateDecoder} decoder
+   * @param {UpdateDecoderV1 | UpdateDecoderV2 } decoder
    * @return {ContentDeleted}
    */
   const readContentDeleted = decoder => new ContentDeleted(decoder.readLen());
@@ -10937,7 +11293,7 @@
     gc (store) { }
 
     /**
-     * @param {AbstractUpdateEncoder} encoder
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
      * @param {number} offset
      */
     write (encoder, offset) {
@@ -10956,7 +11312,7 @@
   /**
    * @private
    *
-   * @param {AbstractUpdateDecoder} decoder
+   * @param {UpdateDecoderV1 | UpdateDecoderV2} decoder
    * @return {ContentDoc}
    */
   const readContentDoc = decoder => new ContentDoc(new Doc({ guid: decoder.readString(), ...decoder.readAny() }));
@@ -11030,7 +11386,7 @@
      */
     gc (store) {}
     /**
-     * @param {AbstractUpdateEncoder} encoder
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
      * @param {number} offset
      */
     write (encoder, offset) {
@@ -11048,7 +11404,7 @@
   /**
    * @private
    *
-   * @param {AbstractUpdateDecoder} decoder
+   * @param {UpdateDecoderV1 | UpdateDecoderV2} decoder
    * @return {ContentEmbed}
    */
   const readContentEmbed = decoder => new ContentEmbed(decoder.readJSON());
@@ -11128,7 +11484,7 @@
      */
     gc (store) {}
     /**
-     * @param {AbstractUpdateEncoder} encoder
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
      * @param {number} offset
      */
     write (encoder, offset) {
@@ -11145,7 +11501,7 @@
   }
 
   /**
-   * @param {AbstractUpdateDecoder} decoder
+   * @param {UpdateDecoderV1 | UpdateDecoderV2} decoder
    * @return {ContentFormat}
    */
   const readContentFormat = decoder => new ContentFormat(decoder.readString(), decoder.readJSON());
@@ -11225,7 +11581,7 @@
      */
     gc (store) {}
     /**
-     * @param {AbstractUpdateEncoder} encoder
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
      * @param {number} offset
      */
     write (encoder, offset) {
@@ -11248,7 +11604,7 @@
   /**
    * @private
    *
-   * @param {AbstractUpdateDecoder} decoder
+   * @param {UpdateDecoderV1 | UpdateDecoderV2} decoder
    * @return {ContentJSON}
    */
   const readContentJSON = decoder => {
@@ -11337,7 +11693,7 @@
      */
     gc (store) {}
     /**
-     * @param {AbstractUpdateEncoder} encoder
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
      * @param {number} offset
      */
     write (encoder, offset) {
@@ -11358,7 +11714,7 @@
   }
 
   /**
-   * @param {AbstractUpdateDecoder} decoder
+   * @param {UpdateDecoderV1 | UpdateDecoderV2} decoder
    * @return {ContentAny}
    */
   const readContentAny = decoder => {
@@ -11456,7 +11812,7 @@
      */
     gc (store) {}
     /**
-     * @param {AbstractUpdateEncoder} encoder
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
      * @param {number} offset
      */
     write (encoder, offset) {
@@ -11474,13 +11830,13 @@
   /**
    * @private
    *
-   * @param {AbstractUpdateDecoder} decoder
+   * @param {UpdateDecoderV1 | UpdateDecoderV2} decoder
    * @return {ContentString}
    */
   const readContentString = decoder => new ContentString(decoder.readString());
 
   /**
-   * @type {Array<function(AbstractUpdateDecoder):AbstractType<any>>}
+   * @type {Array<function(UpdateDecoderV1 | UpdateDecoderV2):AbstractType<any>>}
    * @private
    */
   const typeRefs = [
@@ -11615,7 +11971,7 @@
     }
 
     /**
-     * @param {AbstractUpdateEncoder} encoder
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
      * @param {number} offset
      */
     write (encoder, offset) {
@@ -11633,7 +11989,7 @@
   /**
    * @private
    *
-   * @param {AbstractUpdateDecoder} decoder
+   * @param {UpdateDecoderV1 | UpdateDecoderV2} decoder
    * @return {ContentType}
    */
   const readContentType = decoder => new ContentType(typeRefs[decoder.readTypeRef()](decoder));
@@ -12164,6 +12520,7 @@
      */
     mergeWith (right) {
       if (
+        this.constructor === right.constructor &&
         compareIDs(right.origin, this.lastId) &&
         this.right === right &&
         compareIDs(this.rightOrigin, right.rightOrigin) &&
@@ -12229,7 +12586,7 @@
      *
      * This is called when this Item is sent to a remote peer.
      *
-     * @param {AbstractUpdateEncoder} encoder The encoder to write data to.
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder The encoder to write data to.
      * @param {number} offset
      */
     write (encoder, offset) {
@@ -12249,16 +12606,26 @@
       }
       if (origin === null && rightOrigin === null) {
         const parent = /** @type {AbstractType<any>} */ (this.parent);
-        const parentItem = parent._item;
-        if (parentItem === null) {
-          // parent type on y._map
-          // find the correct key
-          const ykey = findRootTypeKey(parent);
+        if (parent._item !== undefined) {
+          const parentItem = parent._item;
+          if (parentItem === null) {
+            // parent type on y._map
+            // find the correct key
+            const ykey = findRootTypeKey(parent);
+            encoder.writeParentInfo(true); // write parentYKey
+            encoder.writeString(ykey);
+          } else {
+            encoder.writeParentInfo(false); // write parent id
+            encoder.writeLeftID(parentItem.id);
+          }
+        } else if (parent.constructor === String) { // this edge case was added by differential updates
           encoder.writeParentInfo(true); // write parentYKey
-          encoder.writeString(ykey);
-        } else {
+          encoder.writeString(parent);
+        } else if (parent.constructor === ID) {
           encoder.writeParentInfo(false); // write parent id
-          encoder.writeLeftID(parentItem.id);
+          encoder.writeLeftID(parent);
+        } else {
+          unexpectedCase();
         }
         if (parentSub !== null) {
           encoder.writeString(parentSub);
@@ -12269,7 +12636,7 @@
   }
 
   /**
-   * @param {AbstractUpdateDecoder} decoder
+   * @param {UpdateDecoderV1 | UpdateDecoderV2} decoder
    * @param {number} info
    */
   const readItemContent = (decoder, info) => contentRefs[info & BITS5](decoder);
@@ -12277,10 +12644,10 @@
   /**
    * A lookup map for reading Item content.
    *
-   * @type {Array<function(AbstractUpdateDecoder):AbstractContent>}
+   * @type {Array<function(UpdateDecoderV1 | UpdateDecoderV2):AbstractContent>}
    */
   const contentRefs = [
-    () => { throw unexpectedCase() }, // GC is not ItemContent
+    () => { unexpectedCase(); }, // GC is not ItemContent
     readContentDeleted, // 1
     readContentJSON, // 2
     readContentBinary, // 3
@@ -12289,7 +12656,8 @@
     readContentFormat, // 6
     readContentType, // 7
     readContentAny, // 8
-    readContentDoc // 9
+    readContentDoc, // 9
+    () => { unexpectedCase(); } // 10 - Skip is not ItemContent
   ];
 
   /**
@@ -12369,7 +12737,7 @@
     }
 
     /**
-     * @param {AbstractUpdateEncoder} encoder
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
      * @param {number} offset
      */
     write (encoder, offset) {
@@ -12384,9 +12752,60 @@
     }
   }
 
+  const structSkipRefNumber = 10;
 
+  /**
+   * @private
+   */
+  class Skip extends AbstractStruct {
+    get deleted () {
+      return true
+    }
 
-  var Y = /*#__PURE__*/Object.freeze({
+    delete () {}
+
+    /**
+     * @param {Skip} right
+     * @return {boolean}
+     */
+    mergeWith (right) {
+      if (this.constructor !== right.constructor) {
+        return false
+      }
+      this.length += right.length;
+      return true
+    }
+
+    /**
+     * @param {Transaction} transaction
+     * @param {number} offset
+     */
+    integrate (transaction, offset) {
+      // skip structs cannot be integrated
+      unexpectedCase();
+    }
+
+    /**
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
+     * @param {number} offset
+     */
+    write (encoder, offset) {
+      encoder.writeInfo(structSkipRefNumber);
+      // write as VarUint because Skips can't make use of predictable length-encoding
+      writeVarUint(encoder.restEncoder, this.length - offset);
+    }
+
+    /**
+     * @param {Transaction} transaction
+     * @param {StructStore} store
+     * @return {null | number}
+     */
+    getMissing (transaction, store) {
+      return null
+    }
+  }
+
+  var Y$1 = /*#__PURE__*/Object.freeze({
     __proto__: null,
     AbstractConnector: AbstractConnector,
     DeleteItem: DeleteItem,
@@ -12404,38 +12823,25 @@
     readAndApplyDeleteSet: readAndApplyDeleteSet,
     generateNewClientId: generateNewClientId,
     Doc: Doc,
-    AbstractDSDecoder: AbstractDSDecoder,
-    AbstractUpdateDecoder: AbstractUpdateDecoder,
     DSDecoderV1: DSDecoderV1,
     UpdateDecoderV1: UpdateDecoderV1,
     DSDecoderV2: DSDecoderV2,
     UpdateDecoderV2: UpdateDecoderV2,
-    AbstractDSEncoder: AbstractDSEncoder,
-    AbstractUpdateEncoder: AbstractUpdateEncoder,
     DSEncoderV1: DSEncoderV1,
     UpdateEncoderV1: UpdateEncoderV1,
     DSEncoderV2: DSEncoderV2,
     UpdateEncoderV2: UpdateEncoderV2,
-    get DefaultDSEncoder () { return DefaultDSEncoder; },
-    get DefaultDSDecoder () { return DefaultDSDecoder; },
-    get DefaultUpdateEncoder () { return DefaultUpdateEncoder; },
-    get DefaultUpdateDecoder () { return DefaultUpdateDecoder; },
-    useV1Encoding: useV1Encoding,
-    useV2Encoding: useV2Encoding,
     writeClientsStructs: writeClientsStructs,
     readClientsStructRefs: readClientsStructRefs,
-    tryResumePendingDeleteReaders: tryResumePendingDeleteReaders,
     writeStructsFromTransaction: writeStructsFromTransaction,
-    readStructs: readStructs,
     readUpdateV2: readUpdateV2,
-    readUpdate: readUpdate,
+    readUpdate: readUpdate$1,
     applyUpdateV2: applyUpdateV2,
     applyUpdate: applyUpdate,
     writeStateAsUpdate: writeStateAsUpdate,
     encodeStateAsUpdateV2: encodeStateAsUpdateV2,
     encodeStateAsUpdate: encodeStateAsUpdate,
     readStateVector: readStateVector,
-    decodeStateVectorV2: decodeStateVectorV2,
     decodeStateVector: decodeStateVector,
     writeStateVector: writeStateVector,
     writeDocumentStateVector: writeDocumentStateVector,
@@ -12457,6 +12863,7 @@
     logType: logType,
     PermanentUserData: PermanentUserData,
     RelativePosition: RelativePosition,
+    relativePositionToJSON: relativePositionToJSON,
     createRelativePositionFromJSON: createRelativePositionFromJSON,
     AbsolutePosition: AbsolutePosition,
     createAbsolutePosition: createAbsolutePosition,
@@ -12476,7 +12883,7 @@
     decodeSnapshot: decodeSnapshot,
     createSnapshot: createSnapshot,
     emptySnapshot: emptySnapshot,
-    snapshot: snapshot,
+    snapshot: snapshot$1,
     isVisible: isVisible,
     splitSnapshotAffectedStructs: splitSnapshotAffectedStructs,
     createDocFromSnapshot: createDocFromSnapshot,
@@ -12497,9 +12904,21 @@
     writeUpdateMessageFromTransaction: writeUpdateMessageFromTransaction,
     nextID: nextID,
     addChangedTypeToTransaction: addChangedTypeToTransaction,
-    tryGc: tryGc,
+    tryGc: tryGc$1,
     transact: transact,
     UndoManager: UndoManager,
+    LazyStructReader: LazyStructReader,
+    logUpdate: logUpdate,
+    logUpdateV2: logUpdateV2,
+    LazyStructWriter: LazyStructWriter,
+    mergeUpdates: mergeUpdates,
+    encodeStateVectorFromUpdateV2: encodeStateVectorFromUpdateV2,
+    encodeStateVectorFromUpdate: encodeStateVectorFromUpdate,
+    parseUpdateMetaV2: parseUpdateMetaV2,
+    parseUpdateMeta: parseUpdateMeta,
+    mergeUpdatesV2: mergeUpdatesV2,
+    diffUpdateV2: diffUpdateV2,
+    diffUpdate: diffUpdate,
     YEvent: YEvent,
     ArraySearchMarker: ArraySearchMarker,
     findMarker: findMarker,
@@ -12582,7 +13001,9 @@
     Item: Item,
     readItemContent: readItemContent,
     contentRefs: contentRefs,
-    AbstractContent: AbstractContent
+    AbstractContent: AbstractContent,
+    structSkipRefNumber: structSkipRefNumber,
+    Skip: Skip
   });
 
   /**
@@ -12594,10 +13015,10 @@
    */
 
   /**
-   * Core Yjs defines three message types:
+   * Core Yjs defines two message types:
    * • YjsSyncStep1: Includes the State Set of the sending client. When received, the client should reply with YjsSyncStep2.
-   * • YjsSyncStep2: Includes all missing structs and the complete delete set. When received, the the client is assured that
-   *   it received all information from the remote client.
+   * • YjsSyncStep2: Includes all missing structs and the complete delete set. When received, the client is assured that it
+   *   received all information from the remote client.
    *
    * In a peer-to-peer network, you may want to introduce a SyncDone message type. Both parties should initiate the connection
    * with SyncStep1. When a client received SyncStep2, it should reply with SyncDone. When the local client received both
@@ -12662,7 +13083,12 @@
    * @param {any} transactionOrigin
    */
   const readSyncStep2 = (decoder, doc, transactionOrigin) => {
-    applyUpdate(doc, readVarUint8Array(decoder), transactionOrigin);
+    try {
+      applyUpdate(doc, readVarUint8Array(decoder), transactionOrigin);
+    } catch (error) {
+      // This catches errors that are thrown by event handlers
+      console.error('Caught error while handling a Yjs update', error);
+    }
   };
 
   /**
@@ -12681,7 +13107,7 @@
    * @param {Y.Doc} doc
    * @param {any} transactionOrigin
    */
-  const readUpdate$1 = readSyncStep2;
+  const readUpdate = readSyncStep2;
 
   /**
    * @param {decoding.Decoder} decoder A message received from another client
@@ -12699,7 +13125,7 @@
         readSyncStep2(decoder, doc, transactionOrigin);
         break
       case messageYjsUpdate:
-        readUpdate$1(decoder, doc, transactionOrigin);
+        readUpdate(decoder, doc, transactionOrigin);
         break
       default:
         throw new Error('Unknown message type')
@@ -12709,7 +13135,7 @@
 
   if (typeof window !== 'undefined') {
     // @ts-ignore
-    window.Y = Y; // eslint-disable-line
+    window.Y = Y$1; // eslint-disable-line
   }
 
   /**
@@ -12724,6 +13150,39 @@
         }
       });
     }
+  };
+
+  let useV2 = false;
+
+  const encV1$1 = {
+    encodeStateAsUpdate: encodeStateAsUpdate,
+    mergeUpdates: mergeUpdates,
+    applyUpdate: applyUpdate,
+    logUpdate: logUpdate,
+    updateEventName: 'update',
+    diffUpdate: diffUpdate
+  };
+
+  const encV2$1 = {
+    encodeStateAsUpdate: encodeStateAsUpdateV2,
+    mergeUpdates: mergeUpdatesV2,
+    applyUpdate: applyUpdateV2,
+    logUpdate: logUpdateV2,
+    updateEventName: 'updateV2',
+    diffUpdate: diffUpdateV2
+  };
+
+  let enc = encV1$1;
+
+  const useV1Encoding = () => {
+    useV2 = false;
+    enc = encV1$1;
+  };
+
+  const useV2Encoding = () => {
+    console.error('sync protocol doesnt support v2 protocol yet, fallback to v1 encoding'); // @Todo
+    useV2 = false;
+    enc = encV1$1;
   };
 
   class TestYInstance extends Doc {
@@ -12743,12 +13202,19 @@
        */
       this.receiving = new Map();
       testConnector.allConns.add(this);
+      /**
+       * The list of received updates.
+       * We are going to merge them later using Y.mergeUpdates and check if the resulting document is correct.
+       * @type {Array<Uint8Array>}
+       */
+      this.updates = [];
       // set up observe on local model
-      this.on('update', /** @param {Uint8Array} update @param {any} origin */ (update, origin) => {
+      this.on(enc.updateEventName, /** @param {Uint8Array} update @param {any} origin */ (update, origin) => {
         if (origin !== testConnector) {
           const encoder = createEncoder();
           writeUpdate(encoder, update);
           broadcastMessage(this, toUint8Array(encoder));
+          this.updates.push(update);
         }
       });
       this.connect();
@@ -12857,9 +13323,20 @@
         // console.log('receive (' + sender.userID + '->' + receiver.userID + '):\n', syncProtocol.stringifySyncMessage(decoding.createDecoder(m), receiver))
         // do not publish data created when this function is executed (could be ss2 or update message)
         readSyncMessage(createDecoder(m), encoder, receiver, receiver.tc);
-        if (length$1(encoder) > 0) {
+        if (length(encoder) > 0) {
           // send reply message
           sender._receive(toUint8Array(encoder), receiver);
+        }
+        {
+          // If update message, add the received message to the list of received messages
+          const decoder = createDecoder(m);
+          const messageType = readVarUint(decoder);
+          switch (messageType) {
+            case messageYjsUpdate:
+            case messageYjsSyncStep2:
+              receiver.updates.push(readVarUint8Array(decoder));
+              break
+          }
         }
         return true
       }
@@ -12929,7 +13406,7 @@
    * @param {InitTestObjectCallback<T>} [initTestObject]
    * @return {{testObjects:Array<any>,testConnector:TestConnector,users:Array<TestYInstance>,array0:Y.YArray<any>,array1:Y.YArray<any>,array2:Y.YArray<any>,map0:Y.YMap<any>,map1:Y.YMap<any>,map2:Y.YMap<any>,map3:Y.YMap<any>,text0:Y.YText,text1:Y.YText,text2:Y.YText,xml0:Y.YXmlElement,xml1:Y.YXmlElement,xml2:Y.YXmlElement}}
    */
-  const init = (tc, { users = 5 } = {}, initTestObject) => {
+  const init$1 = (tc, { users = 5 } = {}, initTestObject) => {
     /**
      * @type {Object<string,any>}
      */
@@ -12973,17 +13450,24 @@
   const compare$1 = users => {
     users.forEach(u => u.connect());
     while (users[0].tc.flushAllMessages()) {}
+    // For each document, merge all received document updates with Y.mergeUpdates and create a new document which will be added to the list of "users"
+    // This ensures that mergeUpdates works correctly
+    const mergedDocs = users.map(user => {
+      const ydoc = new Doc();
+      enc.applyUpdate(ydoc, enc.mergeUpdates(user.updates));
+      return ydoc
+    });
+    users.push(.../** @type {any} */(mergedDocs));
     const userArrayValues = users.map(u => u.getArray('array').toJSON());
     const userMapValues = users.map(u => u.getMap('map').toJSON());
     const userXmlValues = users.map(u => u.get('xml', YXmlElement).toString());
     const userTextValues = users.map(u => u.getText('text').toDelta());
     for (const u of users) {
-      assert(u.store.pendingDeleteReaders.length === 0);
-      assert(u.store.pendingStack.length === 0);
-      assert(u.store.pendingClientsStructRefs.size === 0);
+      assert(u.store.pendingDs === null);
+      assert(u.store.pendingStructs === null);
     }
     // Test Array iterator
-    compare(users[0].getArray('array').toArray(), Array.from(users[0].getArray('array')));
+    compare$2(users[0].getArray('array').toArray(), Array.from(users[0].getArray('array')));
     // Test Map iterator
     const ymapkeys = Array.from(users[0].getMap('map').keys());
     assert(ymapkeys.length === Object.keys(userMapValues[0]).length);
@@ -12995,16 +13479,16 @@
     for (const [k, v] of users[0].getMap('map')) {
       mapRes[k] = v instanceof AbstractType ? v.toJSON() : v;
     }
-    compare(userMapValues[0], mapRes);
+    compare$2(userMapValues[0], mapRes);
     // Compare all users
     for (let i = 0; i < users.length - 1; i++) {
-      compare(userArrayValues[i].length, users[i].getArray('array').length);
-      compare(userArrayValues[i], userArrayValues[i + 1]);
-      compare(userMapValues[i], userMapValues[i + 1]);
-      compare(userXmlValues[i], userXmlValues[i + 1]);
-      compare(userTextValues[i].map(/** @param {any} a */ a => typeof a.insert === 'string' ? a.insert : ' ').join('').length, users[i].getText('text').length);
-      compare(userTextValues[i], userTextValues[i + 1]);
-      compare(getStateVector(users[i].store), getStateVector(users[i + 1].store));
+      compare$2(userArrayValues[i].length, users[i].getArray('array').length);
+      compare$2(userArrayValues[i], userArrayValues[i + 1]);
+      compare$2(userMapValues[i], userMapValues[i + 1]);
+      compare$2(userXmlValues[i], userXmlValues[i + 1]);
+      compare$2(userTextValues[i].map(/** @param {any} a */ a => typeof a.insert === 'string' ? a.insert : ' ').join('').length, users[i].getText('text').length);
+      compare$2(userTextValues[i], userTextValues[i + 1]);
+      compare$2(getStateVector(users[i].store), getStateVector(users[i + 1].store));
       compareDS(createDeleteSetFromStructStore(users[i].store), createDeleteSetFromStructStore(users[i + 1].store));
       compareStructStores(users[i].store, users[i + 1].store);
     }
@@ -13096,7 +13580,7 @@
    */
   const applyRandomTests = (tc, mods, iterations, initTestObject) => {
     const gen = tc.prng;
-    const result = init(tc, { users: 5 }, initTestObject);
+    const result = init$1(tc, { users: 5 }, initTestObject);
     const { testConnector, users } = result;
     for (let i = 0; i < iterations; i++) {
       if (int32(gen, 0, 100) <= 2) {
@@ -13121,11 +13605,15 @@
     return result
   };
 
-  var Y$1 = /*#__PURE__*/Object.freeze({
+  var Y = /*#__PURE__*/Object.freeze({
     __proto__: null,
+    get useV2 () { return useV2; },
+    encV1: encV1$1,
+    encV2: encV2$1,
+    get enc () { return enc; },
     TestYInstance: TestYInstance,
     TestConnector: TestConnector,
-    init: init,
+    init: init$1,
     compare: compare$1,
     compareItemIDs: compareItemIDs,
     compareStructStores: compareStructStores,
@@ -13147,38 +13635,25 @@
     readAndApplyDeleteSet: readAndApplyDeleteSet,
     generateNewClientId: generateNewClientId,
     Doc: Doc,
-    AbstractDSDecoder: AbstractDSDecoder,
-    AbstractUpdateDecoder: AbstractUpdateDecoder,
     DSDecoderV1: DSDecoderV1,
     UpdateDecoderV1: UpdateDecoderV1,
     DSDecoderV2: DSDecoderV2,
     UpdateDecoderV2: UpdateDecoderV2,
-    AbstractDSEncoder: AbstractDSEncoder,
-    AbstractUpdateEncoder: AbstractUpdateEncoder,
     DSEncoderV1: DSEncoderV1,
     UpdateEncoderV1: UpdateEncoderV1,
     DSEncoderV2: DSEncoderV2,
     UpdateEncoderV2: UpdateEncoderV2,
-    get DefaultDSEncoder () { return DefaultDSEncoder; },
-    get DefaultDSDecoder () { return DefaultDSDecoder; },
-    get DefaultUpdateEncoder () { return DefaultUpdateEncoder; },
-    get DefaultUpdateDecoder () { return DefaultUpdateDecoder; },
-    useV1Encoding: useV1Encoding,
-    useV2Encoding: useV2Encoding,
     writeClientsStructs: writeClientsStructs,
     readClientsStructRefs: readClientsStructRefs,
-    tryResumePendingDeleteReaders: tryResumePendingDeleteReaders,
     writeStructsFromTransaction: writeStructsFromTransaction,
-    readStructs: readStructs,
     readUpdateV2: readUpdateV2,
-    readUpdate: readUpdate,
+    readUpdate: readUpdate$1,
     applyUpdateV2: applyUpdateV2,
     applyUpdate: applyUpdate,
     writeStateAsUpdate: writeStateAsUpdate,
     encodeStateAsUpdateV2: encodeStateAsUpdateV2,
     encodeStateAsUpdate: encodeStateAsUpdate,
     readStateVector: readStateVector,
-    decodeStateVectorV2: decodeStateVectorV2,
     decodeStateVector: decodeStateVector,
     writeStateVector: writeStateVector,
     writeDocumentStateVector: writeDocumentStateVector,
@@ -13200,6 +13675,7 @@
     logType: logType,
     PermanentUserData: PermanentUserData,
     RelativePosition: RelativePosition,
+    relativePositionToJSON: relativePositionToJSON,
     createRelativePositionFromJSON: createRelativePositionFromJSON,
     AbsolutePosition: AbsolutePosition,
     createAbsolutePosition: createAbsolutePosition,
@@ -13219,7 +13695,7 @@
     decodeSnapshot: decodeSnapshot,
     createSnapshot: createSnapshot,
     emptySnapshot: emptySnapshot,
-    snapshot: snapshot,
+    snapshot: snapshot$1,
     isVisible: isVisible,
     splitSnapshotAffectedStructs: splitSnapshotAffectedStructs,
     createDocFromSnapshot: createDocFromSnapshot,
@@ -13240,9 +13716,21 @@
     writeUpdateMessageFromTransaction: writeUpdateMessageFromTransaction,
     nextID: nextID,
     addChangedTypeToTransaction: addChangedTypeToTransaction,
-    tryGc: tryGc,
+    tryGc: tryGc$1,
     transact: transact,
     UndoManager: UndoManager,
+    LazyStructReader: LazyStructReader,
+    logUpdate: logUpdate,
+    logUpdateV2: logUpdateV2,
+    LazyStructWriter: LazyStructWriter,
+    mergeUpdates: mergeUpdates,
+    encodeStateVectorFromUpdateV2: encodeStateVectorFromUpdateV2,
+    encodeStateVectorFromUpdate: encodeStateVectorFromUpdate,
+    parseUpdateMetaV2: parseUpdateMetaV2,
+    parseUpdateMeta: parseUpdateMeta,
+    mergeUpdatesV2: mergeUpdatesV2,
+    diffUpdateV2: diffUpdateV2,
+    diffUpdate: diffUpdate,
     YEvent: YEvent,
     ArraySearchMarker: ArraySearchMarker,
     findMarker: findMarker,
@@ -13325,14 +13813,16 @@
     Item: Item,
     readItemContent: readItemContent,
     contentRefs: contentRefs,
-    AbstractContent: AbstractContent
+    AbstractContent: AbstractContent,
+    structSkipRefNumber: structSkipRefNumber,
+    Skip: Skip
   });
 
   /**
    * @param {t.TestCase} tc
    */
   const testMapHavingIterableAsConstructorParamTests = tc => {
-    const { map0 } = init(tc, { users: 1 });
+    const { map0 } = init$1(tc, { users: 1 });
 
     const m1 = new YMap(Object.entries({ number: 1, string: 'hello' }));
     map0.set('m1', m1);
@@ -13359,7 +13849,7 @@
    * @param {t.TestCase} tc
    */
   const testBasicMapTests = tc => {
-    const { testConnector, users, map0, map1, map2 } = init(tc, { users: 3 });
+    const { testConnector, users, map0, map1, map2 } = init$1(tc, { users: 3 });
     users[2].disconnect();
 
     map0.set('number', 1);
@@ -13378,7 +13868,7 @@
     assert(map0.get('string') === 'hello Y', 'client 0 computed the change (string)');
     assert(map0.get('boolean0') === false, 'client 0 computed the change (boolean)');
     assert(map0.get('boolean1') === true, 'client 0 computed the change (boolean)');
-    compare(map0.get('object'), { key: { key2: 'value' } }, 'client 0 computed the change (object)');
+    compare$2(map0.get('object'), { key: { key2: 'value' } }, 'client 0 computed the change (object)');
     assert(map0.get('y-map').get('y-array').get(0) === -1, 'client 0 computed the change (type)');
     assert(map0.size === 6, 'client 0 map has correct size');
 
@@ -13389,7 +13879,7 @@
     assert(map1.get('string') === 'hello Y', 'client 1 received the update (string)');
     assert(map1.get('boolean0') === false, 'client 1 computed the change (boolean)');
     assert(map1.get('boolean1') === true, 'client 1 computed the change (boolean)');
-    compare(map1.get('object'), { key: { key2: 'value' } }, 'client 1 received the update (object)');
+    compare$2(map1.get('object'), { key: { key2: 'value' } }, 'client 1 received the update (object)');
     assert(map1.get('y-map').get('y-array').get(0) === -1, 'client 1 received the update (type)');
     assert(map1.size === 6, 'client 1 map has correct size');
 
@@ -13398,7 +13888,7 @@
     assert(map2.get('string') === 'hello Y', 'client 2 received the update (string) - was disconnected');
     assert(map2.get('boolean0') === false, 'client 2 computed the change (boolean)');
     assert(map2.get('boolean1') === true, 'client 2 computed the change (boolean)');
-    compare(map2.get('object'), { key: { key2: 'value' } }, 'client 2 received the update (object) - was disconnected');
+    compare$2(map2.get('object'), { key: { key2: 'value' } }, 'client 2 received the update (object) - was disconnected');
     assert(map2.get('y-map').get('y-array').get(0) === -1, 'client 2 received the update (type) - was disconnected');
     compare$1(users);
   };
@@ -13407,19 +13897,19 @@
    * @param {t.TestCase} tc
    */
   const testGetAndSetOfMapProperty = tc => {
-    const { testConnector, users, map0 } = init(tc, { users: 2 });
+    const { testConnector, users, map0 } = init$1(tc, { users: 2 });
     map0.set('stuff', 'stuffy');
     map0.set('undefined', undefined);
     map0.set('null', null);
-    compare(map0.get('stuff'), 'stuffy');
+    compare$2(map0.get('stuff'), 'stuffy');
 
     testConnector.flushAllMessages();
 
     for (const user of users) {
       const u = user.getMap('map');
-      compare(u.get('stuff'), 'stuffy');
+      compare$2(u.get('stuff'), 'stuffy');
       assert(u.get('undefined') === undefined, 'undefined');
-      compare(u.get('null'), null, 'null');
+      compare$2(u.get('null'), null, 'null');
     }
     compare$1(users);
   };
@@ -13428,11 +13918,11 @@
    * @param {t.TestCase} tc
    */
   const testYmapSetsYmap = tc => {
-    const { users, map0 } = init(tc, { users: 2 });
+    const { users, map0 } = init$1(tc, { users: 2 });
     const map = map0.set('Map', new YMap());
     assert(map0.get('Map') === map);
     map.set('one', 1);
-    compare(map.get('one'), 1);
+    compare$2(map.get('one'), 1);
     compare$1(users);
   };
 
@@ -13440,12 +13930,12 @@
    * @param {t.TestCase} tc
    */
   const testYmapSetsYarray = tc => {
-    const { users, map0 } = init(tc, { users: 2 });
+    const { users, map0 } = init$1(tc, { users: 2 });
     const array = map0.set('Array', new YArray());
     assert(array === map0.get('Array'));
     array.insert(0, [1, 2, 3]);
     // @ts-ignore
-    compare(map0.toJSON(), { Array: [1, 2, 3] });
+    compare$2(map0.toJSON(), { Array: [1, 2, 3] });
     compare$1(users);
   };
 
@@ -13453,13 +13943,13 @@
    * @param {t.TestCase} tc
    */
   const testGetAndSetOfMapPropertySyncs = tc => {
-    const { testConnector, users, map0 } = init(tc, { users: 2 });
+    const { testConnector, users, map0 } = init$1(tc, { users: 2 });
     map0.set('stuff', 'stuffy');
-    compare(map0.get('stuff'), 'stuffy');
+    compare$2(map0.get('stuff'), 'stuffy');
     testConnector.flushAllMessages();
     for (const user of users) {
-      var u = user.getMap('map');
-      compare(u.get('stuff'), 'stuffy');
+      const u = user.getMap('map');
+      compare$2(u.get('stuff'), 'stuffy');
     }
     compare$1(users);
   };
@@ -13468,13 +13958,13 @@
    * @param {t.TestCase} tc
    */
   const testGetAndSetOfMapPropertyWithConflict = tc => {
-    const { testConnector, users, map0, map1 } = init(tc, { users: 3 });
+    const { testConnector, users, map0, map1 } = init$1(tc, { users: 3 });
     map0.set('stuff', 'c0');
     map1.set('stuff', 'c1');
     testConnector.flushAllMessages();
     for (const user of users) {
-      var u = user.getMap('map');
-      compare(u.get('stuff'), 'c1');
+      const u = user.getMap('map');
+      compare$2(u.get('stuff'), 'c1');
     }
     compare$1(users);
   };
@@ -13483,7 +13973,7 @@
    * @param {t.TestCase} tc
    */
   const testSizeAndDeleteOfMapProperty = tc => {
-    const { map0 } = init(tc, { users: 1 });
+    const { map0 } = init$1(tc, { users: 1 });
     map0.set('stuff', 'c0');
     map0.set('otherstuff', 'c1');
     assert(map0.size === 2, `map size is ${map0.size} expected 2`);
@@ -13497,13 +13987,13 @@
    * @param {t.TestCase} tc
    */
   const testGetAndSetAndDeleteOfMapProperty = tc => {
-    const { testConnector, users, map0, map1 } = init(tc, { users: 3 });
+    const { testConnector, users, map0, map1 } = init$1(tc, { users: 3 });
     map0.set('stuff', 'c0');
     map1.set('stuff', 'c1');
     map1.delete('stuff');
     testConnector.flushAllMessages();
     for (const user of users) {
-      var u = user.getMap('map');
+      const u = user.getMap('map');
       assert(u.get('stuff') === undefined);
     }
     compare$1(users);
@@ -13513,15 +14003,15 @@
    * @param {t.TestCase} tc
    */
   const testGetAndSetOfMapPropertyWithThreeConflicts = tc => {
-    const { testConnector, users, map0, map1, map2 } = init(tc, { users: 3 });
+    const { testConnector, users, map0, map1, map2 } = init$1(tc, { users: 3 });
     map0.set('stuff', 'c0');
     map1.set('stuff', 'c1');
     map1.set('stuff', 'c2');
     map2.set('stuff', 'c3');
     testConnector.flushAllMessages();
     for (const user of users) {
-      var u = user.getMap('map');
-      compare(u.get('stuff'), 'c3');
+      const u = user.getMap('map');
+      compare$2(u.get('stuff'), 'c3');
     }
     compare$1(users);
   };
@@ -13530,7 +14020,7 @@
    * @param {t.TestCase} tc
    */
   const testGetAndSetAndDeleteOfMapPropertyWithThreeConflicts = tc => {
-    const { testConnector, users, map0, map1, map2, map3 } = init(tc, { users: 4 });
+    const { testConnector, users, map0, map1, map2, map3 } = init$1(tc, { users: 4 });
     map0.set('stuff', 'c0');
     map1.set('stuff', 'c1');
     map1.set('stuff', 'c2');
@@ -13543,7 +14033,7 @@
     map3.delete('stuff');
     testConnector.flushAllMessages();
     for (const user of users) {
-      var u = user.getMap('map');
+      const u = user.getMap('map');
       assert(u.get('stuff') === undefined);
     }
     compare$1(users);
@@ -13553,7 +14043,7 @@
    * @param {t.TestCase} tc
    */
   const testObserveDeepProperties = tc => {
-    const { testConnector, users, map1, map2, map3 } = init(tc, { users: 4 });
+    const { testConnector, users, map1, map2, map3 } = init$1(tc, { users: 4 });
     const _map1 = map1.set('map', new YMap());
     let calls = 0;
     let dmapid;
@@ -13590,7 +14080,7 @@
    * @param {t.TestCase} tc
    */
   const testObserversUsingObservedeep = tc => {
-    const { users, map0 } = init(tc, { users: 2 });
+    const { users, map0 } = init$1(tc, { users: 2 });
     /**
      * @type {Array<Array<string|number>>}
      */
@@ -13606,7 +14096,7 @@
     map0.get('map').set('array', new YArray());
     map0.get('map').get('array').insert(0, ['content']);
     assert(calls === 3);
-    compare(pathes, [[], ['map'], ['map', 'array']]);
+    compare$2(pathes, [[], ['map'], ['map', 'array']]);
     compare$1(users);
   };
 
@@ -13616,8 +14106,8 @@
    * @param {Object<string,any>} should
    */
   const compareEvent = (is, should) => {
-    for (var key in should) {
-      compare(should[key], is[key]);
+    for (const key in should) {
+      compare$2(should[key], is[key]);
     }
   };
 
@@ -13625,7 +14115,7 @@
    * @param {t.TestCase} tc
    */
   const testThrowsAddAndUpdateAndDeleteEvents = tc => {
-    const { users, map0 } = init(tc, { users: 2 });
+    const { users, map0 } = init$1(tc, { users: 2 });
     /**
      * @type {Object<string,any>}
      */
@@ -13658,8 +14148,8 @@
   /**
    * @param {t.TestCase} tc
    */
-  const testChangeEvent = tc => {
-    const { map0, users } = init(tc, { users: 2 });
+  const testChangeEvent$1 = tc => {
+    const { map0, users } = init$1(tc, { users: 2 });
     /**
      * @type {any}
      */
@@ -13757,7 +14247,7 @@
    * @param {t.TestCase} tc
    */
   const testYmapEventHasCorrectValueWhenSettingAPrimitive = tc => {
-    const { users, map0 } = init(tc, { users: 3 });
+    const { users, map0 } = init$1(tc, { users: 3 });
     /**
      * @type {Object<string,any>}
      */
@@ -13766,7 +14256,7 @@
       event = e;
     });
     map0.set('stuff', 2);
-    compare(event.value, event.target.get(event.name));
+    compare$2(event.value, event.target.get(event.name));
     compare$1(users);
   };
 
@@ -13774,7 +14264,7 @@
    * @param {t.TestCase} tc
    */
   const testYmapEventHasCorrectValueWhenSettingAPrimitiveFromOtherUser = tc => {
-    const { users, map0, map1, testConnector } = init(tc, { users: 3 });
+    const { users, map0, map1, testConnector } = init$1(tc, { users: 3 });
     /**
      * @type {Object<string,any>}
      */
@@ -13784,7 +14274,7 @@
     });
     map1.set('stuff', 2);
     testConnector.flushAllMessages();
-    compare(event.value, event.target.get(event.name));
+    compare$2(event.value, event.target.get(event.name));
     compare$1(users);
   };
 
@@ -13794,12 +14284,12 @@
   const mapTransactions = [
     function set (user, gen) {
       const key = oneOf(gen, ['one', 'two']);
-      var value = utf16String(gen);
+      const value = utf16String(gen);
       user.getMap('map').set(key, value);
     },
     function setType (user, gen) {
       const key = oneOf(gen, ['one', 'two']);
-      var type = oneOf(gen, [new YArray(), new YMap()]);
+      const type = oneOf(gen, [new YArray(), new YMap()]);
       user.getMap('map').set(key, type);
       if (type instanceof YArray) {
         type.insert(0, [1, 2, 3, 4]);
@@ -13928,7 +14418,7 @@
     applyRandomTests(tc, mapTransactions, 100000);
   };
 
-  var map$2 = /*#__PURE__*/Object.freeze({
+  var map = /*#__PURE__*/Object.freeze({
     __proto__: null,
     testMapHavingIterableAsConstructorParamTests: testMapHavingIterableAsConstructorParamTests,
     testBasicMapTests: testBasicMapTests,
@@ -13944,7 +14434,7 @@
     testObserveDeepProperties: testObserveDeepProperties,
     testObserversUsingObservedeep: testObserversUsingObservedeep,
     testThrowsAddAndUpdateAndDeleteEvents: testThrowsAddAndUpdateAndDeleteEvents,
-    testChangeEvent: testChangeEvent,
+    testChangeEvent: testChangeEvent$1,
     testYmapEventExceptionsShouldCompleteTransaction: testYmapEventExceptionsShouldCompleteTransaction,
     testYmapEventHasCorrectValueWhenSettingAPrimitive: testYmapEventHasCorrectValueWhenSettingAPrimitive,
     testYmapEventHasCorrectValueWhenSettingAPrimitiveFromOtherUser: testYmapEventHasCorrectValueWhenSettingAPrimitiveFromOtherUser,
@@ -13975,7 +14465,7 @@
     doc1.getArray('array').insert(0, ['hi']);
     const update = encodeStateAsUpdate(doc1);
     applyUpdate(doc2, update);
-    compare(doc2.getArray('array').toArray(), ['hi']);
+    compare$2(doc2.getArray('array').toArray(), ['hi']);
   };
 
   /**
@@ -13997,7 +14487,7 @@
    * @param {t.TestCase} tc
    */
   const testDeleteInsert = tc => {
-    const { users, array0 } = init(tc, { users: 2 });
+    const { users, array0 } = init$1(tc, { users: 2 });
     array0.delete(0, 0);
     describe('Does not throw when deleting zero elements with position 0');
     fails(() => {
@@ -14013,11 +14503,11 @@
    * @param {t.TestCase} tc
    */
   const testInsertThreeElementsTryRegetProperty = tc => {
-    const { testConnector, users, array0, array1 } = init(tc, { users: 2 });
+    const { testConnector, users, array0, array1 } = init$1(tc, { users: 2 });
     array0.insert(0, [1, true, false]);
-    compare(array0.toJSON(), [1, true, false], '.toJSON() works');
+    compare$2(array0.toJSON(), [1, true, false], '.toJSON() works');
     testConnector.flushAllMessages();
-    compare(array1.toJSON(), [1, true, false], '.toJSON() works after sync');
+    compare$2(array1.toJSON(), [1, true, false], '.toJSON() works after sync');
     compare$1(users);
   };
 
@@ -14025,7 +14515,7 @@
    * @param {t.TestCase} tc
    */
   const testConcurrentInsertWithThreeConflicts = tc => {
-    var { users, array0, array1, array2 } = init(tc, { users: 3 });
+    const { users, array0, array1, array2 } = init$1(tc, { users: 3 });
     array0.insert(0, [0]);
     array1.insert(0, [1]);
     array2.insert(0, [2]);
@@ -14036,7 +14526,7 @@
    * @param {t.TestCase} tc
    */
   const testConcurrentInsertDeleteWithThreeConflicts = tc => {
-    const { testConnector, users, array0, array1, array2 } = init(tc, { users: 3 });
+    const { testConnector, users, array0, array1, array2 } = init$1(tc, { users: 3 });
     array0.insert(0, ['x', 'y', 'z']);
     testConnector.flushAllMessages();
     array0.insert(1, [0]);
@@ -14050,7 +14540,7 @@
    * @param {t.TestCase} tc
    */
   const testInsertionsInLateSync = tc => {
-    const { testConnector, users, array0, array1, array2 } = init(tc, { users: 3 });
+    const { testConnector, users, array0, array1, array2 } = init$1(tc, { users: 3 });
     array0.insert(0, ['x', 'y']);
     testConnector.flushAllMessages();
     users[1].disconnect();
@@ -14068,15 +14558,15 @@
    * @param {t.TestCase} tc
    */
   const testDisconnectReallyPreventsSendingMessages = tc => {
-    var { testConnector, users, array0, array1 } = init(tc, { users: 3 });
+    const { testConnector, users, array0, array1 } = init$1(tc, { users: 3 });
     array0.insert(0, ['x', 'y']);
     testConnector.flushAllMessages();
     users[1].disconnect();
     users[2].disconnect();
     array0.insert(1, ['user0']);
     array1.insert(1, ['user1']);
-    compare(array0.toJSON(), ['x', 'user0', 'y']);
-    compare(array1.toJSON(), ['x', 'user1', 'y']);
+    compare$2(array0.toJSON(), ['x', 'user0', 'y']);
+    compare$2(array1.toJSON(), ['x', 'user1', 'y']);
     users[1].connect();
     users[2].connect();
     compare$1(users);
@@ -14086,7 +14576,7 @@
    * @param {t.TestCase} tc
    */
   const testDeletionsInLateSync = tc => {
-    const { testConnector, users, array0, array1 } = init(tc, { users: 2 });
+    const { testConnector, users, array0, array1 } = init$1(tc, { users: 2 });
     array0.insert(0, ['x', 'y']);
     testConnector.flushAllMessages();
     users[1].disconnect();
@@ -14100,7 +14590,7 @@
    * @param {t.TestCase} tc
    */
   const testInsertThenMergeDeleteOnSync = tc => {
-    const { testConnector, users, array0, array1 } = init(tc, { users: 2 });
+    const { testConnector, users, array0, array1 } = init$1(tc, { users: 2 });
     array0.insert(0, ['x', 'y', 'z']);
     testConnector.flushAllMessages();
     users[0].disconnect();
@@ -14113,7 +14603,7 @@
    * @param {t.TestCase} tc
    */
   const testInsertAndDeleteEvents = tc => {
-    const { array0, users } = init(tc, { users: 2 });
+    const { array0, users } = init$1(tc, { users: 2 });
     /**
      * @type {Object<string,any>?}
      */
@@ -14137,7 +14627,7 @@
    * @param {t.TestCase} tc
    */
   const testNestedObserverEvents = tc => {
-    const { array0, users } = init(tc, { users: 2 });
+    const { array0, users } = init$1(tc, { users: 2 });
     /**
      * @type {Array<number>}
      */
@@ -14163,7 +14653,7 @@
    * @param {t.TestCase} tc
    */
   const testInsertAndDeleteEventsForTypes = tc => {
-    const { array0, users } = init(tc, { users: 2 });
+    const { array0, users } = init$1(tc, { users: 2 });
     /**
      * @type {Object<string,any>|null}
      */
@@ -14190,7 +14680,7 @@
    * @param {t.TestCase} tc
    */
   const testObserveDeepEventOrder = tc => {
-    const { array0, users } = init(tc, { users: 2 });
+    const { array0, users } = init$1(tc, { users: 2 });
     /**
      * @type {Array<any>}
      */
@@ -14211,8 +14701,8 @@
   /**
    * @param {t.TestCase} tc
    */
-  const testChangeEvent$1 = tc => {
-    const { array0, users } = init(tc, { users: 2 });
+  const testChangeEvent = tc => {
+    const { array0, users } = init$1(tc, { users: 2 });
     /**
      * @type {any}
      */
@@ -14223,15 +14713,15 @@
     const newArr = new YArray();
     array0.insert(0, [newArr, 4, 'dtrn']);
     assert(changes !== null && changes.added.size === 2 && changes.deleted.size === 0);
-    compare(changes.delta, [{ insert: [newArr, 4, 'dtrn'] }]);
+    compare$2(changes.delta, [{ insert: [newArr, 4, 'dtrn'] }]);
     changes = null;
     array0.delete(0, 2);
     assert(changes !== null && changes.added.size === 0 && changes.deleted.size === 2);
-    compare(changes.delta, [{ delete: 2 }]);
+    compare$2(changes.delta, [{ delete: 2 }]);
     changes = null;
     array0.insert(1, [0.1]);
     assert(changes !== null && changes.added.size === 1 && changes.deleted.size === 0);
-    compare(changes.delta, [{ retain: 1 }, { insert: [0.1] }]);
+    compare$2(changes.delta, [{ retain: 1 }, { insert: [0.1] }]);
     compare$1(users);
   };
 
@@ -14239,7 +14729,7 @@
    * @param {t.TestCase} tc
    */
   const testInsertAndDeleteEventsForTypes2 = tc => {
-    const { array0, users } = init(tc, { users: 2 });
+    const { array0, users } = init$1(tc, { users: 2 });
     /**
      * @type {Array<Object<string,any>>}
      */
@@ -14259,7 +14749,7 @@
    * @param {t.TestCase} tc
    */
   const testNewChildDoesNotEmitEventInTransaction = tc => {
-    const { array0, users } = init(tc, { users: 2 });
+    const { array0, users } = init$1(tc, { users: 2 });
     let fired = false;
     users[0].transact(() => {
       const newMap = new YMap();
@@ -14276,7 +14766,7 @@
    * @param {t.TestCase} tc
    */
   const testGarbageCollector = tc => {
-    const { testConnector, users, array0 } = init(tc, { users: 3 });
+    const { testConnector, users, array0 } = init$1(tc, { users: 3 });
     array0.insert(0, ['x', 'y', 'z']);
     testConnector.flushAllMessages();
     users[0].disconnect();
@@ -14290,7 +14780,7 @@
    * @param {t.TestCase} tc
    */
   const testEventTargetIsSetCorrectlyOnLocal = tc => {
-    const { array0, users } = init(tc, { users: 3 });
+    const { array0, users } = init$1(tc, { users: 3 });
     /**
      * @type {any}
      */
@@ -14307,7 +14797,7 @@
    * @param {t.TestCase} tc
    */
   const testEventTargetIsSetCorrectlyOnRemote = tc => {
-    const { testConnector, array0, array1, users } = init(tc, { users: 3 });
+    const { testConnector, array0, array1, users } = init$1(tc, { users: 3 });
     /**
      * @type {any}
      */
@@ -14349,13 +14839,13 @@
   const arrayTransactions = [
     function insert (user, gen) {
       const yarray = user.getArray('array');
-      var uniqueNumber = getUniqueNumber();
-      var content = [];
-      var len = int32(gen, 1, 4);
-      for (var i = 0; i < len; i++) {
+      const uniqueNumber = getUniqueNumber();
+      const content = [];
+      const len = int32(gen, 1, 4);
+      for (let i = 0; i < len; i++) {
         content.push(uniqueNumber);
       }
-      var pos = int32(gen, 0, yarray.length);
+      const pos = int32(gen, 0, yarray.length);
       const oldContent = yarray.toArray();
       yarray.insert(pos, content);
       oldContent.splice(pos, 0, ...content);
@@ -14363,28 +14853,28 @@
     },
     function insertTypeArray (user, gen) {
       const yarray = user.getArray('array');
-      var pos = int32(gen, 0, yarray.length);
+      const pos = int32(gen, 0, yarray.length);
       yarray.insert(pos, [new YArray()]);
-      var array2 = yarray.get(pos);
+      const array2 = yarray.get(pos);
       array2.insert(0, [1, 2, 3, 4]);
     },
     function insertTypeMap (user, gen) {
       const yarray = user.getArray('array');
-      var pos = int32(gen, 0, yarray.length);
+      const pos = int32(gen, 0, yarray.length);
       yarray.insert(pos, [new YMap()]);
-      var map = yarray.get(pos);
+      const map = yarray.get(pos);
       map.set('someprop', 42);
       map.set('someprop', 43);
       map.set('someprop', 44);
     },
     function _delete (user, gen) {
       const yarray = user.getArray('array');
-      var length = yarray.length;
+      const length = yarray.length;
       if (length > 0) {
-        var somePos = int32(gen, 0, length - 1);
-        var delLength = int32(gen, 1, min(2, length - somePos));
+        let somePos = int32(gen, 0, length - 1);
+        let delLength = int32(gen, 1, min(2, length - somePos));
         if (bool(gen)) {
-          var type = yarray.get(somePos);
+          const type = yarray.get(somePos);
           if (type.length > 0) {
             somePos = int32(gen, 0, type.length - 1);
             delLength = int32(gen, 0, min(2, type.length - somePos));
@@ -14531,7 +15021,7 @@
     testNestedObserverEvents: testNestedObserverEvents,
     testInsertAndDeleteEventsForTypes: testInsertAndDeleteEventsForTypes,
     testObserveDeepEventOrder: testObserveDeepEventOrder,
-    testChangeEvent: testChangeEvent$1,
+    testChangeEvent: testChangeEvent,
     testInsertAndDeleteEventsForTypes2: testInsertAndDeleteEventsForTypes2,
     testNewChildDoesNotEmitEventInTransaction: testNewChildDoesNotEmitEventInTransaction,
     testGarbageCollector: testGarbageCollector,
@@ -14556,13 +15046,13 @@
     testRepeatGeneratingYarrayTests30000: testRepeatGeneratingYarrayTests30000
   });
 
-  const { init: init$1, compare: compare$2 } = Y$1;
+  const { init, compare } = Y;
 
   /**
    * @param {t.TestCase} tc
    */
   const testBasicInsertAndDelete = tc => {
-    const { users, text0 } = init$1(tc, { users: 2 });
+    const { users, text0 } = init(tc, { users: 2 });
     let delta;
 
     text0.observe(event => {
@@ -14574,72 +15064,115 @@
 
     text0.insert(0, 'abc');
     assert(text0.toString() === 'abc', 'Basic insert works');
-    compare(delta, [{ insert: 'abc' }]);
+    compare$2(delta, [{ insert: 'abc' }]);
 
     text0.delete(0, 1);
     assert(text0.toString() === 'bc', 'Basic delete works (position 0)');
-    compare(delta, [{ delete: 1 }]);
+    compare$2(delta, [{ delete: 1 }]);
 
     text0.delete(1, 1);
     assert(text0.toString() === 'b', 'Basic delete works (position 1)');
-    compare(delta, [{ retain: 1 }, { delete: 1 }]);
+    compare$2(delta, [{ retain: 1 }, { delete: 1 }]);
 
     users[0].transact(() => {
       text0.insert(0, '1');
       text0.delete(0, 1);
     });
-    compare(delta, []);
+    compare$2(delta, []);
 
-    compare$2(users);
+    compare(users);
   };
 
   /**
    * @param {t.TestCase} tc
    */
   const testBasicFormat = tc => {
-    const { users, text0 } = init$1(tc, { users: 2 });
+    const { users, text0 } = init(tc, { users: 2 });
     let delta;
     text0.observe(event => {
       delta = event.delta;
     });
     text0.insert(0, 'abc', { bold: true });
     assert(text0.toString() === 'abc', 'Basic insert with attributes works');
-    compare(text0.toDelta(), [{ insert: 'abc', attributes: { bold: true } }]);
-    compare(delta, [{ insert: 'abc', attributes: { bold: true } }]);
+    compare$2(text0.toDelta(), [{ insert: 'abc', attributes: { bold: true } }]);
+    compare$2(delta, [{ insert: 'abc', attributes: { bold: true } }]);
     text0.delete(0, 1);
     assert(text0.toString() === 'bc', 'Basic delete on formatted works (position 0)');
-    compare(text0.toDelta(), [{ insert: 'bc', attributes: { bold: true } }]);
-    compare(delta, [{ delete: 1 }]);
+    compare$2(text0.toDelta(), [{ insert: 'bc', attributes: { bold: true } }]);
+    compare$2(delta, [{ delete: 1 }]);
     text0.delete(1, 1);
     assert(text0.toString() === 'b', 'Basic delete works (position 1)');
-    compare(text0.toDelta(), [{ insert: 'b', attributes: { bold: true } }]);
-    compare(delta, [{ retain: 1 }, { delete: 1 }]);
+    compare$2(text0.toDelta(), [{ insert: 'b', attributes: { bold: true } }]);
+    compare$2(delta, [{ retain: 1 }, { delete: 1 }]);
     text0.insert(0, 'z', { bold: true });
     assert(text0.toString() === 'zb');
-    compare(text0.toDelta(), [{ insert: 'zb', attributes: { bold: true } }]);
-    compare(delta, [{ insert: 'z', attributes: { bold: true } }]);
+    compare$2(text0.toDelta(), [{ insert: 'zb', attributes: { bold: true } }]);
+    compare$2(delta, [{ insert: 'z', attributes: { bold: true } }]);
     // @ts-ignore
     assert(text0._start.right.right.right.content.str === 'b', 'Does not insert duplicate attribute marker');
     text0.insert(0, 'y');
     assert(text0.toString() === 'yzb');
-    compare(text0.toDelta(), [{ insert: 'y' }, { insert: 'zb', attributes: { bold: true } }]);
-    compare(delta, [{ insert: 'y' }]);
+    compare$2(text0.toDelta(), [{ insert: 'y' }, { insert: 'zb', attributes: { bold: true } }]);
+    compare$2(delta, [{ insert: 'y' }]);
     text0.format(0, 2, { bold: null });
     assert(text0.toString() === 'yzb');
-    compare(text0.toDelta(), [{ insert: 'yz' }, { insert: 'b', attributes: { bold: true } }]);
-    compare(delta, [{ retain: 1 }, { retain: 1, attributes: { bold: null } }]);
-    compare$2(users);
+    compare$2(text0.toDelta(), [{ insert: 'yz' }, { insert: 'b', attributes: { bold: true } }]);
+    compare$2(delta, [{ retain: 1 }, { retain: 1, attributes: { bold: null } }]);
+    compare(users);
+  };
+
+  /**
+   * @param {t.TestCase} tc
+   */
+  const testMultilineFormat = tc => {
+    const ydoc = new Doc();
+    const testText = ydoc.getText('test');
+    testText.insert(0, 'Test\nMulti-line\nFormatting');
+    testText.applyDelta([
+      { retain: 4, attributes: { bold: true } },
+      { retain: 1 }, // newline character
+      { retain: 10, attributes: { bold: true } },
+      { retain: 1 }, // newline character
+      { retain: 10, attributes: { bold: true } }
+    ]);
+    compare$2(testText.toDelta(), [
+      { insert: 'Test', attributes: { bold: true } },
+      { insert: '\n' },
+      { insert: 'Multi-line', attributes: { bold: true } },
+      { insert: '\n' },
+      { insert: 'Formatting', attributes: { bold: true } }
+    ]);
+  };
+
+  /**
+   * @param {t.TestCase} tc
+   */
+  const testNotMergeEmptyLinesFormat = tc => {
+    const ydoc = new Doc();
+    const testText = ydoc.getText('test');
+    testText.applyDelta([
+      { insert: 'Text' },
+      { insert: '\n', attributes: { title: true } },
+      { insert: '\nText' },
+      { insert: '\n', attributes: { title: true } }
+    ]);
+    compare$2(testText.toDelta(), [
+      { insert: 'Text' },
+      { insert: '\n', attributes: { title: true } },
+      { insert: '\nText' },
+      { insert: '\n', attributes: { title: true } }
+    ]);
   };
 
   /**
    * @param {t.TestCase} tc
    */
   const testGetDeltaWithEmbeds = tc => {
-    const { text0 } = init$1(tc, { users: 1 });
+    const { text0 } = init(tc, { users: 1 });
     text0.applyDelta([{
       insert: { linebreak: 's' }
     }]);
-    compare(text0.toDelta(), [{
+    compare$2(text0.toDelta(), [{
       insert: { linebreak: 's' }
     }]);
   };
@@ -14648,13 +15181,13 @@
    * @param {t.TestCase} tc
    */
   const testSnapshot = tc => {
-    const { text0 } = init$1(tc, { users: 1 });
+    const { text0 } = init(tc, { users: 1 });
     const doc0 = /** @type {Y.Doc} */ (text0.doc);
     doc0.gc = false;
     text0.applyDelta([{
       insert: 'abcd'
     }]);
-    const snapshot1 = snapshot(doc0);
+    const snapshot1 = snapshot$1(doc0);
     text0.applyDelta([{
       retain: 1
     }, {
@@ -14662,7 +15195,7 @@
     }, {
       delete: 1
     }]);
-    const snapshot2 = snapshot(doc0);
+    const snapshot2 = snapshot$1(doc0);
     text0.applyDelta([{
       retain: 2
     }, {
@@ -14673,9 +15206,9 @@
       delete: 1
     }]);
     const state1 = text0.toDelta(snapshot1);
-    compare(state1, [{ insert: 'abcd' }]);
+    compare$2(state1, [{ insert: 'abcd' }]);
     const state2 = text0.toDelta(snapshot2);
-    compare(state2, [{ insert: 'axcd' }]);
+    compare$2(state2, [{ insert: 'axcd' }]);
     const state2Diff = text0.toDelta(snapshot2, snapshot1);
     // @ts-ignore Remove userid info
     state2Diff.forEach(v => {
@@ -14683,34 +15216,34 @@
         delete v.attributes.ychange.user;
       }
     });
-    compare(state2Diff, [{ insert: 'a' }, { insert: 'x', attributes: { ychange: { type: 'added' } } }, { insert: 'b', attributes: { ychange: { type: 'removed' } } }, { insert: 'cd' }]);
+    compare$2(state2Diff, [{ insert: 'a' }, { insert: 'x', attributes: { ychange: { type: 'added' } } }, { insert: 'b', attributes: { ychange: { type: 'removed' } } }, { insert: 'cd' }]);
   };
 
   /**
    * @param {t.TestCase} tc
    */
   const testSnapshotDeleteAfter = tc => {
-    const { text0 } = init$1(tc, { users: 1 });
+    const { text0 } = init(tc, { users: 1 });
     const doc0 = /** @type {Y.Doc} */ (text0.doc);
     doc0.gc = false;
     text0.applyDelta([{
       insert: 'abcd'
     }]);
-    const snapshot1 = snapshot(doc0);
+    const snapshot1 = snapshot$1(doc0);
     text0.applyDelta([{
       retain: 4
     }, {
       insert: 'e'
     }]);
     const state1 = text0.toDelta(snapshot1);
-    compare(state1, [{ insert: 'abcd' }]);
+    compare$2(state1, [{ insert: 'abcd' }]);
   };
 
   /**
    * @param {t.TestCase} tc
    */
   const testToJson = tc => {
-    const { text0 } = init$1(tc, { users: 1 });
+    const { text0 } = init(tc, { users: 1 });
     text0.insert(0, 'abc', { bold: true });
     assert(text0.toJSON() === 'abc', 'toJSON returns the unformatted text');
   };
@@ -14719,29 +15252,29 @@
    * @param {t.TestCase} tc
    */
   const testToDeltaEmbedAttributes = tc => {
-    const { text0 } = init$1(tc, { users: 1 });
+    const { text0 } = init(tc, { users: 1 });
     text0.insert(0, 'ab', { bold: true });
     text0.insertEmbed(1, { image: 'imageSrc.png' }, { width: 100 });
     const delta0 = text0.toDelta();
-    compare(delta0, [{ insert: 'a', attributes: { bold: true } }, { insert: { image: 'imageSrc.png' }, attributes: { width: 100 } }, { insert: 'b', attributes: { bold: true } }]);
+    compare$2(delta0, [{ insert: 'a', attributes: { bold: true } }, { insert: { image: 'imageSrc.png' }, attributes: { width: 100 } }, { insert: 'b', attributes: { bold: true } }]);
   };
 
   /**
    * @param {t.TestCase} tc
    */
   const testToDeltaEmbedNoAttributes = tc => {
-    const { text0 } = init$1(tc, { users: 1 });
+    const { text0 } = init(tc, { users: 1 });
     text0.insert(0, 'ab', { bold: true });
     text0.insertEmbed(1, { image: 'imageSrc.png' });
     const delta0 = text0.toDelta();
-    compare(delta0, [{ insert: 'a', attributes: { bold: true } }, { insert: { image: 'imageSrc.png' } }, { insert: 'b', attributes: { bold: true } }], 'toDelta does not set attributes key when no attributes are present');
+    compare$2(delta0, [{ insert: 'a', attributes: { bold: true } }, { insert: { image: 'imageSrc.png' } }, { insert: 'b', attributes: { bold: true } }], 'toDelta does not set attributes key when no attributes are present');
   };
 
   /**
    * @param {t.TestCase} tc
    */
   const testFormattingRemoved = tc => {
-    const { text0 } = init$1(tc, { users: 1 });
+    const { text0 } = init(tc, { users: 1 });
     text0.insert(0, 'ab', { bold: true });
     text0.delete(0, 2);
     assert(getTypeChildren(text0).length === 1);
@@ -14751,7 +15284,7 @@
    * @param {t.TestCase} tc
    */
   const testFormattingRemovedInMidText = tc => {
-    const { text0 } = init$1(tc, { users: 1 });
+    const { text0 } = init(tc, { users: 1 });
     text0.insert(0, '1234');
     text0.insert(2, 'ab', { bold: true });
     text0.delete(2, 2);
@@ -14763,7 +15296,7 @@
    */
   const testInsertAndDeleteAtRandomPositions = tc => {
     const N = 100000;
-    const { text0 } = init$1(tc, { users: 1 });
+    const { text0 } = init(tc, { users: 1 });
     const gen = tc.prng;
 
     // create initial content
@@ -14772,14 +15305,14 @@
 
     // apply changes
     for (let i = 0; i < N; i++) {
-      const pos = uint32$1(gen, 0, text0.length);
+      const pos = uint32(gen, 0, text0.length);
       if (bool(gen)) {
-        const len = uint32$1(gen, 1, 5);
+        const len = uint32(gen, 1, 5);
         const word$1 = word(gen, 0, len);
         text0.insert(pos, word$1);
         // expectedResult = expectedResult.slice(0, pos) + word + expectedResult.slice(pos)
       } else {
-        const len = uint32$1(gen, 0, min(3, text0.length - pos));
+        const len = uint32(gen, 0, min(3, text0.length - pos));
         text0.delete(pos, len);
         // expectedResult = expectedResult.slice(0, pos) + expectedResult.slice(pos + len)
       }
@@ -14793,7 +15326,7 @@
    */
   const testAppendChars = tc => {
     const N = 10000;
-    const { text0 } = init$1(tc, { users: 1 });
+    const { text0 } = init(tc, { users: 1 });
 
     // apply changes
     for (let i = 0; i < N; i++) {
@@ -14838,8 +15371,10 @@
     });
   };
 
-  const tryGc$1 = () => {
+  const tryGc = () => {
+    // @ts-ignore
     if (typeof global !== 'undefined' && global.gc) {
+      // @ts-ignore
       global.gc();
     }
   };
@@ -14853,7 +15388,7 @@
     ;(() => {
       const doc1 = new Doc();
       const text0 = doc1.getText('txt');
-      tryGc$1();
+      tryGc();
       measureTime(`time to insert ${itemsToInsert} items`, () => {
         doc1.transact(() => {
           for (let i = 0; i < itemsToInsert; i++) {
@@ -14861,7 +15396,7 @@
           }
         });
       });
-      tryGc$1();
+      tryGc();
       measureTime('time to encode document', () => {
         update = encodeStateAsUpdateV2(doc1);
       });
@@ -14869,9 +15404,45 @@
     })()
     ;(() => {
       const doc2 = new Doc();
-      tryGc$1();
+      tryGc();
       measureTime(`time to apply ${itemsToInsert} updates`, () => {
         applyUpdateV2(doc2, update);
+      });
+    })();
+  };
+
+  /**
+   * @param {t.TestCase} tc
+   */
+  const testIncrementalUpdatesPerformanceOnLargeFragmentedDocument = tc => {
+    const itemsToInsert = largeDocumentSize;
+    const updates = /** @type {Array<Uint8Array>} */ ([])
+    ;(() => {
+      const doc1 = new Doc();
+      doc1.on('update', update => {
+        updates.push(update);
+      });
+      const text0 = doc1.getText('txt');
+      tryGc();
+      measureTime(`time to insert ${itemsToInsert} items`, () => {
+        doc1.transact(() => {
+          for (let i = 0; i < itemsToInsert; i++) {
+            text0.insert(0, '0');
+          }
+        });
+      });
+      tryGc();
+    })()
+    ;(() => {
+      measureTime(`time to merge ${itemsToInsert} updates (differential updates)`, () => {
+        mergeUpdates(updates);
+      });
+      tryGc();
+      measureTime(`time to merge ${itemsToInsert} updates (ydoc updates)`, () => {
+        const ydoc = new Doc();
+        updates.forEach(update => {
+          applyUpdate(ydoc, update);
+        });
       });
     })();
   };
@@ -14885,28 +15456,28 @@
    */
   const testSplitSurrogateCharacter = tc => {
     {
-      const { users, text0 } = init$1(tc, { users: 2 });
+      const { users, text0 } = init(tc, { users: 2 });
       users[1].disconnect(); // disconnecting forces the user to encode the split surrogate
       text0.insert(0, '👾'); // insert surrogate character
       // split surrogate, which should not lead to an encoding error
       text0.insert(1, 'hi!');
-      compare$2(users);
+      compare(users);
     }
     {
-      const { users, text0 } = init$1(tc, { users: 2 });
+      const { users, text0 } = init(tc, { users: 2 });
       users[1].disconnect(); // disconnecting forces the user to encode the split surrogate
       text0.insert(0, '👾👾'); // insert surrogate character
       // partially delete surrogate
       text0.delete(1, 2);
-      compare$2(users);
+      compare(users);
     }
     {
-      const { users, text0 } = init$1(tc, { users: 2 });
+      const { users, text0 } = init(tc, { users: 2 });
       users[1].disconnect(); // disconnecting forces the user to encode the split surrogate
       text0.insert(0, '👾👾'); // insert surrogate character
       // formatting will also split surrogates
       text0.format(1, 2, { bold: true });
-      compare$2(users);
+      compare(users);
     }
   };
 
@@ -15094,7 +15665,7 @@
     for (let i = 1; i < result.testObjects.length; i++) {
       const p1 = result.users[i].getText('text').toDelta();
       const p2 = result.users[i].getText('text').toDelta();
-      compare(p1, p2);
+      compare$2(p1, p2);
     }
     // Uncomment this to find formatting-cleanup issues
     // const cleanups = Y.cleanupYTextFormatting(result.users[0].getText('text'))
@@ -15173,10 +15744,12 @@
     checkResult(applyRandomTests(tc, qChanges, 300));
   };
 
-  var text$1 = /*#__PURE__*/Object.freeze({
+  var text = /*#__PURE__*/Object.freeze({
     __proto__: null,
     testBasicInsertAndDelete: testBasicInsertAndDelete,
     testBasicFormat: testBasicFormat,
+    testMultilineFormat: testMultilineFormat,
+    testNotMergeEmptyLinesFormat: testNotMergeEmptyLinesFormat,
     testGetDeltaWithEmbeds: testGetDeltaWithEmbeds,
     testSnapshot: testSnapshot,
     testSnapshotDeleteAfter: testSnapshotDeleteAfter,
@@ -15189,6 +15762,7 @@
     testAppendChars: testAppendChars,
     testBestCase: testBestCase,
     testLargeFragmentedDocument: testLargeFragmentedDocument,
+    testIncrementalUpdatesPerformanceOnLargeFragmentedDocument: testIncrementalUpdatesPerformanceOnLargeFragmentedDocument,
     testSplitSurrogateCharacter: testSplitSurrogateCharacter,
     testRepeatGenerateTextChanges5: testRepeatGenerateTextChanges5,
     testRepeatGenerateTextChanges30: testRepeatGenerateTextChanges30,
@@ -15212,7 +15786,7 @@
    * @param {t.TestCase} tc
    */
   const testSetProperty = tc => {
-    const { testConnector, users, xml0, xml1 } = init(tc, { users: 2 });
+    const { testConnector, users, xml0, xml1 } = init$1(tc, { users: 2 });
     xml0.setAttribute('height', '10');
     assert(xml0.getAttribute('height') === '10', 'Simple set+get works');
     testConnector.flushAllMessages();
@@ -15224,7 +15798,7 @@
    * @param {t.TestCase} tc
    */
   const testEvents = tc => {
-    const { testConnector, users, xml0, xml1 } = init(tc, { users: 2 });
+    const { testConnector, users, xml0, xml1 } = init$1(tc, { users: 2 });
     /**
      * @type {any}
      */
@@ -15264,7 +15838,7 @@
    * @param {t.TestCase} tc
    */
   const testTreewalker = tc => {
-    const { users, xml0 } = init(tc, { users: 3 });
+    const { users, xml0 } = init$1(tc, { users: 3 });
     const paragraph1 = new YXmlElement('p');
     const paragraph2 = new YXmlElement('p');
     const text1 = new YXmlText('init');
@@ -15286,11 +15860,11 @@
     const ydoc = new Doc();
     const ytext = /** @type {Y.XmlText} */ (ydoc.get('', YXmlText));
     ytext.observe(event => {
-      compare(event.changes.keys.get('test'), { action: 'add', oldValue: undefined });
+      compare$2(event.changes.keys.get('test'), { action: 'add', oldValue: undefined });
     });
     ytext.setAttribute('test', 42);
-    compare(ytext.getAttribute('test'), 42);
-    compare(ytext.getAttributes(), { test: 42 });
+    compare$2(ytext.getAttribute('test'), 42);
+    compare$2(ytext.getAttributes(), { test: 42 });
   };
 
   /**
@@ -15353,7 +15927,7 @@
    * @param {t.TestCase} tc
    */
   const testStructReferences = tc => {
-    assert(contentRefs.length === 10);
+    assert(contentRefs.length === 11);
     assert(contentRefs[1] === readContentDeleted);
     assert(contentRefs[2] === readContentJSON); // TODO: deprecate content json?
     assert(contentRefs[3] === readContentBinary);
@@ -15363,6 +15937,7 @@
     assert(contentRefs[7] === readContentType);
     assert(contentRefs[8] === readContentAny);
     assert(contentRefs[9] === readContentDoc);
+    // contentRefs[10] is reserved for Skip structs
   };
 
   /**
@@ -15403,7 +15978,7 @@
    * @param {t.TestCase} tc
    */
   const testUndoText = tc => {
-    const { testConnector, text0, text1 } = init(tc, { users: 3 });
+    const { testConnector, text0, text1 } = init$1(tc, { users: 3 });
     const undoManager = new UndoManager(text0);
 
     // items that are added & deleted in the same transaction won't be undo
@@ -15438,11 +16013,11 @@
     assert(text0.toString() === 'bcxyz');
     // test marks
     text0.format(1, 3, { bold: true });
-    compare(text0.toDelta(), [{ insert: 'b' }, { insert: 'cxy', attributes: { bold: true } }, { insert: 'z' }]);
+    compare$2(text0.toDelta(), [{ insert: 'b' }, { insert: 'cxy', attributes: { bold: true } }, { insert: 'z' }]);
     undoManager.undo();
-    compare(text0.toDelta(), [{ insert: 'bcxyz' }]);
+    compare$2(text0.toDelta(), [{ insert: 'bcxyz' }]);
     undoManager.redo();
-    compare(text0.toDelta(), [{ insert: 'b' }, { insert: 'cxy', attributes: { bold: true } }, { insert: 'z' }]);
+    compare$2(text0.toDelta(), [{ insert: 'b' }, { insert: 'cxy', attributes: { bold: true } }, { insert: 'z' }]);
   };
 
   /**
@@ -15471,7 +16046,7 @@
    * @param {t.TestCase} tc
    */
   const testUndoMap = tc => {
-    const { testConnector, map0, map1 } = init(tc, { users: 2 });
+    const { testConnector, map0, map1 } = init$1(tc, { users: 2 });
     map0.set('a', 0);
     const undoManager = new UndoManager(map0);
     map0.set('a', 1);
@@ -15483,11 +16058,11 @@
     const subType = new YMap();
     map0.set('a', subType);
     subType.set('x', 42);
-    compare(map0.toJSON(), /** @type {any} */ ({ a: { x: 42 } }));
+    compare$2(map0.toJSON(), /** @type {any} */ ({ a: { x: 42 } }));
     undoManager.undo();
     assert(map0.get('a') === 1);
     undoManager.redo();
-    compare(map0.toJSON(), /** @type {any} */ ({ a: { x: 42 } }));
+    compare$2(map0.toJSON(), /** @type {any} */ ({ a: { x: 42 } }));
     testConnector.syncAll();
     // if content is overwritten by another user, undo operations should be skipped
     map1.set('a', 44);
@@ -15511,58 +16086,58 @@
    * @param {t.TestCase} tc
    */
   const testUndoArray = tc => {
-    const { testConnector, array0, array1 } = init(tc, { users: 3 });
+    const { testConnector, array0, array1 } = init$1(tc, { users: 3 });
     const undoManager = new UndoManager(array0);
     array0.insert(0, [1, 2, 3]);
     array1.insert(0, [4, 5, 6]);
     testConnector.syncAll();
-    compare(array0.toArray(), [1, 2, 3, 4, 5, 6]);
+    compare$2(array0.toArray(), [1, 2, 3, 4, 5, 6]);
     undoManager.undo();
-    compare(array0.toArray(), [4, 5, 6]);
+    compare$2(array0.toArray(), [4, 5, 6]);
     undoManager.redo();
-    compare(array0.toArray(), [1, 2, 3, 4, 5, 6]);
+    compare$2(array0.toArray(), [1, 2, 3, 4, 5, 6]);
     testConnector.syncAll();
     array1.delete(0, 1); // user1 deletes [1]
     testConnector.syncAll();
     undoManager.undo();
-    compare(array0.toArray(), [4, 5, 6]);
+    compare$2(array0.toArray(), [4, 5, 6]);
     undoManager.redo();
-    compare(array0.toArray(), [2, 3, 4, 5, 6]);
+    compare$2(array0.toArray(), [2, 3, 4, 5, 6]);
     array0.delete(0, 5);
     // test nested structure
     const ymap = new YMap();
     array0.insert(0, [ymap]);
-    compare(array0.toJSON(), [{}]);
+    compare$2(array0.toJSON(), [{}]);
     undoManager.stopCapturing();
     ymap.set('a', 1);
-    compare(array0.toJSON(), [{ a: 1 }]);
+    compare$2(array0.toJSON(), [{ a: 1 }]);
     undoManager.undo();
-    compare(array0.toJSON(), [{}]);
+    compare$2(array0.toJSON(), [{}]);
     undoManager.undo();
-    compare(array0.toJSON(), [2, 3, 4, 5, 6]);
+    compare$2(array0.toJSON(), [2, 3, 4, 5, 6]);
     undoManager.redo();
-    compare(array0.toJSON(), [{}]);
+    compare$2(array0.toJSON(), [{}]);
     undoManager.redo();
-    compare(array0.toJSON(), [{ a: 1 }]);
+    compare$2(array0.toJSON(), [{ a: 1 }]);
     testConnector.syncAll();
     array1.get(0).set('b', 2);
     testConnector.syncAll();
-    compare(array0.toJSON(), [{ a: 1, b: 2 }]);
+    compare$2(array0.toJSON(), [{ a: 1, b: 2 }]);
     undoManager.undo();
-    compare(array0.toJSON(), [{ b: 2 }]);
+    compare$2(array0.toJSON(), [{ b: 2 }]);
     undoManager.undo();
-    compare(array0.toJSON(), [2, 3, 4, 5, 6]);
+    compare$2(array0.toJSON(), [2, 3, 4, 5, 6]);
     undoManager.redo();
-    compare(array0.toJSON(), [{ b: 2 }]);
+    compare$2(array0.toJSON(), [{ b: 2 }]);
     undoManager.redo();
-    compare(array0.toJSON(), [{ a: 1, b: 2 }]);
+    compare$2(array0.toJSON(), [{ a: 1, b: 2 }]);
   };
 
   /**
    * @param {t.TestCase} tc
    */
   const testUndoXml = tc => {
-    const { xml0 } = init(tc, { users: 3 });
+    const { xml0 } = init$1(tc, { users: 3 });
     const undoManager = new UndoManager(xml0);
     const child = new YXmlElement('p');
     xml0.insert(0, [child]);
@@ -15587,16 +16162,18 @@
    * @param {t.TestCase} tc
    */
   const testUndoEvents = tc => {
-    const { text0 } = init(tc, { users: 3 });
+    const { text0 } = init$1(tc, { users: 3 });
     const undoManager = new UndoManager(text0);
     let counter = 0;
     let receivedMetadata = -1;
     undoManager.on('stack-item-added', /** @param {any} event */ event => {
       assert(event.type != null);
+      assert(event.changedParentTypes != null && event.changedParentTypes.has(text0));
       event.stackItem.meta.set('test', counter++);
     });
     undoManager.on('stack-item-popped', /** @param {any} event */ event => {
       assert(event.type != null);
+      assert(event.changedParentTypes != null && event.changedParentTypes.has(text0));
       receivedMetadata = event.stackItem.meta.get('test');
     });
     text0.insert(0, 'abc');
@@ -15610,7 +16187,7 @@
    * @param {t.TestCase} tc
    */
   const testTrackClass = tc => {
-    const { users, text0 } = init(tc, { users: 3 });
+    const { users, text0 } = init$1(tc, { users: 3 });
     // only track origins that are numbers
     const undoManager = new UndoManager(text0, { trackedOrigins: new Set([Number]) });
     users[0].transact(() => {
@@ -15625,7 +16202,7 @@
    * @param {t.TestCase} tc
    */
   const testTypeScope = tc => {
-    const { array0 } = init(tc, { users: 3 });
+    const { array0 } = init$1(tc, { users: 3 });
     // only track origins that are numbers
     const text0 = new YText();
     const text1 = new YText();
@@ -15649,7 +16226,7 @@
     /**
      * @type {Array<Y.Map<any>>}
      */
-    const array0 = /** @type {any} */ (init(tc, { users: 3 }).array0);
+    const array0 = /** @type {any} */ (init$1(tc, { users: 3 }).array0);
     const undoManager = new UndoManager(array0, { deleteFilter: item => !(item instanceof Item) || (item.content instanceof ContentType && item.content.type._map.size === 0) });
     const map0 = new YMap();
     map0.set('hi', 1);
@@ -15682,7 +16259,7 @@
     const oldVal = JSON.parse('[[1,2,3,4],472,472,{"someprop":44},472,[1,2,3,4],{"someprop":44},[1,2,3,4],[1,2,3,4],[1,2,3,4],{"someprop":44},449,448,[1,2,3,4],[1,2,3,4],{"someprop":44},452,{"someprop":44},[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],452,[1,2,3,4],497,{"someprop":44},497,497,497,{"someprop":44},[1,2,3,4],522,522,452,470,{"someprop":44},[1,2,3,4],453,{"someprop":44},480,480,480,508,508,508,[1,2,3,4],[1,2,3,4],502,492,492,453,{"someprop":44},496,496,496,[1,2,3,4],496,493,495,495,495,495,493,[1,2,3,4],493,493,453,{"someprop":44},{"someprop":44},505,505,517,517,505,[1,2,3,4],{"someprop":44},509,{"someprop":44},521,521,521,509,477,{"someprop":44},{"someprop":44},485,485,{"someprop":44},515,{"someprop":44},451,{"someprop":44},[1,2,3,4],516,516,516,516,{"someprop":44},499,499,469,469,[1,2,3,4],[1,2,3,4],512,512,512,{"someprop":44},454,487,487,487,[1,2,3,4],[1,2,3,4],454,[1,2,3,4],[1,2,3,4],{"someprop":44},[1,2,3,4],459,[1,2,3,4],513,459,{"someprop":44},[1,2,3,4],482,{"someprop":44},[1,2,3,4],[1,2,3,4],459,[1,2,3,4],{"someprop":44},[1,2,3,4],484,454,510,510,510,510,468,{"someprop":44},468,[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],467,[1,2,3,4],467,486,486,486,[1,2,3,4],489,451,[1,2,3,4],{"someprop":44},[1,2,3,4],[1,2,3,4],{"someprop":44},{"someprop":44},483,[1,2,3,4],{"someprop":44},{"someprop":44},{"someprop":44},{"someprop":44},519,519,519,519,506,506,[1,2,3,4],{"someprop":44},464,{"someprop":44},481,481,[1,2,3,4],{"someprop":44},[1,2,3,4],464,475,475,475,463,{"someprop":44},[1,2,3,4],518,[1,2,3,4],[1,2,3,4],463,455,498,498,498,466,471,471,471,501,[1,2,3,4],501,501,476,{"someprop":44},466,[1,2,3,4],{"someprop":44},503,503,503,466,455,490,474,{"someprop":44},457,494,494,{"someprop":44},457,479,{"someprop":44},[1,2,3,4],500,500,500,{"someprop":44},[1,2,3,4],[1,2,3,4],{"someprop":44},{"someprop":44},{"someprop":44},[1,2,3,4],[1,2,3,4],{"someprop":44},[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3],491,491,[1,2,3,4],504,504,504,504,465,[1,2,3,4],{"someprop":44},460,{"someprop":44},488,488,488,[1,2,3,4],[1,2,3,4],{"someprop":44},{"someprop":44},514,514,514,514,{"someprop":44},{"someprop":44},{"someprop":44},458,[1,2,3,4],[1,2,3,4],462,[1,2,3,4],[1,2,3,4],{"someprop":44},462,{"someprop":44},[1,2,3,4],{"someprop":44},[1,2,3,4],507,{"someprop":44},{"someprop":44},507,507,{"someprop":44},{"someprop":44},[1,2,3,4],{"someprop":44},461,{"someprop":44},473,461,[1,2,3,4],461,511,511,461,{"someprop":44},{"someprop":44},520,520,520,[1,2,3,4],458]');
     const doc = new Doc();
     applyUpdate(doc, fromBase64(oldDoc));
-    compare(doc.getArray('array').toJSON(), oldVal);
+    compare$2(doc.getArray('array').toJSON(), oldVal);
   };
 
   /**
@@ -15694,7 +16271,7 @@
     const oldVal = /** @type {any} */ ({"one":[1,2,3,4],"two":{"deepkey":"deepvalue"}});
     const doc = new Doc();
     applyUpdate(doc, fromBase64(oldDoc));
-    compare(doc.getMap('map').toJSON(), oldVal);
+    compare$2(doc.getMap('map').toJSON(), oldVal);
   };
 
   /**
@@ -15706,7 +16283,7 @@
     const oldVal = [{"insert":"1306rup"},{"insert":"uj","attributes":{"italic":true,"color":"#888"}},{"insert":"ikkcjnrcpsckw1319bccgkp\n"},{"insert":"\n1131","attributes":{"bold":true}},{"insert":"1326rpcznqahopcrtd","attributes":{"italic":true}},{"insert":"3axhkthhu","attributes":{"bold":true}},{"insert":"28"},{"insert":{"image":"https://user-images.githubusercontent.com/5553757/48975307-61efb100-f06d-11e8-9177-ee895e5916e5.png"}},{"insert":"9"},{"insert":"04ku","attributes":{"italic":true}},{"insert":"1323nucvxsqlznwlfavmpc\nu"},{"insert":"tc","attributes":{"italic":true}},{"insert":"je1318jwskjabdndrdlmjae\n1293tj\nj1292qrmf"},{"insert":{"image":"https://user-images.githubusercontent.com/5553757/48975307-61efb100-f06d-11e8-9177-ee895e5916e5.png"}},{"insert":"k\nuf"},{"insert":"14hs","attributes":{"italic":true}},{"insert":"13dccxdyxg"},{"insert":"zc","attributes":{"italic":true,"color":"#888"}},{"insert":"apo"},{"insert":"tn","attributes":{"bold":true}},{"insert":"r"},{"insert":{"image":"https://user-images.githubusercontent.com/5553757/48975307-61efb100-f06d-11e8-9177-ee895e5916e5.png"}},{"insert":"gn\n"},{"insert":"z","attributes":{"italic":true}},{"insert":"\n121"},{"insert":{"image":"https://user-images.githubusercontent.com/5553757/48975307-61efb100-f06d-11e8-9177-ee895e5916e5.png"}},{"insert":"291311kk9zjznywohpx"},{"insert":{"image":"https://user-images.githubusercontent.com/5553757/48975307-61efb100-f06d-11e8-9177-ee895e5916e5.png"}},{"insert":"cnbrcaq\n"},{"insert":"1","attributes":{"italic":true,"color":"#888"}},{"insert":"1310g"},{"insert":"ws","attributes":{"italic":true,"color":"#888"}},{"insert":"hxwych"},{"insert":"kq","attributes":{"italic":true}},{"insert":"sdru1320cohbvcrkrpjngdoc\njqic\n"},{"insert":"2","attributes":{"italic":true,"color":"#888"}},{"insert":{"image":"https://user-images.githubusercontent.com/5553757/48975307-61efb100-f06d-11e8-9177-ee895e5916e5.png"}},{"insert":"90n1297zm"},{"insert":"v1309zlgvjx","attributes":{"bold":true}},{"insert":{"image":"https://user-images.githubusercontent.com/5553757/48975307-61efb100-f06d-11e8-9177-ee895e5916e5.png"}},{"insert":"g","attributes":{"bold":true}},{"insert":"1314pycavu","attributes":{"italic":true,"color":"#888"}},{"insert":"pkzqcj"},{"insert":"sa","attributes":{"italic":true,"color":"#888"}},{"insert":"sjy\n"},{"insert":{"image":"https://user-images.githubusercontent.com/5553757/48975307-61efb100-f06d-11e8-9177-ee895e5916e5.png"}},{"insert":"xr\n"},{"insert":{"image":"https://user-images.githubusercontent.com/5553757/48975307-61efb100-f06d-11e8-9177-ee895e5916e5.png"}},{"insert":{"image":"https://user-images.githubusercontent.com/5553757/48975307-61efb100-f06d-11e8-9177-ee895e5916e5.png"}},{"insert":{"image":"https://user-images.githubusercontent.com/5553757/48975307-61efb100-f06d-11e8-9177-ee895e5916e5.png"}},{"insert":"1"},{"insert":{"image":"https://user-images.githubusercontent.com/5553757/48975307-61efb100-f06d-11e8-9177-ee895e5916e5.png"}},{"insert":"1295qfrvlyfap201312qrwt"},{"insert":{"image":"https://user-images.githubusercontent.com/5553757/48975307-61efb100-f06d-11e8-9177-ee895e5916e5.png"}},{"insert":"b1322rnbaokorixenvp\nrxq"},{"insert":"j","attributes":{"italic":true}},{"insert":"x","attributes":{"italic":true,"color":"#888"}},{"insert":"15mziwabzkrrmscvdovao\n0","attributes":{"italic":true}},{"insert":"hx","attributes":{"italic":true,"bold":true}},{"insert":"ojeetrjhxkr13031317pfcyhksrkpkt\nuhv1","attributes":{"italic":true}},{"insert":"32","attributes":{"italic":true,"color":"#888"}},{"insert":"4rorywthq1325iodbzizxhmlibvpyrxmq\n\nganln\nqne\n"},{"insert":{"image":"https://user-images.githubusercontent.com/5553757/48975307-61efb100-f06d-11e8-9177-ee895e5916e5.png"}},{"insert":"dvf"},{"insert":"ac","attributes":{"bold":true}},{"insert":"1302xciwa"},{"insert":"1305rl","attributes":{"bold":true}},{"insert":"08\n"},{"insert":"eyk","attributes":{"bold":true}},{"insert":"y1321apgivydqsjfsehhezukiqtt1307tvjiejlh"},{"insert":"1316zlpkmctoqomgfthbpg","attributes":{"bold":true}},{"insert":"gv"},{"insert":"lb","attributes":{"bold":true}},{"insert":"f\nhntk\njv1uu\n"},{"insert":{"image":"https://user-images.githubusercontent.com/5553757/48975307-61efb100-f06d-11e8-9177-ee895e5916e5.png"}}];
     const doc = new Doc();
     applyUpdate(doc, fromBase64(oldDoc));
-    compare(doc.getText('text').toDelta(), oldVal);
+    compare$2(doc.getText('text').toDelta(), oldVal);
   };
 
   var compatibility = /*#__PURE__*/Object.freeze({
@@ -15750,7 +16327,7 @@
    */
   const testToJSON = tc => {
     const doc = new Doc();
-    compare(doc.toJSON(), {}, 'doc.toJSON yields empty object');
+    compare$2(doc.toJSON(), {}, 'doc.toJSON yields empty object');
 
     const arr = doc.getArray('array');
     arr.push(['test1']);
@@ -15761,7 +16338,7 @@
     map.set('k2', map2);
     map2.set('m2k1', 'm2v1');
 
-    compare(doc.toJSON(), {
+    compare$2(doc.toJSON(), {
       array: ['test1'],
       map: {
         k1: 'v1',
@@ -15790,7 +16367,7 @@
       const docA = new Doc({ guid: 'a' });
       docA.load();
       subdocs.set('a', docA);
-      compare(event, [['a'], [], ['a']]);
+      compare$2(event, [['a'], [], ['a']]);
 
       event = null;
       subdocs.get('a').load();
@@ -15798,26 +16375,26 @@
 
       event = null;
       subdocs.get('a').destroy();
-      compare(event, [['a'], ['a'], []]);
+      compare$2(event, [['a'], ['a'], []]);
       subdocs.get('a').load();
-      compare(event, [[], [], ['a']]);
+      compare$2(event, [[], [], ['a']]);
 
       subdocs.set('b', new Doc({ guid: 'a' }));
-      compare(event, [['a'], [], []]);
+      compare$2(event, [['a'], [], []]);
       subdocs.get('b').load();
-      compare(event, [[], [], ['a']]);
+      compare$2(event, [[], [], ['a']]);
 
       const docC = new Doc({ guid: 'c' });
       docC.load();
       subdocs.set('c', docC);
-      compare(event, [['c'], [], ['c']]);
+      compare$2(event, [['c'], [], ['c']]);
 
-      compare(Array.from(doc.getSubdocGuids()), ['a', 'c']);
+      compare$2(Array.from(doc.getSubdocGuids()), ['a', 'c']);
     }
 
     const doc2 = new Doc();
     {
-      compare(Array.from(doc2.getSubdocs()), []);
+      compare$2(Array.from(doc2.getSubdocs()), []);
       /**
        * @type {Array<any>|null}
        */
@@ -15826,20 +16403,20 @@
         event = [Array.from(subdocs.added).map(d => d.guid), Array.from(subdocs.removed).map(d => d.guid), Array.from(subdocs.loaded).map(d => d.guid)];
       });
       applyUpdate(doc2, encodeStateAsUpdate(doc));
-      compare(event, [['a', 'a', 'c'], [], []]);
+      compare$2(event, [['a', 'a', 'c'], [], []]);
 
       doc2.getMap('mysubdocs').get('a').load();
-      compare(event, [[], [], ['a']]);
+      compare$2(event, [[], [], ['a']]);
 
-      compare(Array.from(doc2.getSubdocGuids()), ['a', 'c']);
+      compare$2(Array.from(doc2.getSubdocGuids()), ['a', 'c']);
 
       doc2.getMap('mysubdocs').delete('a');
-      compare(event, [[], ['a'], []]);
-      compare(Array.from(doc2.getSubdocGuids()), ['a', 'c']);
+      compare$2(event, [[], ['a'], []]);
+      compare$2(Array.from(doc2.getSubdocGuids()), ['a', 'c']);
     }
   };
 
-  var doc$1 = /*#__PURE__*/Object.freeze({
+  var doc = /*#__PURE__*/Object.freeze({
     __proto__: null,
     testClientIdDuplicateChange: testClientIdDuplicateChange,
     testGetTypeEmptyId: testGetTypeEmptyId,
@@ -15853,13 +16430,13 @@
   const testBasicRestoreSnapshot = tc => {
     const doc = new Doc({ gc: false });
     doc.getArray('array').insert(0, ['hello']);
-    const snap = snapshot(doc);
+    const snap = snapshot$1(doc);
     doc.getArray('array').insert(1, ['world']);
 
     const docRestored = createDocFromSnapshot(doc, snap);
 
-    compare(docRestored.getArray('array').toArray(), ['hello']);
-    compare(doc.getArray('array').toArray(), ['hello', 'world']);
+    compare$2(docRestored.getArray('array').toArray(), ['hello']);
+    compare$2(doc.getArray('array').toArray(), ['hello', 'world']);
   };
 
   /**
@@ -15867,19 +16444,19 @@
    */
   const testEmptyRestoreSnapshot = tc => {
     const doc = new Doc({ gc: false });
-    const snap = snapshot(doc);
+    const snap = snapshot$1(doc);
     snap.sv.set(9999, 0);
     doc.getArray().insert(0, ['world']);
 
     const docRestored = createDocFromSnapshot(doc, snap);
 
-    compare(docRestored.getArray().toArray(), []);
-    compare(doc.getArray().toArray(), ['world']);
+    compare$2(docRestored.getArray().toArray(), []);
+    compare$2(doc.getArray().toArray(), ['world']);
 
     // now this snapshot reflects the latest state. It shoult still work.
-    const snap2 = snapshot(doc);
+    const snap2 = snapshot$1(doc);
     const docRestored2 = createDocFromSnapshot(doc, snap2);
-    compare(docRestored2.getArray().toArray(), ['world']);
+    compare$2(docRestored2.getArray().toArray(), ['world']);
   };
 
   /**
@@ -15891,15 +16468,15 @@
     const subMap = doc.getArray('array').get(0);
     subMap.set('key1', 'value1');
 
-    const snap = snapshot(doc);
+    const snap = snapshot$1(doc);
     subMap.set('key2', 'value2');
 
     const docRestored = createDocFromSnapshot(doc, snap);
 
-    compare(docRestored.getArray('array').toJSON(), [{
+    compare$2(docRestored.getArray('array').toJSON(), [{
       key1: 'value1'
     }]);
-    compare(doc.getArray('array').toJSON(), [{
+    compare$2(doc.getArray('array').toJSON(), [{
       key1: 'value1',
       key2: 'value2'
     }]);
@@ -15912,13 +16489,13 @@
     const doc = new Doc({ gc: false });
     doc.getArray('array').insert(0, ['item1', 'item2']);
 
-    const snap = snapshot(doc);
+    const snap = snapshot$1(doc);
     doc.getArray('array').delete(0);
 
     const docRestored = createDocFromSnapshot(doc, snap);
 
-    compare(docRestored.getArray('array').toArray(), ['item1', 'item2']);
-    compare(doc.getArray('array').toArray(), ['item2']);
+    compare$2(docRestored.getArray('array').toArray(), ['item1', 'item2']);
+    compare$2(doc.getArray('array').toArray(), ['item2']);
   };
 
   /**
@@ -15930,13 +16507,13 @@
     doc.getMap('map').set('test', 1);
     doc.getArray('array').insert(0, ['item0']);
 
-    const snap = snapshot(doc);
+    const snap = snapshot$1(doc);
     doc.getArray('array').delete(1);
 
     const docRestored = createDocFromSnapshot(doc, snap);
 
-    compare(docRestored.getArray('array').toArray(), ['item0', 'item1']);
-    compare(doc.getArray('array').toArray(), ['item0']);
+    compare$2(docRestored.getArray('array').toArray(), ['item0', 'item1']);
+    compare$2(doc.getArray('array').toArray(), ['item0']);
   };
 
   /**
@@ -15946,13 +16523,13 @@
     const doc = new Doc({ gc: false });
     doc.getArray('array').insert(0, ['item1']);
     doc.getArray('array').delete(0);
-    const snap = snapshot(doc);
+    const snap = snapshot$1(doc);
     doc.getArray('array').insert(0, ['item0']);
 
     const docRestored = createDocFromSnapshot(doc, snap);
 
-    compare(docRestored.getArray('array').toArray(), []);
-    compare(doc.getArray('array').toArray(), ['item0']);
+    compare$2(docRestored.getArray('array').toArray(), []);
+    compare$2(doc.getArray('array').toArray(), ['item0']);
   };
 
   /**
@@ -15962,20 +16539,20 @@
     const doc = new Doc({ gc: false });
     doc.getArray('array').insert(0, ['item1', 'item2', 'item3']);
     doc.getArray('array').delete(1);
-    const snap = snapshot(doc);
+    const snap = snapshot$1(doc);
     doc.getArray('array').insert(0, ['item0']);
 
     const docRestored = createDocFromSnapshot(doc, snap);
 
-    compare(docRestored.getArray('array').toArray(), ['item1', 'item3']);
-    compare(doc.getArray('array').toArray(), ['item0', 'item1', 'item3']);
+    compare$2(docRestored.getArray('array').toArray(), ['item1', 'item3']);
+    compare$2(doc.getArray('array').toArray(), ['item0', 'item1', 'item3']);
   };
 
   /**
    * @param {t.TestCase} tc
    */
   const testDependentChanges = tc => {
-    const { array0, array1, testConnector } = init(tc, { users: 2 });
+    const { array0, array1, testConnector } = init$1(tc, { users: 2 });
 
     if (!array0.doc) {
       throw new Error('no document 0')
@@ -16001,7 +16578,7 @@
     array1.insert(1, ['user2item1']);
     testConnector.syncAll();
 
-    const snap = snapshot(array0.doc);
+    const snap = snapshot$1(array0.doc);
 
     array0.insert(2, ['user1item2']);
     testConnector.syncAll();
@@ -16009,13 +16586,13 @@
     testConnector.syncAll();
 
     const docRestored0 = createDocFromSnapshot(array0.doc, snap);
-    compare(docRestored0.getArray('array').toArray(), ['user1item1', 'user2item1']);
+    compare$2(docRestored0.getArray('array').toArray(), ['user1item1', 'user2item1']);
 
     const docRestored1 = createDocFromSnapshot(array1.doc, snap);
-    compare(docRestored1.getArray('array').toArray(), ['user1item1', 'user2item1']);
+    compare$2(docRestored1.getArray('array').toArray(), ['user1item1', 'user2item1']);
   };
 
-  var snapshot$1 = /*#__PURE__*/Object.freeze({
+  var snapshot = /*#__PURE__*/Object.freeze({
     __proto__: null,
     testBasicRestoreSnapshot: testBasicRestoreSnapshot,
     testEmptyRestoreSnapshot: testEmptyRestoreSnapshot,
@@ -16027,11 +16604,370 @@
     testDependentChanges: testDependentChanges
   });
 
+  /**
+   * @typedef {Object} Enc
+   * @property {function(Array<Uint8Array>):Uint8Array} Enc.mergeUpdates
+   * @property {function(Y.Doc):Uint8Array} Enc.encodeStateAsUpdate
+   * @property {function(Y.Doc, Uint8Array):void} Enc.applyUpdate
+   * @property {function(Uint8Array):void} Enc.logUpdate
+   * @property {function(Uint8Array):{from:Map<number,number>,to:Map<number,number>}} Enc.parseUpdateMeta
+   * @property {function(Y.Doc):Uint8Array} Enc.encodeStateVector
+   * @property {function(Uint8Array):Uint8Array} Enc.encodeStateVectorFromUpdate
+   * @property {string} Enc.updateEventName
+   * @property {string} Enc.description
+   * @property {function(Uint8Array, Uint8Array):Uint8Array} Enc.diffUpdate
+   */
+
+  /**
+   * @type {Enc}
+   */
+  const encV1 = {
+    mergeUpdates: mergeUpdates,
+    encodeStateAsUpdate: encodeStateAsUpdate,
+    applyUpdate: applyUpdate,
+    logUpdate: logUpdate,
+    parseUpdateMeta: parseUpdateMeta,
+    encodeStateVectorFromUpdate: encodeStateVectorFromUpdate,
+    encodeStateVector: encodeStateVector,
+    updateEventName: 'update',
+    description: 'V1',
+    diffUpdate: diffUpdate
+  };
+
+  /**
+   * @type {Enc}
+   */
+  const encV2 = {
+    mergeUpdates: mergeUpdatesV2,
+    encodeStateAsUpdate: encodeStateAsUpdateV2,
+    applyUpdate: applyUpdateV2,
+    logUpdate: logUpdateV2,
+    parseUpdateMeta: parseUpdateMetaV2,
+    encodeStateVectorFromUpdate: encodeStateVectorFromUpdateV2,
+    encodeStateVector: encodeStateVector,
+    updateEventName: 'updateV2',
+    description: 'V2',
+    diffUpdate: diffUpdateV2
+  };
+
+  /**
+   * @type {Enc}
+   */
+  const encDoc = {
+    mergeUpdates: (updates) => {
+      const ydoc = new Doc({ gc: false });
+      updates.forEach(update => {
+        applyUpdateV2(ydoc, update);
+      });
+      return encodeStateAsUpdateV2(ydoc)
+    },
+    encodeStateAsUpdate: encodeStateAsUpdateV2,
+    applyUpdate: applyUpdateV2,
+    logUpdate: logUpdateV2,
+    parseUpdateMeta: parseUpdateMetaV2,
+    encodeStateVectorFromUpdate: encodeStateVectorFromUpdateV2,
+    encodeStateVector: encodeStateVector,
+    updateEventName: 'updateV2',
+    description: 'Merge via Y.Doc',
+    /**
+     * @param {Uint8Array} update
+     * @param {Uint8Array} sv
+     */
+    diffUpdate: (update, sv) => {
+      const ydoc = new Doc({ gc: false });
+      applyUpdateV2(ydoc, update);
+      return encodeStateAsUpdateV2(ydoc, sv)
+    }
+  };
+
+  const encoders = [encV1, encV2, encDoc];
+
+  /**
+   * @param {Array<Y.Doc>} users
+   * @param {Enc} enc
+   */
+  const fromUpdates = (users, enc) => {
+    const updates = users.map(user =>
+      enc.encodeStateAsUpdate(user)
+    );
+    const ydoc = new Doc();
+    enc.applyUpdate(ydoc, enc.mergeUpdates(updates));
+    return ydoc
+  };
+
+  /**
+   * @param {t.TestCase} tc
+   */
+  const testMergeUpdates = tc => {
+    const { users, array0, array1 } = init$1(tc, { users: 3 });
+
+    array0.insert(0, [1]);
+    array1.insert(0, [2]);
+
+    compare$1(users);
+    encoders.forEach(enc => {
+      const merged = fromUpdates(users, enc);
+      compareArrays(array0.toArray(), merged.getArray('array').toArray());
+    });
+  };
+
+  /**
+   * @param {Y.Doc} ydoc
+   * @param {Array<Uint8Array>} updates - expecting at least 4 updates
+   * @param {Enc} enc
+   * @param {boolean} hasDeletes
+   */
+  const checkUpdateCases = (ydoc, updates, enc, hasDeletes) => {
+    const cases = [];
+
+    // Case 1: Simple case, simply merge everything
+    cases.push(enc.mergeUpdates(updates));
+
+    // Case 2: Overlapping updates
+    cases.push(enc.mergeUpdates([
+      enc.mergeUpdates(updates.slice(2)),
+      enc.mergeUpdates(updates.slice(0, 2))
+    ]));
+
+    // Case 3: Overlapping updates
+    cases.push(enc.mergeUpdates([
+      enc.mergeUpdates(updates.slice(2)),
+      enc.mergeUpdates(updates.slice(1, 3)),
+      updates[0]
+    ]));
+
+    // Case 4: Separated updates (containing skips)
+    cases.push(enc.mergeUpdates([
+      enc.mergeUpdates([updates[0], updates[2]]),
+      enc.mergeUpdates([updates[1], updates[3]]),
+      enc.mergeUpdates(updates.slice(4))
+    ]));
+
+    // Case 5: overlapping with many duplicates
+    cases.push(enc.mergeUpdates(cases));
+
+    // const targetState = enc.encodeStateAsUpdate(ydoc)
+    // t.info('Target State: ')
+    // enc.logUpdate(targetState)
+
+    cases.forEach((mergedUpdates, i) => {
+      // t.info('State Case $' + i + ':')
+      // enc.logUpdate(updates)
+      const merged = new Doc({ gc: false });
+      enc.applyUpdate(merged, mergedUpdates);
+      compareArrays(merged.getArray().toArray(), ydoc.getArray().toArray());
+      compare$2(enc.encodeStateVector(merged), enc.encodeStateVectorFromUpdate(mergedUpdates));
+
+      if (enc.updateEventName !== 'update') { // @todo should this also work on legacy updates?
+        for (let j = 1; j < updates.length; j++) {
+          const partMerged = enc.mergeUpdates(updates.slice(j));
+          const partMeta = enc.parseUpdateMeta(partMerged);
+          const targetSV = encodeStateVectorFromUpdateV2(mergeUpdatesV2(updates.slice(0, j)));
+          const diffed = enc.diffUpdate(mergedUpdates, targetSV);
+          const diffedMeta = enc.parseUpdateMeta(diffed);
+          const decDiffedSV = decodeStateVector(enc.encodeStateVectorFromUpdate(diffed));
+          compare$2(partMeta, diffedMeta);
+          compare$2(decDiffedSV, partMeta.to);
+          {
+            // We can'd do the following
+            //  - t.compare(diffed, mergedDeletes)
+            // because diffed contains the set of all deletes.
+            // So we add all deletes from `diffed` to `partDeletes` and compare then
+            const decoder = createDecoder(diffed);
+            const updateDecoder = new UpdateDecoderV2(decoder);
+            readClientsStructRefs(updateDecoder, new Doc());
+            const ds = readDeleteSet(updateDecoder);
+            const updateEncoder = new UpdateEncoderV2();
+            writeVarUint(updateEncoder.restEncoder, 0); // 0 structs
+            writeDeleteSet(updateEncoder, ds);
+            const deletesUpdate = updateEncoder.toUint8Array();
+            const mergedDeletes = mergeUpdatesV2([deletesUpdate, partMerged]);
+            if (!hasDeletes || enc !== encDoc) {
+              // deletes will almost definitely lead to different encoders because of the mergeStruct feature that is present in encDoc
+              compare$2(diffed, mergedDeletes);
+            }
+          }
+        }
+      }
+
+      const meta = enc.parseUpdateMeta(mergedUpdates);
+      meta.from.forEach((clock, client) => assert(clock === 0));
+      meta.to.forEach((clock, client) => {
+        const structs = /** @type {Array<Y.Item>} */ (merged.store.clients.get(client));
+        const lastStruct = structs[structs.length - 1];
+        assert(lastStruct.id.clock + lastStruct.length === clock);
+      });
+    });
+  };
+
+  /**
+   * @param {t.TestCase} tc
+   */
+  const testMergeUpdates1 = tc => {
+    encoders.forEach((enc, i) => {
+      info(`Using encoder: ${enc.description}`);
+      const ydoc = new Doc({ gc: false });
+      const updates = /** @type {Array<Uint8Array>} */ ([]);
+      ydoc.on(enc.updateEventName, update => { updates.push(update); });
+
+      const array = ydoc.getArray();
+      array.insert(0, [1]);
+      array.insert(0, [2]);
+      array.insert(0, [3]);
+      array.insert(0, [4]);
+
+      checkUpdateCases(ydoc, updates, enc, false);
+    });
+  };
+
+  /**
+   * @param {t.TestCase} tc
+   */
+  const testMergeUpdates2 = tc => {
+    encoders.forEach((enc, i) => {
+      info(`Using encoder: ${enc.description}`);
+      const ydoc = new Doc({ gc: false });
+      const updates = /** @type {Array<Uint8Array>} */ ([]);
+      ydoc.on(enc.updateEventName, update => { updates.push(update); });
+
+      const array = ydoc.getArray();
+      array.insert(0, [1, 2]);
+      array.delete(1, 1);
+      array.insert(0, [3, 4]);
+      array.delete(1, 2);
+
+      checkUpdateCases(ydoc, updates, enc, true);
+    });
+  };
+
+  /**
+   * @todo be able to apply Skip structs to Yjs docs
+   */
+
+  var updates = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    testMergeUpdates: testMergeUpdates,
+    testMergeUpdates1: testMergeUpdates1,
+    testMergeUpdates2: testMergeUpdates2
+  });
+
+  /**
+   * @param {Y.YText} ytext
+   */
+  const checkRelativePositions = ytext => {
+    // test if all positions are encoded and restored correctly
+    for (let i = 0; i < ytext.length; i++) {
+      // for all types of associations..
+      for (let assoc = -1; assoc < 2; assoc++) {
+        const rpos = createRelativePositionFromTypeIndex(ytext, i, assoc);
+        const encodedRpos = encodeRelativePosition(rpos);
+        const decodedRpos = decodeRelativePosition(encodedRpos);
+        const absPos = /** @type {Y.AbsolutePosition} */ (createAbsolutePositionFromRelativePosition(decodedRpos, /** @type {Y.Doc} */ (ytext.doc)));
+        assert(absPos.index === i);
+        assert(absPos.assoc === assoc);
+      }
+    }
+  };
+
+  /**
+   * @param {t.TestCase} tc
+   */
+  const testRelativePositionCase1 = tc => {
+    const ydoc = new Doc();
+    const ytext = ydoc.getText();
+    ytext.insert(0, '1');
+    ytext.insert(0, 'abc');
+    ytext.insert(0, 'z');
+    ytext.insert(0, 'y');
+    ytext.insert(0, 'x');
+    checkRelativePositions(ytext);
+  };
+
+  /**
+   * @param {t.TestCase} tc
+   */
+  const testRelativePositionCase2 = tc => {
+    const ydoc = new Doc();
+    const ytext = ydoc.getText();
+    ytext.insert(0, 'abc');
+    checkRelativePositions(ytext);
+  };
+
+  /**
+   * @param {t.TestCase} tc
+   */
+  const testRelativePositionCase3 = tc => {
+    const ydoc = new Doc();
+    const ytext = ydoc.getText();
+    ytext.insert(0, 'abc');
+    ytext.insert(0, '1');
+    ytext.insert(0, 'xyz');
+    checkRelativePositions(ytext);
+  };
+
+  /**
+   * @param {t.TestCase} tc
+   */
+  const testRelativePositionCase4 = tc => {
+    const ydoc = new Doc();
+    const ytext = ydoc.getText();
+    ytext.insert(0, '1');
+    checkRelativePositions(ytext);
+  };
+
+  /**
+   * @param {t.TestCase} tc
+   */
+  const testRelativePositionCase5 = tc => {
+    const ydoc = new Doc();
+    const ytext = ydoc.getText();
+    ytext.insert(0, '2');
+    ytext.insert(0, '1');
+    checkRelativePositions(ytext);
+  };
+
+  /**
+   * @param {t.TestCase} tc
+   */
+  const testRelativePositionCase6 = tc => {
+    const ydoc = new Doc();
+    const ytext = ydoc.getText();
+    checkRelativePositions(ytext);
+  };
+
+  /**
+   * @param {t.TestCase} tc
+   */
+  const testRelativePositionAssociationDifference = tc => {
+    const ydoc = new Doc();
+    const ytext = ydoc.getText();
+    ytext.insert(0, '2');
+    ytext.insert(0, '1');
+    const rposRight = createRelativePositionFromTypeIndex(ytext, 1, 0);
+    const rposLeft = createRelativePositionFromTypeIndex(ytext, 1, -1);
+    ytext.insert(1, 'x');
+    const posRight = createAbsolutePositionFromRelativePosition(rposRight, ydoc);
+    const posLeft = createAbsolutePositionFromRelativePosition(rposLeft, ydoc);
+    assert(posRight != null && posRight.index === 2);
+    assert(posLeft != null && posLeft.index === 1);
+  };
+
+  var relativePositions = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    testRelativePositionCase1: testRelativePositionCase1,
+    testRelativePositionCase2: testRelativePositionCase2,
+    testRelativePositionCase3: testRelativePositionCase3,
+    testRelativePositionCase4: testRelativePositionCase4,
+    testRelativePositionCase5: testRelativePositionCase5,
+    testRelativePositionCase6: testRelativePositionCase6,
+    testRelativePositionAssociationDifference: testRelativePositionAssociationDifference
+  });
+
   if (isBrowser) {
     createVConsole(document.body);
   }
   runTests({
-    doc: doc$1, map: map$2, array, text: text$1, xml, encoding, undoredo, compatibility, snapshot: snapshot$1
+    doc, map, array, text, xml, encoding, undoredo, compatibility, snapshot, updates, relativePositions
   }).then(success => {
     /* istanbul ignore next */
     if (isNode) {

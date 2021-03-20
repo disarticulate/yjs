@@ -21,7 +21,7 @@ export class PermanentUserData {
      * @param {function(Transaction, DeleteSet):boolean} [conf.filter]
      */
     setUserMapping(doc: Doc, clientid: number, userDescription: string, { filter }?: {
-        filter?: (arg0: Transaction, arg1: DeleteSet) => boolean;
+        filter?: ((arg0: Transaction, arg1: DeleteSet) => boolean) | undefined;
     } | undefined): void;
     /**
      * @param {number} clientid

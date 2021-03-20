@@ -3,7 +3,6 @@
  * simple formatting information like bold and italic.
  */
 export class YXmlText extends YText {
-    constructor(string?: string | undefined);
     /**
      * @type {YXmlElement|YXmlText|null}
      */
@@ -31,7 +30,8 @@ export class YXmlText extends YText {
         [x: string]: any;
     } | undefined, binding?: any): Text;
 }
-export function readYXmlText(decoder: AbstractUpdateDecoder): YXmlText;
+export function readYXmlText(decoder: UpdateDecoderV1 | UpdateDecoderV2): YXmlText;
 import { YText } from "./YText.js";
 import { YXmlElement } from "./YXmlElement.js";
-import { AbstractUpdateDecoder } from "../utils/UpdateDecoder.js";
+import { UpdateDecoderV1 } from "../utils/UpdateDecoder.js";
+import { UpdateDecoderV2 } from "../utils/UpdateDecoder.js";

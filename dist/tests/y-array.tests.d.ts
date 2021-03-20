@@ -35,4 +35,4 @@ export function testRepeatGeneratingYarrayTests1800(tc: t.TestCase): void;
 export function testRepeatGeneratingYarrayTests3000(tc: t.TestCase): void;
 export function testRepeatGeneratingYarrayTests5000(tc: t.TestCase): void;
 export function testRepeatGeneratingYarrayTests30000(tc: t.TestCase): void;
-import * as t from "lib0/testing";
+import * as t from "lib0/testing.js";

@@ -1,76 +1,3 @@
-export class AbstractDSEncoder {
-    restEncoder: encoding.Encoder;
-    /**
-     * @return {Uint8Array}
-     */
-    toUint8Array(): Uint8Array;
-    /**
-     * Resets the ds value to 0.
-     * The v2 encoder uses this information to reset the initial diff value.
-     */
-    resetDsCurVal(): void;
-    /**
-     * @param {number} clock
-     */
-    writeDsClock(clock: number): void;
-    /**
-     * @param {number} len
-     */
-    writeDsLen(len: number): void;
-}
-export class AbstractUpdateEncoder extends AbstractDSEncoder {
-    /**
-     * @param {ID} id
-     */
-    writeLeftID(id: ID): void;
-    /**
-     * @param {ID} id
-     */
-    writeRightID(id: ID): void;
-    /**
-     * Use writeClient and writeClock instead of writeID if possible.
-     * @param {number} client
-     */
-    writeClient(client: number): void;
-    /**
-     * @param {number} info An unsigned 8-bit integer
-     */
-    writeInfo(info: number): void;
-    /**
-     * @param {string} s
-     */
-    writeString(s: string): void;
-    /**
-     * @param {boolean} isYKey
-     */
-    writeParentInfo(isYKey: boolean): void;
-    /**
-     * @param {number} info An unsigned 8-bit integer
-     */
-    writeTypeRef(info: number): void;
-    /**
-     * Write len of a struct - well suited for Opt RLE encoder.
-     *
-     * @param {number} len
-     */
-    writeLen(len: number): void;
-    /**
-     * @param {any} any
-     */
-    writeAny(any: any): void;
-    /**
-     * @param {Uint8Array} buf
-     */
-    writeBuf(buf: Uint8Array): void;
-    /**
-     * @param {any} embed
-     */
-    writeJSON(embed: any): void;
-    /**
-     * @param {string} key
-     */
-    writeKey(key: string): void;
-}
 export class DSEncoderV1 {
     restEncoder: encoding.Encoder;
     toUint8Array(): Uint8Array;
@@ -232,5 +159,5 @@ export class UpdateEncoderV2 extends DSEncoderV2 {
      */
     writeKey(key: string): void;
 }
-import * as encoding from "lib0/encoding";
+import * as encoding from "lib0/encoding.js";
 import { ID } from "./ID.js";

@@ -116,13 +116,13 @@ export class Item extends AbstractStruct {
      */
     gc(store: StructStore, parentGCd: boolean): void;
 }
-export function readItemContent(decoder: AbstractUpdateDecoder, info: number): AbstractContent;
+export function readItemContent(decoder: UpdateDecoderV1 | UpdateDecoderV2, info: number): AbstractContent;
 /**
  * A lookup map for reading Item content.
  *
- * @type {Array<function(AbstractUpdateDecoder):AbstractContent>}
+ * @type {Array<function(UpdateDecoderV1 | UpdateDecoderV2):AbstractContent>}
  */
-export const contentRefs: Array<(arg0: AbstractUpdateDecoder) => AbstractContent>;
+export const contentRefs: Array<(arg0: UpdateDecoderV1 | UpdateDecoderV2) => AbstractContent>;
 /**
  * Do not implement this class!
  */
@@ -173,10 +173,10 @@ export class AbstractContent {
      */
     gc(store: StructStore): void;
     /**
-     * @param {AbstractUpdateEncoder} encoder
+     * @param {UpdateEncoderV1 | UpdateEncoderV2} encoder
      * @param {number} offset
      */
-    write(encoder: AbstractUpdateEncoder, offset: number): void;
+    write(encoder: UpdateEncoderV1 | UpdateEncoderV2, offset: number): void;
     /**
      * @return {number}
      */
@@ -187,5 +187,7 @@ import { ID } from "../utils/ID.js";
 import { Transaction } from "../utils/Transaction.js";
 import { AbstractStruct } from "./AbstractStruct.js";
 import { AbstractType } from "../types/AbstractType.js";
-import { AbstractUpdateDecoder } from "../utils/UpdateDecoder.js";
-import { AbstractUpdateEncoder } from "../utils/UpdateEncoder.js";
+import { UpdateDecoderV1 } from "../utils/UpdateDecoder.js";
+import { UpdateDecoderV2 } from "../utils/UpdateDecoder.js";
+import { UpdateEncoderV1 } from "../utils/UpdateEncoder.js";
+import { UpdateEncoderV2 } from "../utils/UpdateEncoder.js";

@@ -15,5 +15,5 @@ export class AbstractConnector extends Observable<any> {
     doc: Doc;
     awareness: any;
 }
-import { Observable } from "lib0/observable";
+import { Observable } from "lib0/observable.js";
 import { Doc } from "./Doc.js";

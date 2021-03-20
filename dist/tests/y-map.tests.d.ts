@@ -32,4 +32,4 @@ export function testRepeatGeneratingYmapTests1800(tc: t.TestCase): void;
 export function testRepeatGeneratingYmapTests5000(tc: t.TestCase): void;
 export function testRepeatGeneratingYmapTests10000(tc: t.TestCase): void;
 export function testRepeatGeneratingYmapTests100000(tc: t.TestCase): void;
-import * as t from "lib0/testing";
+import * as t from "lib0/testing.js";
